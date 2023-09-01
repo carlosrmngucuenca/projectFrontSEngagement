@@ -1,1 +1,26 @@
+:root {
+  --background-color: #fdf8f8;
+  --primary-color: #afd3e2;
+  --secondary-color: #0e5879;
+  --white: #ffffff;
+  --black: #000000;
+  --grey-primary: #e6e6e6;
+  --grey-secondary: #878682;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-color);
+  height: 100vh;
+}
+
 /* You can add global styles to this file, and also import other style files */
