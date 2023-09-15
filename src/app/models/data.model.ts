@@ -3,3 +3,9 @@ export interface user {
   name: string;
   pin: number;
 }
+
+export interface Engagementcomponent {
+  icon: string;
+  type: string;
+  question: string;
+}

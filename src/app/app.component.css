@@ -1,15 +1,1 @@
-.container {
-  display: grid;
-  height: 100%;
-  grid-template: repeat(auto-fit, minmax(80px, 1fr)) / repeat(4, 1fr);
-  place-content: center;
-}
-header {
-  grid-column: 1 / 5;
-  grid-row: 1 / 2;
-}
-main {
-  place-self: center;
-  grid-column: 1 / 5;
-  grid-row: 2 / 9;
-}
+

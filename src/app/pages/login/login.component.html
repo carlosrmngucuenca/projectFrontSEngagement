@@ -1,7 +1,15 @@
 <div class="login">
   <div class="form-container">
-    <img src="" alt="" />
-    <form [formGroup]="miFormulario" class="form" (ngSubmit)="save($event)">
+    <img
+      class="form-container__img"
+      src="../../../assets/logos/Group.svg"
+      alt="Imagen de logo de la empresa"
+    />
+    <form
+      [formGroup]="miFormulario"
+      class="main-form"
+      (ngSubmit)="save($event)"
+    >
       <input
         type="text"
         formControlName="userPin"
@@ -10,7 +18,8 @@
         [class.is-valid]="isPinValid"
         [class.is-invalid]="isPinInvalid"
       />
-      <div class="messages" [class.active]="isPinInvalid">
+
+      <div class="messages" [class.active]="isPinInvalid" *ngIf="isPinInvalid">
         <p>
           <strong
             *ngIf="
@@ -35,16 +44,44 @@
         formControlName="userName"
         placeholder="Nombre"
         class="input input-pin"
+        [class.is-valid]="isUserNameValid"
+        [class.is-invalid]="isUserNameInvalid"
       />
 
+      <div
+        class="messages"
+        [class.active]="isUserNameInvalid"
+        *ngIf="isUserNameInvalid"
+      >
+        <p>
+          <strong
+            *ngIf="
+              miFormulario.get('userName')?.touched &&
+              miFormulario.get('userName')?.hasError('required')
+            "
+            >Campo Requerido</strong
+          >
+        </p>
+        <p>
+          <strong
+            *ngIf="
+              miFormulario.get('userName')?.touched &&
+              miFormulario.get('userName')?.hasError('maxlength')
+            "
+            >maximo 10 caracteres</strong
+          >
+        </p>
+      </div>
       <button
         type="submit"
-        [routerLink]="['/Home']"
-        [disabled]="miFormulario.get('userPin')?.invalid"
         class="button primary-button"
+        [class.is-enabled]="isPinValid && isUserNameValid"
       >
         Ingresar
       </button>
     </form>
+    <p class="form-container__message">
+      También puedes ingresar en un computador en mote.ucuenca.edu.ec
+    </p>
   </div>
 </div>

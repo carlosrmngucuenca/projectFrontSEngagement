@@ -1,0 +1,9 @@
+.grid-container {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(2, minmax(120px, 140px));
+  grid-template-rows: repeat(fit-content, minmax(120px, 160px));
+  margin: 12px 0px;
+  gap: 8px;
+}

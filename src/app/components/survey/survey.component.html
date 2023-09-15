@@ -1,0 +1,124 @@
+<div class="survey-container">
+  <div class="survey-container__questions" [ngSwitch]="buttonEngagementOption">
+    <div
+      class="survey__question"
+      *ngSwitchCase="1"
+      [class.hide]="hideCognitive"
+    >
+      <legend>Participe en las actividades cognitivas.</legend>
+      <!-- Slider del 1 al 5 -->
+      <input
+        type="range"
+        id="slider1"
+        name="af1"
+        min="1"
+        max="5"
+        value="3"
+        [(ngModel)]="cognitiveLevel"
+      />
+
+      <div class="survey__question__likert-scale">
+        <div class="likert__option">1</div>
+        <div class="likert__option">2</div>
+        <div class="likert__option">3</div>
+        <div class="likert__option">4</div>
+        <div class="likert__option">5</div>
+      </div>
+      <!-- Output del valor seleccionado -->
+      <output id="output1" for="slider1"></output>
+      {{ cognitiveLevel }}
+    </div>
+    <div [class.hide]="hideSocial" class="survey__question" *ngSwitchCase="2">
+      <legend>Participe en las actividades sociales.</legend>
+      <!-- Slider del 1 al 5 -->
+      <input
+        type="range"
+        id="slider1"
+        name="af1"
+        min="1"
+        max="5"
+        value="3"
+        [(ngModel)]="socialLevel"
+      />
+      <div class="survey__question__likert-scale">
+        <div class="likert__option">1</div>
+        <div class="likert__option">2</div>
+        <div class="likert__option">3</div>
+        <div class="likert__option">4</div>
+        <div class="likert__option">5</div>
+      </div>
+      <!-- Output del valor seleccionado -->
+      <output id="output1" for="slider1"></output>
+      {{ socialLevel }}
+    </div>
+    <div
+      [class.hide]="hideBehaviour"
+      class="survey__question"
+      *ngSwitchCase="3"
+    >
+      <legend>Participe en las actividades conducta.</legend>
+      <!-- Slider del 1 al 5 -->
+      <input
+        type="range"
+        id="slider1"
+        name="af1"
+        min="1"
+        max="5"
+        value="3"
+        [(ngModel)]="behaviourLevel"
+      />
+      <div class="survey__question__likert-scale">
+        <div class="likert__option">1</div>
+        <div class="likert__option">2</div>
+        <div class="likert__option">3</div>
+        <div class="likert__option">4</div>
+        <div class="likert__option">5</div>
+      </div>
+      <!-- Output del valor seleccionado -->
+      <output id="output1" for="slider1"></output>
+      {{ behaviourLevel }}
+    </div>
+    <div
+      [class.hide]="hideAffective"
+      class="survey__question"
+      *ngSwitchCase="4"
+    >
+      <legend>Participe en las actividades affectivas.</legend>
+      <!-- Slider del 1 al 5 -->
+      <input
+        type="range"
+        id="slider1"
+        name="af1"
+        min="1"
+        max="5"
+        value="3"
+        [(ngModel)]="affectiveLevel"
+      />
+      <div class="survey__question__likert-scale">
+        <div class="likert__option">1</div>
+        <div class="likert__option">2</div>
+        <div class="likert__option">3</div>
+        <div class="likert__option">4</div>
+        <div class="likert__option">5</div>
+      </div>
+      <!-- Output del valor seleccionado -->
+      <output id="output1" for="slider1"></output>
+      {{ affectiveLevel }}
+    </div>
+    <div class="survey__question" *ngSwitchDefault>
+      <p>Bienvenido</p>
+    </div>
+  </div>
+  <div class="survey__engagement-buttons">
+    <div class="gridContainer">
+      <app-engagement
+        [engagementComponent]="engagementComponent"
+        *ngFor="let engagementComponent of engagementComponents; index as i"
+        (click)="engagementMethod(i)"
+        (addQuestion)="addToQuestion($event)"
+      ></app-engagement>
+    </div>
+  </div>
+
+  <button class="survey__primary-button">Enviar</button>
+</div>
