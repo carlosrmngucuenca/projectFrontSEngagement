@@ -1,0 +1,6 @@
+main {
+  display: grid;
+  width: 100%;
+  min-width: 230px;
+  height: calc(100vh - 80px);
+}
