@@ -9,6 +9,14 @@ export class WebsocketService {
   constructor(private socket: Socket) {}
 
   public getSocket$(): Observable<any> {
-    return;
+    return new Observable((observer) => {
+      try {
+        this.socket.on('connect', () => {
+          console.log('conectado');
+        });
+      } catch (e) {
+        observer.error(e);
+      }
+    });
   }
 }
