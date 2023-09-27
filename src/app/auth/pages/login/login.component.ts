@@ -56,6 +56,7 @@ export class LoginComponent {
   save(event: any) {
     if (this.miFormulario.valid) {
       console.log(this.miFormulario.value);
+      const { userPin, userName } = this.miFormulario.getRawValue();
       this.router.navigate(['/student/Home']);
     } else {
       this.miFormulario.markAllAsTouched();
