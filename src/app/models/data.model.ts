@@ -9,3 +9,8 @@ export interface Engagementcomponent {
   type: string;
   question: string;
 }
+
+export interface Datapoll {
+  idRoom: string;
+  idPoll: string;
+}

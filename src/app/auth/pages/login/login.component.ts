@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,17 +6,26 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { Socket } from 'ngx-socket-io';
+import { WebsocketService } from 'src/app/services/websocket.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   miFormulario!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private socketService: WebsocketService,
+    private socket: Socket
+  ) {
     this.builForm();
+  }
+  ngOnInit(): void {
+    // this.socketService.getSocket$().subscribe;
   }
 
   get isPinValid() {
@@ -49,7 +58,7 @@ export class LoginComponent {
 
   private builForm() {
     this.miFormulario = this.formBuilder.group({
-      userPin: ['', [Validators.required, Validators.maxLength(5)]],
+      userPin: ['', [Validators.required, Validators.maxLength(10)]],
       userName: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
@@ -57,6 +66,20 @@ export class LoginComponent {
     if (this.miFormulario.valid) {
       console.log(this.miFormulario.value);
       const { userPin, userName } = this.miFormulario.getRawValue();
+      const data = {
+        roomCode: userPin,
+      };
+
+      this.socketService.getSocket$().subscribe({
+        next: () => {
+          console.log('conectado');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+
+      this.socketService.emitEvent('joinRoom', data);
       this.router.navigate(['/student/Home']);
     } else {
       this.miFormulario.markAllAsTouched();

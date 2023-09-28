@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
+import { Datapoll } from '../models/data.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebsocketService {
+  room: String = '';
   constructor(private socket: Socket) {}
 
   public getSocket$(): Observable<any> {
@@ -13,10 +15,50 @@ export class WebsocketService {
       try {
         this.socket.on('connect', () => {
           console.log('conectado');
+          const data = {
+            roomCode: 'MRA123',
+          };
+          this.socket.emit('joinRoom', data);
         });
       } catch (e) {
         observer.error(e);
       }
+    });
+  }
+
+  emitEvent(evento: string, message = {}) {
+    this.socket.emit(evento, message);
+    console.log('websocketservice');
+    // this.socket.on('connect', () => {
+    //   console.log('conectado');
+    //   const data = {
+    //     roomCode: 'MRA123',
+    //   };
+    //   this.socket.emit(evento, data);
+    // });
+  }
+
+  listenEvent(callback: (message: string) => void) {
+    this.socket.on('message', (message: string) => {
+      callback(message);
+    });
+  }
+
+  listenAnuthorized(data: Datapoll) {
+    this.socket.on('unauthorized', function (data: Datapoll) {
+      console.log(data); //muestra mensaje de usuario no autorizado.
+    });
+  }
+
+  listenSuccess(data: Datapoll) {
+    this.socket.on('sucess', function (data: Datapoll) {
+      console.log(data); //muestra mensaje de usuario no autorizado.
+    });
+  }
+
+  listenError(data: Datapoll) {
+    this.socket.on('error', function (data: Datapoll) {
+      console.log(data); //muestra mensaje de usuario no autorizado.
     });
   }
 }

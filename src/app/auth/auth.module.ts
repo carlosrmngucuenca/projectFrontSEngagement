@@ -5,9 +5,16 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
-
+import { config } from 'src/socket.config';
+import { SocketIoModule } from 'ngx-socket-io';
 @NgModule({
   declarations: [LayoutComponent, LoginComponent],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    SocketIoModule.forRoot(config),
+  ],
 })
 export class AuthModule {}
