@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.2.7",
     "@angular/router": "^16.2.7",
     "@jridgewell/sourcemap-codec": "^1.4.15",
+    "ngx-socket-io": "^4.5.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
