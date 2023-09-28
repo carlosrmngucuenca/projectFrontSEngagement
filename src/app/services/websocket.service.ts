@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 import { Datapoll } from '../models/data.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
+
 export class WebsocketService {
   room: String = '';
   callback: EventEmitter<any> = new EventEmitter();
@@ -56,3 +57,4 @@ export class WebsocketService {
     });
   }
 }
+
