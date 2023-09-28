@@ -7,7 +7,7 @@ const url = environment.socketUrl;
 // Opciones de conexión
 const options = {
   // Puedes agregar las opciones que quieras, por ejemplo:
-  // transports: ['websocket'],
+  transports: ['websocket'],
   // query: { nameRoom: 'xxxx' }
 };
 
