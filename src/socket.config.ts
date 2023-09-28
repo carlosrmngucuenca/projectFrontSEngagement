@@ -6,7 +6,7 @@ const url = 'http://localhost:3002';
 // Opciones de conexión
 const options = {
   // Puedes agregar las opciones que quieras, por ejemplo:
-  // transports: ['websocket'],
+  transports: ['websocket'],
   // query: { nameRoom: 'xxxx' }
 };
 
