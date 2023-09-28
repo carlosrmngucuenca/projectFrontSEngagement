@@ -24,8 +24,13 @@ export class LoginComponent implements OnInit {
   ) {
     this.builForm();
   }
+
   ngOnInit(): void {
     // this.socketService.getSocket$().subscribe;
+    const data = {
+      roomCode: 'MRA123',
+    };
+    this.socketService.emitEvent('joinRoom', data);
   }
 
   get isPinValid() {
@@ -79,7 +84,8 @@ export class LoginComponent implements OnInit {
         },
       });
 
-      this.socketService.emitEvent('joinRoom', data);
+      //this.socketService.emitEvent('joinRoom', data);
+
       this.router.navigate(['/student/Home']);
     } else {
       this.miFormulario.markAllAsTouched();

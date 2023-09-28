@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
 import { Datapoll } from '../models/data.model';
@@ -8,6 +8,7 @@ import { Datapoll } from '../models/data.model';
 })
 export class WebsocketService {
   room: String = '';
+  callback: EventEmitter<any> = new EventEmitter();
   constructor(private socket: Socket) {}
 
   public getSocket$(): Observable<any> {
@@ -38,9 +39,9 @@ export class WebsocketService {
     // });
   }
 
-  listenEvent(callback: (message: string) => void) {
-    this.socket.on('message', (message: string) => {
-      callback(message);
+  listenEvent() {
+    this.socket.on('success', (res: string) => {
+      this.callback.emit(res);
     });
   }
 

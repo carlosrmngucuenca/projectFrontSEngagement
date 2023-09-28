@@ -1,7 +1,8 @@
 import { SocketIoConfig } from 'ngx-socket-io';
+import { environment } from './environments/environment';
 
 // URL del servidor de sockets
-const url = 'http://localhost:3002';
+const url = environment.socketUrl;
 
 // Opciones de conexión
 const options = {
