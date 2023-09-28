@@ -29,13 +29,6 @@ export class WebsocketService {
   emitEvent(evento: string, message = {}) {
     this.socket.emit(evento, message);
     console.log('websocketservice');
-    // this.socket.on('connect', () => {
-    //   console.log('conectado');
-    //   const data = {
-    //     roomCode: 'MRA123',
-    //   };
-    //   this.socket.emit(evento, data);
-    // });
   }
 
   listenEvent(callback: (message: string) => void) {
