@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { config } from 'src/config/socket.config';
 import { SocketIoModule } from 'ngx-socket-io';
-/*modulo del Estudiante*/
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
