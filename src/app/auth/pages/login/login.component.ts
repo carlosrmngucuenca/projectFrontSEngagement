@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
   Validators,
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Socket } from 'ngx-socket-io';
-import { WebsocketService } from 'src/app/services/websocket.service';
+import { Subscription } from 'rxjs';
+import { JoinRoom } from 'src/app/interfaces/join-room-event.interface';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,22 +14,15 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class LoginComponent implements OnInit {
   miFormulario!: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private socketService: WebsocketService,
-    private socket: Socket
+    private router: Router
   ) {
     this.builForm();
   }
 
   ngOnInit(): void {
-    // this.socketService.getSocket$().subscribe;
-    const data = {
-      roomCode: 'MRA123',
-    };
-    this.socketService.emitEvent('joinRoom', data);
+
   }
 
   get isPinValid() {
@@ -63,30 +55,22 @@ export class LoginComponent implements OnInit {
 
   private builForm() {
     this.miFormulario = this.formBuilder.group({
-      userPin: ['', [Validators.required, Validators.maxLength(10)]],
-      userName: ['', [Validators.required, Validators.maxLength(10)]],
+      userPin: ['MRA123', [Validators.required, Validators.maxLength(10)]],
+      //userName: ['Felipe', [Validators.required, Validators.maxLength(10)]],
     });
   }
   save(event: any) {
     if (this.miFormulario.valid) {
       console.log(this.miFormulario.value);
-      const { userPin, userName } = this.miFormulario.getRawValue();
-      const data = {
+      const { userPin } = this.miFormulario.getRawValue();
+      const roomExists = true;
+      const data:JoinRoom = {
         roomCode: userPin,
       };
+      if (roomExists) {
+        this.router.navigate(['/student/Home']);
+      }
 
-      this.socketService.getSocket$().subscribe({
-        next: () => {
-          console.log('conectado');
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-
-      //this.socketService.emitEvent('joinRoom', data);
-
-      this.router.navigate(['/student/Home']);
     } else {
       this.miFormulario.markAllAsTouched();
     }

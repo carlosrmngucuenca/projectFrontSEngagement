@@ -1,5 +1,5 @@
 import { SocketIoConfig } from 'ngx-socket-io';
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 
 // URL del servidor de sockets
 const url = environment.socketUrl;
