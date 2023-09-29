@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Poll } from '../../../interfaces/poll.interface'; // Importa la interfaz Poll
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css'],
 })
-export class SurveyComponent {
+export class SurveyComponent implements OnInit {
+  pollData: Poll | null = null; // Usa la interfaz Poll como tipo
   buttonEngagementOption: number = 0;
   /* varibles para medir la dimension Conduatual */
   behaviourLevel: number = 1;
@@ -28,6 +30,16 @@ export class SurveyComponent {
   hideAffective: boolean = false;
   affectiveNumber: number = 0;
 
+  constructor(private http: HttpClient) {}
+  ngOnInit(): void {
+    // Realiza la solicitud HTTP para obtener el archivo JSON
+    this.http
+      .get<Poll>('./../../../assets/jsons/poll.json')
+      .subscribe((data) => {
+        this.pollData = data;
+        console.log(this.pollData);
+      });
+  }
   engagementComponents = [
     {
       icon: './../../../assets/icons/cognitive.svg',

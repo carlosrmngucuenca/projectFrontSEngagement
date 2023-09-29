@@ -1,7 +1,13 @@
 <button class="button" (click)="sendQestion()">
-  <img
-    [src]="engagementComponent.icon"
-    loading="lazy"
-    [alt]="engagementComponent.type"
-  />
+  <img />
+  {{ engagementComponent.question }}
 </button>
+
+<div *ngFor="let question of data">
+  <h2>{{ question.question }}</h2>
+  <ul>
+    <li *ngFor="let answer of question.answers">
+      {{ answer.text }}
+    </li>
+  </ul>
+</div>
