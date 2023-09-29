@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
-import { config } from 'src/socket.config';
+import { config } from 'src/config/socket.config';
 import { SocketIoModule } from 'ngx-socket-io';
 /*modulo del Estudiante*/
 
