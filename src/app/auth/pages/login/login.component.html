@@ -1,42 +1,22 @@
 <div class="login">
   <div class="form-container">
-    <img
-      class="form-container__img"
-      src="../../../assets/logos/Group.svg"
-      alt="Imagen de logo de la empresa"
-    />
-    <form
-      [formGroup]="miFormulario"
-      class="main-form"
-      (ngSubmit)="save($event)"
-    >
-      <input
-        type="text"
-        formControlName="userPin"
-        placeholder="Tu pin de sala"
-        class="input input-pin"
-        [class.is-valid]="isPinValid"
-        [class.is-invalid]="isPinInvalid"
-      />
+    <img class="form-container__img" src="../../../assets/logos/Group.svg" alt="Imagen de logo de la empresa" />
+    <form [formGroup]="miFormulario" class="main-form" (ngSubmit)="save($event)">
+      <input type="text" formControlName="userPin" placeholder="Tu pin de sala" class="input input-pin"
+        [class.is-valid]="isPinValid" [class.is-invalid]="isPinInvalid" [ngClass]="{ 'is-invalid': isRoomInvalid }" />
 
       <div class="messages" [class.active]="isPinInvalid" *ngIf="isPinInvalid">
         <p>
-          <strong
-            *ngIf="
+          <strong *ngIf="
               miFormulario.get('userPin')?.touched &&
               miFormulario.get('userPin')?.hasError('required')
-            "
-            >Campo Requerido</strong
-          >
+            ">Campo Requerido</strong>
         </p>
         <p>
-          <strong
-            *ngIf="
+          <strong *ngIf="
               miFormulario.get('userPin')?.touched &&
               miFormulario.get('userPin')?.hasError('maxlength')
-            "
-            >maximo 5 caracteres</strong
-          >
+            ">maximo 5 caracteres</strong>
         </p>
       </div>
       <!-- <input
@@ -48,35 +28,26 @@
         [class.is-invalid]="isUserNameInvalid"
       /> -->
 
-      <div
-        class="messages"
-        [class.active]="isUserNameInvalid"
-        *ngIf="isUserNameInvalid"
-      >
+      <div class="messages" [class.active]="isUserNameInvalid" *ngIf="isUserNameInvalid">
         <p>
-          <strong
-            *ngIf="
+          <strong *ngIf="
               miFormulario.get('userName')?.touched &&
               miFormulario.get('userName')?.hasError('required')
-            "
-            >Campo Requerido</strong
-          >
+            ">Campo Requerido</strong>
         </p>
         <p>
-          <strong
-            *ngIf="
+          <strong *ngIf="
               miFormulario.get('userName')?.touched &&
               miFormulario.get('userName')?.hasError('maxlength')
-            "
-            >maximo 10 caracteres</strong
-          >
+            ">maximo 10 caracteres</strong>
         </p>
       </div>
-      <button
-        type="submit"
-        class="button primary-button"
-        [class.is-enabled]="isPinValid && isUserNameValid"
-      >
+      <div class="messages" [class.active]="isRoomInvalid">
+        <p>
+          <strong>Sala no existe.</strong>
+        </p>
+      </div>
+      <button type="submit" class="button primary-button" [class.is-enabled]="isPinValid && isUserNameValid">
         Ingresar
       </button>
     </form>

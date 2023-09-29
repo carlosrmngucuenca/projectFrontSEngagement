@@ -15,6 +15,7 @@ import { SocketIoModule } from 'ngx-socket-io';
     ReactiveFormsModule,
     FormsModule,
     SocketIoModule.forRoot(config),
+
   ],
 })
 export class AuthModule {}

@@ -5,18 +5,20 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JoinRoom } from 'src/app/interfaces/join-room-event.interface';
+import { RoomExistsResponse } from 'src/app/interfaces/room/room-exist-response.interface';
+import { RoomService } from 'src/app/services/room.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  isRoomInvalid: boolean = false; // Variable para rastrear si la sala no es válida
   miFormulario!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private roomService: RoomService
   ) {
     this.builForm();
   }
@@ -61,18 +63,26 @@ export class LoginComponent implements OnInit {
   }
   save(event: any) {
     if (this.miFormulario.valid) {
-      console.log(this.miFormulario.value);
       const { userPin } = this.miFormulario.getRawValue();
-      const roomExists = true;
-      const data:JoinRoom = {
-        roomCode: userPin,
-      };
-      if (roomExists) {
-        this.router.navigate(['/student/Home']);
-      }
 
+      // Verifica si la sala existe
+      this.roomService.checkRoomExists(userPin).subscribe({
+        next: (response: RoomExistsResponse) => {
+          if (response.exists) {
+            this.router.navigate(['/student/Home']);
+          } else {
+            this.isRoomInvalid = true;
+            console.error('La sala no existe. Por favor, verifica el código de sala.');
+
+          }
+        },
+        error: (error) => {
+          console.error('Error al verificar la existencia de la sala:', error);
+        }
+      });
     } else {
       this.miFormulario.markAllAsTouched();
+
     }
   }
 }
