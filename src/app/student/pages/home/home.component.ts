@@ -16,6 +16,10 @@ export class HomeComponent implements OnInit{
       .subscribe((data) => {
         console.log('success', data);
       });
+      this.socketService.onError()
+      .subscribe((data) => {
+        console.log('error', data);
+      });
   }
   buttonActivitySleep() {
     this.socketService.emit('saveActivitySleep', this.data);
