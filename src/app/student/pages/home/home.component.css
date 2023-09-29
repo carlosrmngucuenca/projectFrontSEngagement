@@ -1,9 +1,31 @@
+main {
+  display: grid;
+  width: 100%;
+  min-width: 230px;
+  height: calc(100vh - 80px);
+  place-items: center;
+}
 .grid-container {
   display: grid;
-  place-items: center;
+  place-items: stretch;
   justify-content: center;
-  grid-template-columns: repeat(2, minmax(120px, 140px));
-  grid-template-rows: repeat(fit-content, minmax(120px, 160px));
+  grid-template-columns: repeat(2, minmax(120px, 150px));
+  grid-template-rows: repeat(2, minmax(80px, 100px));
   margin: 12px 0px;
-  gap: 8px;
+  gap: 40px;
+}
+
+button {
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--secondary-color);
+
+  background-color: var(--background-color);
+}
+
+button:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
 }

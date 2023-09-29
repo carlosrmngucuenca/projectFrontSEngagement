@@ -8,10 +8,10 @@ import { Engagementcomponent } from 'src/app/models/data.model';
 })
 export class EngagementComponent {
   @Input() engagementComponent: Engagementcomponent = {
-    icon: '',
-    type: '',
     question: '',
   };
+
+  @Input() data: any[] = [];
 
   @Output() addQuestion = new EventEmitter<string>();
   sendQestion() {

@@ -109,14 +109,28 @@
       <p>Bienvenido</p>
     </div>
   </div>
-  <div class="survey__engagement-buttons">
-    <div class="gridContainer">
-      <app-engagement
+
+  <!-- <app-engagement
         [engagementComponent]="engagementComponent"
         *ngFor="let engagementComponent of engagementComponents; index as i"
         (click)="engagementMethod(i)"
         (addQuestion)="addToQuestion($event)"
-      ></app-engagement>
+      ></app-engagement> 
+  -->
+  <div class="survey__engagement-buttons">
+    <div *ngIf="pollData">
+      <!-- <h1>{{ pollData.pollTitle }}</h1>
+      <p>Start Date: {{ pollData.startDate }}</p> -->
+      <!-- <app-engagement [data]="pollData.questions"> </app-engagement> -->
+
+      <div class="gridContainer">
+        <div *ngFor="let question of pollData.questions; let i = index">
+          <button (click)="engagementMethod(i)">
+            <img [src]="engagementComponents[i].icon" loading="lazy" />
+          </button>
+        </div>
+        <!-- Puedes acceder a otras propiedades de pollData aquí -->
+      </div>
     </div>
   </div>
 

@@ -5,8 +5,6 @@ export interface user {
 }
 
 export interface Engagementcomponent {
-  icon: string;
-  type: string;
   question: string;
 }
 

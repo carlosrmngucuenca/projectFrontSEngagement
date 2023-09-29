@@ -1,15 +1,17 @@
 <app-header></app-header>
-<div class="grid-container">
-  <div class="grid-container__elemento">
-    <button routerLink="../Mysurvey">Engagement</button>
+<main>
+  <div class="grid-container">
+    <div class="grid-container__elemento">
+      <button routerLink="../Mysurvey">Engagement</button>
+    </div>
+    <div class="grid-container__elemento">
+      <button routerLink="../Mypoll">Encuesta</button>
+    </div>
+    <div (click)="buttonActivitySleep()" class="grid-container__elemento">
+      <button>No estoy aprendiendo</button>
+    </div>
+    <div (click)="buttonActivityIdontGetIt()" class="grid-container__elemento">
+      <button>Me estoy durmiendo</button>
+    </div>
   </div>
-  <div class="grid-container__elemento">
-    <button routerLink="../Mypoll">Encuesta</button>
-  </div>
-  <div (click)="buttonActivitySleep()" class="grid-container__elemento">
-    <button>No estoy aprendiendo</button>
-  </div>
-  <div (click)="buttonActivityIdontGetIt()" class="grid-container__elemento">
-    <button>Me estoy durmiendo</button>
-  </div>
-</div>
+</main>
