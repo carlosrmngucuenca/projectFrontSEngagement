@@ -22,5 +22,13 @@ body {
   background-color: var(--background-color);
   height: 100vh;
 }
-
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 16px;
+  height: 100%; /* Ocupa todo el ancho de la pantalla */
+  box-sizing: border-box; /* Incluye el margen y el padding en el ancho total */
+  background-color: #0e5879;
+}
 /* You can add global styles to this file, and also import other style files */
