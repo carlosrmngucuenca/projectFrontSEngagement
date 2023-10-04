@@ -2,7 +2,7 @@
   padding: 8px;
   border-radius: 4px;
   border: none;
-  background-color: var(--background-color);
+  background-color: var(--main-accent_color);
 }
 
 .button:hover {

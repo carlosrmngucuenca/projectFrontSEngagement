@@ -3,7 +3,7 @@
   place-items: center;
   width: 100%;
   height: 100vh;
-  background-color: var(--primary-color);
+  background-color: var(--main-primary_color);
 }
 
 .form-container {
@@ -22,12 +22,12 @@ img {
   flex-direction: column;
   padding: 16px;
   border-radius: 8px;
-  background-color: var(--white);
+  background-color: var(--main-background);
   gap: 12px;
 }
 
 .input {
-  background-color: var(--white);
+  background-color: var(--main-background);
   max-width: 300px;
   border: 1px solid #cccccc;
   border-radius: 8px;
@@ -39,12 +39,11 @@ img {
 
 .input::placeholder {
   color: #cccccc;
-  font-size: 1.6rem;
   text-align: center;
 }
 
 input.is-valid {
-  border: 4px solid var(--white);
+  border: 4px solid var(--main-background);
 }
 input.is-invalid {
   border: 2px solid red;
@@ -60,24 +59,22 @@ input.is-invalid {
 }
 
 button {
-  background-color: var(--grey-primary);
+  background-color: var(--main-accent_color);
   border-radius: 8px;
   width: 300px;
   border: none;
-  color: var(--white);
-  font-size: 1.9rem;
+  color: var(--info-text);
   height: 50px;
 }
 
 button.is-enabled {
-  background-color: var(--primary-color);
+  background-color: var(--main-primary_color);
 }
 
 .form-container__message {
   display: inline-block;
-  font-size: 16px;
   margin-top: 24px;
   /*width: 50%;*/
-  color: var(--white);
+  color: var(--main-background);
   text-align: center;
 }

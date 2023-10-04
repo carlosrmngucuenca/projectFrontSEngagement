@@ -14,6 +14,9 @@ import { MySurveyComponent } from './pages/my-survey/my-survey.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
+import { TitlePageComponent } from './components/title-page/title-page.component';
+import { ButtonPagesComponent } from './components/button-pages/button-pages.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { SharedModule } from '../shared/shared.module';
     HomeComponent,
     MySurveyComponent,
     LayoutComponent,
+    MyDoubtComponent,
+    TitlePageComponent,
+    ButtonPagesComponent,
   ],
   imports: [
     CommonModule,

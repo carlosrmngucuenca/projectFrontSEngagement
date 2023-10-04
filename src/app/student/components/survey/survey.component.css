@@ -1,5 +1,4 @@
 legend {
-  font-size: 1.6rem;
   margin-bottom: 12px;
 }
 .survey-container {
@@ -77,12 +76,11 @@ input[type="range"]::-webkit-slider-thumb {
   align-self: center;
   grid-column: 1 / 5;
   grid-row: 4 / 5;
-  background-color: var(--grey-primary);
+  background-color: var(--main-accent_color);
   border-radius: 8px;
   width: 300px;
   border: none;
-  color: var(--white);
-  font-size: 1.9rem;
+  color: var(--main-background);
   height: 50px;
 }
 
@@ -90,7 +88,7 @@ button {
   padding: 8px;
   border-radius: 4px;
   border: none;
-  background-color: var(--background-color);
+  background-color: var(--main-accent_color);
 }
 
 button:hover {

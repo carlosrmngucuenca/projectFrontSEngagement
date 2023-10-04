@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from '../auth/pages/login/login.component';
 import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 import { MyPollComponent } from './pages/my-poll/my-poll.component';
+import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'Mysurvey',
         component: MySurveyComponent,
+      },
+      {
+        path: 'MyDoubt',
+        component: MyDoubtComponent,
       },
     ],
   },

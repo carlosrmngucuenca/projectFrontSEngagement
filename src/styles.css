@@ -1,11 +1,18 @@
 :root {
-  --background-color: #fdf8f8;
-  --primary-color: #afd3e2;
-  --secondary-color: #0e5879;
-  --white: #ffffff;
-  --black: #000000;
-  --grey-primary: #e6e6e6;
-  --grey-secondary: #878682;
+  --info-text: #333333;
+  --info-notification: #d2070f;
+  --main-primary_color: #001781;
+  --main-secondary_color: #0e5879;
+  --main-third_color: #19a7ce;
+  --main-background: #fdf8f8;
+  --main-accent_color: #f0f0f0;
+  --link: 400 1rem/9.375rem Inter;
+  --titles-h1: semi bold 1.875rem/6.25rem Inter;
+  --titles-h2: semi bold 1.5rem/6.25rem Inter;
+  --titles-h3: semi bold 1.25rem/8.124999701976776rem Inter;
+  --titles-quote: 400 1.1875rem/8.124999701976776rem Inter;
+  --titles-link: 400 1rem/8.124999701976776rem Inter;
+  --text-paragraph: 400 1rem/normal Inter;
 }
 
 * {
@@ -15,20 +22,23 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: var(--titles-link);
 }
+
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--background-color);
+  background-color: var(--main-background);
   height: 100vh;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin: 16px;
-  height: 100%; /* Ocupa todo el ancho de la pantalla */
-  box-sizing: border-box; /* Incluye el margen y el padding en el ancho total */
-  background-color: #0e5879;
+  /* height: 100%; */
+  /* Ocupa todo el ancho de la pantalla */
+  box-sizing: border-box;
 }
+
 /* You can add global styles to this file, and also import other style files */

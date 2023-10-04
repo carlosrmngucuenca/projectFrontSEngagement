@@ -1,0 +1,21 @@
+student-button-pages {
+  margin: 5%;
+}
+
+.textarea-container {
+  grid-column: span 4;
+  /* Ocupa 3 de las 4 columnas, el 75% del ancho */
+}
+
+.textarea-container textarea {
+  width: 100%;
+  /* Ocupa todo el ancho del textarea-container */
+}
+
+textarea {
+  border: 1px solid var(--main-accent_color);
+  background-color: var(--main-background);
+  font-family: var(--titles-quote);
+  outline: none;
+  padding: 16px;
+}

@@ -1,12 +1,14 @@
-.header {
+/* Estilos para el header */
+header {
   width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-color);
+  background-color: var(--main-primary_color);
 }
 
+/* Estilos para la lista de navegación */
 .nav__list ul {
   display: flex;
   flex-direction: row;
@@ -21,7 +23,7 @@
 
 .nav__list li:nth-child(1) a {
   text-decoration: none;
-  font-size: 2.4rem;
+  font-size: var(--titles-h1);
   padding: 0px 16px;
   font-weight: 625;
   color: #000a10;
@@ -31,6 +33,11 @@
   text-decoration: none;
 }
 
-img {
-  padding: 8px;
+/* Estilos para las imágenes en la lista de navegación */
+.nav__list img {
+  margin: 8px;
+}
+
+.nav__list ul li #title_header{
+  color: var(--main-background);;
 }
