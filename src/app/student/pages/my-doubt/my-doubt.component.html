@@ -1,9 +1,7 @@
 <app-header></app-header>
-<student-title-page [displayText]="'Comentarios'"></student-title-page>
-<div class="grid-container">
-  <div class="textarea-container">
-    <textarea rows="20" placeholder="Escribe tu comentario aquí"></textarea>
-    <student-button-pages [displayText]="'Enviar'"></student-button-pages>
-  </div>
-
-</div>
+<student-title-page [displayText]="'Dudas'"></student-title-page>
+<main class="grid-container">
+  <textarea class="text-area-container" placeholder="Escribe tu comentario aquí"></textarea>
+  <student-button-text [textButton]="'Enviar pregunta al docente'" />
+</main>
+<student-footer class="footer-container" />

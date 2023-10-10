@@ -16,13 +16,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
-import { ButtonPagesComponent } from './components/button-pages/button-pages.component';
+import { ButtonImageTextComponent } from './components/button-image-text/button-image-text.component';
+import { ButtonIconComponent } from './components/button-icon/button-icon.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ButtonTextComponent } from './components/button-text/button-text.component';
+import { MySuccessComponent } from './pages/my-success/my-success.component';
+import { MyEmotionsComponent } from './pages/my-emotions/my-emotions.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     MainComponent,
-
     EngagementComponent,
     SurveyComponent,
     PollsComponent,
@@ -32,7 +36,12 @@ import { ButtonPagesComponent } from './components/button-pages/button-pages.com
     LayoutComponent,
     MyDoubtComponent,
     TitlePageComponent,
-    ButtonPagesComponent,
+    ButtonImageTextComponent,
+    ButtonIconComponent,
+    FooterComponent,
+    ButtonTextComponent,
+    MySuccessComponent,
+    MyEmotionsComponent,
   ],
   imports: [
     CommonModule,

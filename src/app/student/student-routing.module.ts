@@ -8,6 +8,9 @@ import { LoginComponent } from '../auth/pages/login/login.component';
 import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 import { MyPollComponent } from './pages/my-poll/my-poll.component';
 import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
+import { MySuccessComponent } from './pages/my-success/my-success.component';
+import { MyEmotionsComponent } from './pages/my-emotions/my-emotions.component';
+
 
 const routes: Routes = [
   {
@@ -16,29 +19,37 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'Auth',
+        redirectTo: 'auth',
         pathMatch: 'full',
       },
       {
-        path: 'Auth',
+        path: 'auth',
         loadChildren: () =>
           import('../auth/auth.module').then((module) => module.AuthModule),
       },
       {
-        path: 'Home',
+        path: 'home',
         component: HomeComponent,
       },
       {
-        path: 'Mypoll',
+        path: 'mypoll',
         component: MyPollComponent,
       },
       {
-        path: 'Mysurvey',
+        path: 'mysurvey',
         component: MySurveyComponent,
       },
       {
-        path: 'MyDoubt',
+        path: 'mydoubt',
         component: MyDoubtComponent,
+      },
+      {
+        path: 'mysuccess',
+        component: MySuccessComponent,
+      },
+      {
+        path: 'myemotions',
+        component: MyEmotionsComponent,
       },
     ],
   },

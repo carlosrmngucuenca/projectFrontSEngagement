@@ -3,7 +3,7 @@
   place-items: center;
   width: 100%;
   height: 100vh;
-  background-color: var(--main-primary_color);
+  background: var(--main-accent-color, #F0F0F0);
 }
 
 .form-container {
@@ -16,7 +16,9 @@
 
 img {
   padding-bottom: 35px;
+  width: 100px;
 }
+
 .main-form {
   display: flex;
   flex-direction: column;
@@ -45,6 +47,7 @@ img {
 input.is-valid {
   border: 4px solid var(--main-background);
 }
+
 input.is-invalid {
   border: 2px solid red;
 }
@@ -59,11 +62,11 @@ input.is-invalid {
 }
 
 button {
-  background-color: var(--main-accent_color);
+  background: var(--main-primary-color, #173264);
   border-radius: 8px;
   width: 300px;
   border: none;
-  color: var(--info-text);
+  color: var(--main-background);
   height: 50px;
 }
 
@@ -75,6 +78,6 @@ button.is-enabled {
   display: inline-block;
   margin-top: 24px;
   /*width: 50%;*/
-  color: var(--main-background);
+  color: var(--main-primary_color);
   text-align: center;
 }

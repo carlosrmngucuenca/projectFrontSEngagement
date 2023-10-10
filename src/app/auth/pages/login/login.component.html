@@ -1,6 +1,6 @@
 <div class="login">
   <div class="form-container">
-    <img class="form-container__img" src="../../../assets/logos/Group.svg" alt="Imagen de logo de la empresa" />
+    <img class="form-container__img" src="../../../assets/logos/main-logo.svg" alt="Imagen de logo de la empresa" />
     <form [formGroup]="miFormulario" class="main-form" (ngSubmit)="save($event)">
       <input type="text" formControlName="userPin" placeholder="Tu pin de sala" class="input input-pin"
         [class.is-valid]="isPinValid" [class.is-invalid]="isPinInvalid" [ngClass]="{ 'is-invalid': isRoomInvalid }" />
@@ -19,15 +19,6 @@
             ">maximo 5 caracteres</strong>
         </p>
       </div>
-      <!-- <input
-        type="text"
-        formControlName="userName"
-        placeholder="Nombre"
-        class="input input-pin"
-        [class.is-valid]="isUserNameValid"
-        [class.is-invalid]="isUserNameInvalid"
-      /> -->
-
       <div class="messages" [class.active]="isUserNameInvalid" *ngIf="isUserNameInvalid">
         <p>
           <strong *ngIf="

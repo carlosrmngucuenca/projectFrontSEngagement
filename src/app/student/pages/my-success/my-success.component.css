@@ -1,0 +1,25 @@
+.grid-container {
+  padding: 16px;
+  margin-top: 20%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr ;
+
+}
+
+img {
+  align-self: center;
+  justify-self: center;
+}
+
+p {
+  align-self: center;
+  justify-self: center;
+  color: var(--info-text, #333);
+  /* Titles/Quote */
+  font-family: Inter;
+  font-size: 1.1875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  /* 1.54375rem */
+}

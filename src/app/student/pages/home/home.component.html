@@ -1,15 +1,30 @@
 <app-header></app-header>
-<div class="grid-container">
-  <div class="grid-container__elemento">
-    <button routerLink="../Mysurvey">Engagement</button>
-  </div>
-  <div class="grid-container__elemento">
-    <button routerLink="../Mypoll">Encuesta</button>
-  </div>
-  <div (click)="buttonActivitySleep()" class="grid-container__elemento">
-    <button>No estoy aprendiendo</button>
-  </div>
-  <div (click)="buttonActivityIdontGetIt()" class="grid-container__elemento">
-    <button>Me estoy durmiendo</button>
-  </div>
-</div>
+
+<student-title-page [displayText]="'¿Cómo te sientes?'" />
+
+<main class="main-container">
+  <section class="grid-container">
+
+    <student-button-image-text class="boton fila1" [imageUrl]="'./../../../../assets/icons/take-break-icon.svg'"
+      [textButton]="'Solicitar un descanso'" [altImg]="'Button get a break'" />
+
+    <student-button-image-text class="boton fila2" [imageUrl]="'./../../../../assets/icons/lost-continuity-icon.svg'"
+      [textButton]="'Perdí el hilo de la clase'" [altImg]="'Button lost-continuity'" />
+
+    <student-button-image-text routerLink="../Mypoll" class="boton fila3-col3"
+      [imageUrl]="'./../../../../assets/icons/emotions-icon.svg'" [textButton]="'Expresarme'"
+      [altImg]="'Button emotions'" />
+
+    <student-button-image-text (click)="buttonActivitySleep()" [imageUrl]="'./../../../../assets/icons/sleep-icon.svg'"
+      [textButton]="'Tengo Sueño'" [altImg]="'Botón tengo sueño'" class="boton fila3-col4" />
+
+    <student-button-image-text (click)="buttonActivityIdontGetIt()" class="boton fila4-col3"
+      [imageUrl]="'./../../../../assets/icons/dontgetit-icon.svg'" [textButton]="'No entiendo'"
+      [altImg]="'No entiendo'" />
+
+    <student-button-image-text routerLink="../Mysurvey" (click)="buttonActivityIdontGetIt()" class="boton fila4-col4"
+      [imageUrl]="'./../../../../assets/icons/good-class-icon.svg'" [textButton]="'Excelente clase'"
+      [altImg]="'Excelente clase'" />
+  </section>
+</main>
+<student-footer class="footer-container" />

@@ -1,18 +1,11 @@
 :root {
   --info-text: #333333;
   --info-notification: #d2070f;
-  --main-primary_color: #001781;
+  --main-primary_color: #173264;
   --main-secondary_color: #0e5879;
   --main-third_color: #19a7ce;
   --main-background: #fdf8f8;
   --main-accent_color: #f0f0f0;
-  --link: 400 1rem/9.375rem Inter;
-  --titles-h1: semi bold 1.875rem/6.25rem Inter;
-  --titles-h2: semi bold 1.5rem/6.25rem Inter;
-  --titles-h3: semi bold 1.25rem/8.124999701976776rem Inter;
-  --titles-quote: 400 1.1875rem/8.124999701976776rem Inter;
-  --titles-link: 400 1rem/8.124999701976776rem Inter;
-  --text-paragraph: 400 1rem/normal Inter;
 }
 
 * {
@@ -21,24 +14,39 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: var(--titles-link);
-}
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--titles-link);
   background-color: var(--main-background);
-  height: 100vh;
+  min-height: 100vh;
+
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 16px;
-  /* height: 100%; */
-  /* Ocupa todo el ancho de la pantalla */
-  box-sizing: border-box;
+.titles_h2 {
+  color: var(--main-background, #FDF8F8);
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  /* 1.5rem */
 }
 
-/* You can add global styles to this file, and also import other style files */
+.titles_quote {
+  color: var(--info-text, #333);
+  /* Titles/Quote */
+  font-family: Inter;
+  font-size: 1.1875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  /* 1.54375rem */
+}
+.footer-container{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
