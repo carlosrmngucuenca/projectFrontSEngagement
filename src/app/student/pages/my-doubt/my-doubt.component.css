@@ -3,7 +3,7 @@
   margin-top: 5%;
   padding: 16px;
   display: grid;
-  grid-template-rows: 5fr 1fr;
+  grid-template-rows: 4fr 1fr;
   row-gap: 16px;
 }
 

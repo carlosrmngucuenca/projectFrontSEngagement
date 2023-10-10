@@ -1,6 +1,6 @@
 .grid-container {
   padding: 16px;
-  margin-top: 20%;
+  margin-top: 10%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr ;
 
