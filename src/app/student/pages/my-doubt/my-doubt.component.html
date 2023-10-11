@@ -2,6 +2,6 @@
 <student-title-page [displayText]="'Dudas'"></student-title-page>
 <main class="grid-container">
   <textarea class="text-area-container" placeholder="Escribe tu comentario aquí"></textarea>
-  <student-button-text [textButton]="'Enviar pregunta al docente'" />
+  <student-button-text (click)="submitQuestion()" [textButton]="'Enviar pregunta al docente'" />
 </main>
 <student-footer class="footer-container" />

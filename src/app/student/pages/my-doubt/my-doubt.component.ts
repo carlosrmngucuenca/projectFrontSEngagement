@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-doubt.component.css']
 })
 export class MyDoubtComponent {
+  submitQuestion(){
 
+  }
 }
