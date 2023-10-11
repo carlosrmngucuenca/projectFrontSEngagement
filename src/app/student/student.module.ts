@@ -16,7 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
-import { ButtonImageTextComponent } from './components/button-image-text/button-image-text.component';
+import { ButtonIconTextComponent } from './components/button-icon-text/button-icon-text.component';
 import { ButtonIconComponent } from './components/button-icon/button-icon.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonTextComponent } from './components/button-text/button-text.component';
@@ -39,7 +39,7 @@ import { MultipleOptionQuestionComponent } from './components/multiple-option-qu
     LayoutComponent,
     MyDoubtComponent,
     TitlePageComponent,
-    ButtonImageTextComponent,
+    ButtonIconTextComponent,
     ButtonIconComponent,
     FooterComponent,
     ButtonTextComponent,
