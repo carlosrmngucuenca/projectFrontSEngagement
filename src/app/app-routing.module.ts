@@ -6,6 +6,11 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'student',
+    pathMatch: 'full',
+  },
+  {
     path: 'student',
     loadChildren: () =>
       import('./student/student.module').then((module) => module.StudentModule),
