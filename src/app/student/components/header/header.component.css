@@ -1,7 +1,6 @@
 /* Estilos para el header */
 header {
   background: var(--main-primary-color, #173264);
-
 }
 
 /* Estilos para la lista de navegación */
@@ -20,5 +19,4 @@ header nav .titles_h2 {
 /* Estilos para las imágenes en la lista de navegación */
 header nav img {
   margin: 16px;
-
 }

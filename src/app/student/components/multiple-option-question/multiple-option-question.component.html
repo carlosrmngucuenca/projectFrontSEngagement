@@ -1,0 +1,9 @@
+<div>
+  <h3>{{ question.question }}</h3>
+  <form [formGroup]="form">
+    <label *ngFor="let answer of answers">
+      <input type="checkbox" ngChecked="answersFormArray.value.includes(answer.option)">
+      {{ answer.text }}
+    </label>
+  </form>
+</div>

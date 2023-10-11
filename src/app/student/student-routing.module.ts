@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
-import { SurveyComponent } from './components/survey/survey.component';
-import { MySurveyComponent } from './pages/my-survey/my-survey.component';
+import { MyEngagementPollComponent } from './pages/my-engagement-poll/my-engagement-poll.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from '../auth/pages/login/login.component';
-import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 import { MyPollComponent } from './pages/my-poll/my-poll.component';
 import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
 import { MySuccessComponent } from './pages/my-success/my-success.component';
@@ -32,23 +29,23 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'mypoll',
+        path: 'my-poll',
         component: MyPollComponent,
       },
       {
-        path: 'mysurvey',
-        component: MySurveyComponent,
+        path: 'my-engagement-poll',
+        component: MyEngagementPollComponent,
       },
       {
-        path: 'mydoubt',
+        path: 'my-doubt',
         component: MyDoubtComponent,
       },
       {
-        path: 'mysuccess',
+        path: 'my-success',
         component: MySuccessComponent,
       },
       {
-        path: 'myemotions',
+        path: 'my-emotions',
         component: MyEmotionsComponent,
       },
     ],
