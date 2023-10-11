@@ -1,5 +1,23 @@
-main{
+main {
   display: grid;
   place-content: center;
   padding: 16px;
 }
+
+student-button-text {
+  padding: 16px;
+}
+
+.question__title {
+  margin-bottom: 30px;
+  color: var(--info-text, #333);
+
+  /* Titles/Link */
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  /* 1.3rem */
+}
+

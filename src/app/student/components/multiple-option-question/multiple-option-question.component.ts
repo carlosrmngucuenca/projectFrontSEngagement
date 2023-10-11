@@ -8,7 +8,7 @@ import { Question } from 'src/app/interfaces/poll.interface';
   styleUrls: ['./multiple-option-question.component.css']
 })
 export class MultipleOptionQuestionComponent {
-  @Input() question!: Question; // Reemplaza 'any' con la interfaz de pregunta adecuada
+  @Input() question!: Question;
 
   form: FormGroup;
 
@@ -18,12 +18,12 @@ export class MultipleOptionQuestionComponent {
     });
   }
 
-  get answersFormArray() {
-    return (this.form.get('answers') as FormArray);
-  }
-
   get answers() {
     return this.question['answers'];
+  }
+
+  get answersFormArray() {
+    return (this.form.get('answers') as FormArray);
   }
 
   onCheckboxChange(option: number, isChecked: boolean) {

@@ -1,9 +1,10 @@
 <div>
-  <h3>{{ question.question }}</h3>
   <form [formGroup]="form">
-    <label *ngFor="let answer of answers">
-      <input type="radio" [value]="answer.option" formControlName="answer">
-      {{ answer.text }}
-    </label>
+    <div class="grid-question">
+      <label *ngFor="let answer of answers">
+        <input type="radio" [value]="answer.option" formControlName="answer">
+        {{ answer.text }}
+      </label>
+    </div>
   </form>
 </div>
