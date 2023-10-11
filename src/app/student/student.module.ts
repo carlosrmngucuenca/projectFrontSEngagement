@@ -6,7 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
 
 import { EngagementComponent } from './components/engagement/engagement.component';
-import { SurveyComponent } from './components/survey/survey.component';
+import { EngagementIconQuestionComponent } from './components/engagement-icon-question/engagement-icon-question.component';
 import { PollsComponent } from './components/polls/polls.component';
 import { MyPollComponent } from './pages/my-poll/my-poll.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -31,7 +31,7 @@ import { MultipleOptionQuestionComponent } from './components/multiple-option-qu
     HeaderComponent,
     MainComponent,
     EngagementComponent,
-    SurveyComponent,
+    EngagementIconQuestionComponent,
     PollsComponent,
     MyPollComponent,
     HomeComponent,

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Poll } from '../../../interfaces/poll.interface'; // Importa la interfaz Poll
 import { HttpClient } from '@angular/common/http';
 @Component({
-  selector: 'app-survey',
-  templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css'],
+  selector: 'student-engagement-icon-question',
+  templateUrl: './engagement-icon-question.component.html',
+  styleUrls: ['./engagement-icon-question.component.css'],
 })
-export class SurveyComponent implements OnInit {
+export class EngagementIconQuestionComponent implements OnInit {
   pollData: Poll | null = null; // Usa la interfaz Poll como tipo
   buttonEngagementOption: number = 0;
   /* varibles para medir la dimension Conduatual */
