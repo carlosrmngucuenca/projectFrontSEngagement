@@ -26,6 +26,6 @@ input[type=checkbox] {
 
 }
 
-input[type=radio]:checked {
+input[type=checkbox]:checked {
   background-color: var(--main-secondary-color, #0E5879);
 }
