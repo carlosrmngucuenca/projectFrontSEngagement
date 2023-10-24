@@ -1,1 +1,333 @@
-<p>polls works!</p>
+<!-- <div class="Poll">
+  <div class="Poll__form-container">
+    <form [formGroup]="myPoll" class="Poll__form" (ngSubmit)="save($event)">
+      <div class="questionType">
+        <div *ngFor="let checkbox of checkboxes | keyvalue; let i = index">
+          <label>
+            <p>{{ questionTitle }}</p>
+            <input
+              type="checkbox"
+              [formControl]="checkbox.value"
+              class="Poll__form__item"
+            />
+            {{ questionAnswer[i].text }}
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="button primary-button">Enviar</button>
+    </form>
+  </div>
+</div> -->
+
+<!-- <div class="Form_container">
+  <form
+    *ngFor="let question of questionForms; index as i"
+    [formGroup]="myPoll"
+    (ngSubmit)="onSubmit()"
+  >
+    <h2>{{ question.question_name }}</h2>
+    <div *ngIf="question.question_type === 'Likert'">
+      <div formArrayName="options">
+        <div *ngFor="let answer of question.answers">
+          <label>
+            <input type="radio" />
+            {{ answer.text }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div formControlName="options">
+      <div *ngIf="question.question_type === 'Multiple Option'">
+        <div *ngFor="let answer of question.answers">
+          <label>
+            <input type="checkbox" />
+            {{ answer.text }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div formControlName="options">
+      <div
+        *ngIf="question.question_type === 'Single Option'"
+        formGroupName="answers"
+      >
+        <div *ngFor="let answer of question.answers">
+          <label>
+            <input type="radio" />
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+  <button type="submit">EnviarEste vale</button>
+  <button (click)="buildForm()">Este botton esta afuera del form</button>
+</div> -->
+
+<!-- <div class="Form_container">
+  <form [formGroup]="myPoll" (ngSubmit)="onSubmit()">
+    <div formArrayName="options">
+      <div *ngFor="let answer of itemsArray.controls; let i; as: index">
+        <label>
+          <input type="radio" formControlName="i" />
+          opcion
+        </label>
+      </div>
+    </div>
+
+    <button (click)="buildForm()" type="submit">EnviarEste vale</button>
+  </form>
+
+  <button (click)="buildForm()">hola</button>
+</div> -->
+<!--
+<h2>{{ pollTitle }}</h2>
+<form [formGroup]="myPoll" (ngSubmit)="onSubmit()">
+  <div *ngFor="let question of questions; let i = index">
+    <h3>{{ question.question }}</h3>
+    < *ngIf="question.type === 'Likert' || question.type === 'Single Option'">
+    <div *ngFor="let answer of question.answers; let j = index" >
+    </div>
+
+    </div>
+    <div *ngFor="let answer of question.answers; let j = index">
+      <div
+      
+
+      >
+        <label>
+          <input
+            type="radio"
+            [formControlName]="question._id"
+            [name]="question._id"
+            [value]="answer.text"
+          />
+          {{ answer.text }}
+        </label>
+      </div>
+      <div
+        *ngIf="question.type === 'Multiple Option'"
+        [formArrayName]="question._id"
+      >
+        <label>
+          <input type="checkbox" [formControlName]="j" />
+          {{ answer.text }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <button type="submit">Enviar</button>
+</form> -->
+
+<!-- <h2>{{ pollTitle }}</h2>
+
+<form [formGroup]="myPoll">
+  <div formArrayName="questions">
+    <div *ngFor="let question of Array.controls; let i = index">
+      <div *ngIf="i === currentQuestionIndex">
+        <h3>{{ question.get("question")?.value }}</h3>
+        <div [formGroupName]="i">
+          <div
+            *ngIf="
+              question.get('type')?.value === 'Likert' ||
+              question.get('type')?.value === 'Single Option'
+            "
+          >
+            <div *ngFor="let answer of getFormGroup(i); let j = index">
+              <div formGroupName="answers">
+                <label>
+                  <input
+                    type="radio"
+                    [formControlName]="answer"
+                    [name]="question.get('_id')?.value"
+                  />
+                  Hola
+                </label>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="question.get('type')?.value === 'Multiple Option'">
+            <div
+              *ngFor="let answer of getArrayQuestionMultiple(i); let j = index"
+            >
+              <div formGroupName="answers">
+                <label>
+                  <input type="checkbox" [formControlName]="answer" />
+                  hola
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">
+    Anterior
+  </button>
+  <button (click)="nextQuestion()" [disabled]="isLastQuestion()">
+    Siguiente
+  </button>
+</form> -->
+
+<!-- <div
+  *ngIf="
+    currentQuestionIndex === questions.length;
+    then showCompletion;
+    else showQuestion
+  "
+></div>
+<ng-template #showQuestion>
+  {{ currentQuestionIndex }}
+  <div>
+    <h2>{{ questions[currentQuestionIndex].question }}</h2>
+    <ul>
+      <li *ngFor="let answer of questions[currentQuestionIndex].answers">
+        <label>
+          <ng-container
+            *ngIf="
+              questions[currentQuestionIndex].type === 'Single Option';
+              else multipleOption
+            "
+          >
+            <input
+              type="radio"
+              [(ngModel)]="selectedAnswer"
+              [value]="answer.option"
+            />
+          </ng-container>
+          <ng-template #multipleOption>
+            <input
+              type="checkbox"
+              (change)="toggleMultipleChoiceAnswer(answer.option)"
+              [checked]="selectedAnswers.includes(answer.option)"
+            />
+          </ng-template>
+          {{ answer.text }}
+        </label>
+      </li>
+    </ul>
+    <button (click)="previousQuestion()" *ngIf="currentQuestionIndex > 0">
+      Previous
+    </button>
+    <button
+      (click)="nextQuestion()"
+      *ngIf="currentQuestionIndex <= questions.length - 1"
+    >
+      Next
+    </button>
+  </div>
+</ng-template>
+<ng-template #showCompletion>
+  <div>
+    <h2>Survey Completed</h2>
+    <button (click)="submitSurvey()">Submit</button>
+  </div>
+</ng-template> -->
+
+<!-- <div *ngIf="questions.length; then showQuestion; else showCompletion"></div>
+
+<ng-template #showQuestion>
+  <h2>{{ pollTitle }}</h2>
+
+  <form [formGroup]="myPoll">
+    <h3>
+      {{ getArrayQuestion(currentQuestionIndex).get("question")?.value }}
+    </h3>
+    {{ getArrayQuestion(currentQuestionIndex).get("type")?.value }}
+    <div formArrayName="questions">
+      <div [formGroupName]="currentQuestionIndex">
+        <div
+          *ngFor="
+            let answer of getArrayQuestion(currentQuestionIndex).controls[
+              'answers'
+            ]?.value | keyvalue;
+            let j = index
+          "
+        >
+          <div formGroupName="answers">
+            <ng-container
+              *ngIf="
+                getArrayQuestion(currentQuestionIndex).get('type')?.value ===
+                  'Single Option' ||
+                  getArrayQuestion(currentQuestionIndex).get('type')?.value ===
+                    'Likert';
+                else multipleOption
+              "
+            >
+              <input
+                type="radio"
+                [formControlName]="String(answer.key)"
+                [name]="String(answer.key)"
+              />
+            </ng-container>
+            <ng-template #multipleOption>
+              <input type="checkbox" [formControlName]="String(answer.key)" />
+            </ng-template>
+            {{ answer.key }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      (click)="previousQuestion()"
+      [disabled]="currentQuestionIndex === 0"
+    >
+      Anterior
+    </button>
+    <button (click)="nextQuestion()">Siguiente</button>
+  </form>
+</ng-template>
+<ng-template #showCompletion>
+  <div>
+    <h2>Survey Completed</h2>
+    <button (click)="submitSurvey()">Submit</button>
+  </div>
+</ng-template> -->
+
+<div class="survey-container">
+  <div *ngIf="currentQuestion">
+    <!-- Render the appropriate question component based on the question type -->
+    <ng-container *ngIf="currentQuestion.type === 'Multiple Option'">
+      <app-multiple-choice-question
+        [question]="currentQuestion"
+        (answerSelected)="onAnswerSelected($event)"
+        [form]="surveyForm"
+        #newQuestion
+      ></app-multiple-choice-question>
+    </ng-container>
+    <ng-container
+      *ngIf="
+        currentQuestion.type === 'Likert' ||
+        currentQuestion.type === 'Single Option'
+      "
+    >
+      <app-single-choice-question
+        [question]="currentQuestion"
+        (answerSelected)="onAnswerSelected($event)"
+        [form]="surveyForm"
+      ></app-single-choice-question>
+    </ng-container>
+  </div>
+
+  <div class="survey-navigation">
+    <button
+      (click)="previousQuestion()"
+      [disabled]="currentQuestionIndex === 0"
+    >
+      Previous
+    </button>
+    <button
+      (click)="nextQuestion()"
+      [disabled]="currentQuestionIndex === questions.length - 1"
+    >
+      Next
+    </button>
+    <button
+      (click)="submitSurvey()"
+      [disabled]="currentQuestionIndex !== questions.length - 1"
+    >
+      Submit
+    </button>
+  </div>
+</div>
