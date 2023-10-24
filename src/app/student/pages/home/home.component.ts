@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { JoinRoom } from 'src/app/interfaces/room/room.interface';
 import { SocketService } from 'src/app/services/socket.service';
-import { TokenService } from 'src/app/services/token.service';
+
 
 import { RoomService } from '../../../services/room.service';
 
