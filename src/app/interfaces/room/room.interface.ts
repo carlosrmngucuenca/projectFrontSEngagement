@@ -8,3 +8,14 @@ export interface Room {
   createdAt: Date;
   __v:       number;
 }
+export interface JoinRoom{
+  roomCode: string | undefined
+}
+//interface for exists room
+export interface RoomExists {
+  ok:     boolean;
+  token: string;
+  error?: string;
+  room?:  Room;
+}
+

@@ -1,48 +1,42 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
-
+import { map } from 'rxjs/operators';
+import { JoinRoom } from '../interfaces/room/room.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class socketService {
-  constructor(private socket: Socket) {}
+export class SocketService {
+  constructor(private socket: Socket) { }
 
   connect() {
     this.socket.connect();
   }
+
   disconnect() {
     this.socket.disconnect();
   }
 
-  // Emitir eventos al servidor
-  emit(event: string, data: any) {
-    this.socket.emit(event, data);
+  emit<T>(event: string, data: T): Observable<JoinRoom> {
+    return this.socket.emit(event, data);
   }
+
   onUnauthorized(): Observable<string> {
-    return new Observable<string>((observer) => {
-      this.socket.on('unauthorized', (data: string) => observer.next(data));
-    });
+    return this.on<string>('unauthorized');
   }
 
   onError(): Observable<string> {
-    return new Observable<string>((observer) => {
-      this.socket.on('error', (data: string) => observer.next(data));
-    });
+    return this.on<string>('error');
   }
 
   onSuccess(): Observable<string> {
-    return new Observable<string>((observer) => {
-      this.socket.on('success', (data: string) => observer.next(data));
-    });
+    return this.on<string>('success');
   }
-  // Escuchar eventos del servidor como Observable
-  onEvent(event: string): Observable<any> {
-    return new Observable<any>((observer) => {
-      this.socket.on(event, (data: any) => observer.next(data));
-    });
+
+  on<T>(event: string): Observable<T> {
+    return this.socket.fromEvent<T>(event).pipe(
+      map((data: T) => data as T)
+    );
   }
 }
-

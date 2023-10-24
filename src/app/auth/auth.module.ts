@@ -5,9 +5,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
-  declarations: [LayoutComponent, LoginComponent],
+  declarations: [LayoutComponent, LoginComponent, LoginFormComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

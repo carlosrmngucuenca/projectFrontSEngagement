@@ -1,83 +1,15 @@
+/* New theme for login component */
+
 .login {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100vh;
-  background: var(--main-accent-color, #F0F0F0);
-}
-
-.form-container {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  place-content: center;
-  place-items: center;
-  max-width: 340px;
-}
-
-img {
-  padding-bottom: 35px;
-  width: 100px;
-}
-
-.main-form {
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--main-background);
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
 }
 
-.input {
-  background-color: var(--main-background);
-  max-width: 300px;
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-
-  height: 50px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
-}
-
-.input::placeholder {
-  color: #cccccc;
-  text-align: center;
-}
-
-input.is-valid {
-  border: 4px solid var(--main-background);
-}
-
-input.is-invalid {
-  border: 2px solid red;
-}
-
-.messages {
-  opacity: 0;
-  transition: all 0.5s ease-in;
-}
-
-.messages.active {
-  opacity: 1;
-}
-
-button {
-  background: var(--main-primary-color, #173264);
-  border-radius: 8px;
-  width: 300px;
-  border: none;
-  color: var(--main-background);
-  height: 50px;
-}
-
-button.is-enabled {
-  background-color: var(--main-primary_color);
-}
-
-.form-container__message {
-  display: inline-block;
-  margin-top: 24px;
-  /*width: 50%;*/
-  color: var(--main-primary_color);
-  text-align: center;
+.form-container__img {
+  width: 100px;
+  margin-bottom: 20px;
 }

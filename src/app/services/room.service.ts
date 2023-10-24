@@ -1,44 +1,65 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Room } from '../interfaces/room/room.interface';
-import { RoomExistsResponse } from '../interfaces/room/room-exist-response.interface';
+import { RoomExists } from '../interfaces/room/room.interface';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
-  private baseUrl = environment.baseUrl; // Reemplaza con la URL de tu backend
+  private apiUrl = environment.baseUrl; // Reemplaza con la URL de tu backend
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private tokenService: TokenService
+  ) { }
+
+
+  getRoomCode(): string | undefined {
+    const payload = this.tokenService.decodeToken();
+    const roomCode: string | undefined = payload?.roomCode;
+    return roomCode;
+  }
+  logout() {
+    this.tokenService.removeToken();
+    this.tokenService.removeRefreshToken();
+  }
 
   getAllRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(`${this.baseUrl}/room`);
+    return this.http.get<Room[]>(`${this.apiUrl}/room`);
   }
 
   getRoomDetails(roomCode: string): Observable<Room> {
-    return this.http.get<Room>(`${this.baseUrl}/room/${roomCode}`);
+    return this.http.get<Room>(`${this.apiUrl}/room/${roomCode}`);
   }
 
   createRoom(name: string): Observable<Room> {
-    return this.http.post<Room>(`${this.baseUrl}/room`, { name });
+    return this.http.post<Room>(`${this.apiUrl}/room`, { name });
   }
 
   updateRoom(id: string, changes: any): Observable<Room> {
-    return this.http.put<Room>(`${this.baseUrl}/room/${id}`, changes);
+    return this.http.put<Room>(`${this.apiUrl}/room/${id}`, changes);
   }
 
   patchRoom(id: string, newName: string): Observable<Room> {
-    return this.http.patch<Room>(`${this.baseUrl}/room/${id}`, { newName });
+    return this.http.patch<Room>(`${this.apiUrl}/room/${id}`, { newName });
   }
 
-  checkRoomExists(roomCode: string): Observable<RoomExistsResponse> {
-    return this.http.get<RoomExistsResponse>(`${this.baseUrl}/room/${roomCode}/exists`);
+  checkRoomExists(roomCode: string): Observable<RoomExists> {
+    return this.http.get<RoomExists>(`${this.apiUrl}/room/${roomCode}/exists`).pipe(
+      tap((response) => {
+        if (response.ok) {
+          this.tokenService.saveToken(response.token);
+        }
+      })
+    );
   }
 
   deleteRoom(roomCode: string): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/room/${roomCode}`);
+    return this.http.delete<any>(`${this.apiUrl}/room/${roomCode}`);
   }
 
 }
