@@ -6,6 +6,13 @@
   --main-third_color: #19a7ce;
   --main-background: #fdf8f8;
   --main-accent_color: #f0f0f0;
+
+  --font-family: 'Inter', sans-serif;
+  --titles-h1: 1.875rem;
+  --titles-h2: 1.5rem;
+  --titles-h3: 1.25rem;
+  --titles-quote: 1.1875rem;
+  --text-paragraph: 1rem;
 }
 
 * {
@@ -22,26 +29,6 @@ body {
 
 }
 
-.titles_h2 {
-  color: var(--main-background, #FDF8F8);
-  font-family: Inter;
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%;
-  /* 1.5rem */
-}
-
-.titles_quote {
-  color: var(--info-text, #333);
-  /* Titles/Quote */
-  font-family: Inter;
-  font-size: 1.1875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 130%;
-  /* 1.54375rem */
-}
 .footer-container{
   position: fixed;
   bottom: 0;
