@@ -7,6 +7,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from '../auth/pages/login/login.component';
 import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 import { MyPollComponent } from './pages/my-poll/my-poll.component';
+import { redirectGuard } from './../guards/redirect.guard';
+import { authGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,19 +22,23 @@ const routes: Routes = [
       },
       {
         path: 'Auth',
+        canActivate: [redirectGuard],
         loadChildren: () =>
           import('../auth/auth.module').then((module) => module.AuthModule),
       },
       {
         path: 'Home',
+        canActivate: [authGuard],
         component: HomeComponent,
       },
       {
         path: 'Mypoll',
+        canActivate: [authGuard],
         component: MyPollComponent,
       },
       {
         path: 'Mysurvey',
+        canActivate: [authGuard],
         component: MySurveyComponent,
       },
     ],
