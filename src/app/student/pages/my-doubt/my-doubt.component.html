@@ -1,7 +1,7 @@
 <app-header></app-header>
 <student-title-page [displayText]="'Dudas'"></student-title-page>
 <main class="grid-container">
-  <textarea class="text-area-container" placeholder="Escribe tu comentario aquí"></textarea>
-  <student-button-text (click)="submitQuestion()" [textButton]="'Enviar pregunta al docente'" />
+  <textarea class="text-area" placeholder="Escribe tu comentario aquí"></textarea>
+  <student-button-text (click)="submitQuestion()" routerLink="/student/home" [textButton]="'Enviar pregunta al docente'" />
 </main>
 <student-footer class="footer-container" />

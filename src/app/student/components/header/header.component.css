@@ -1,22 +1,28 @@
-/* Estilos para el header */
-header {
+.header {
   background: var(--main-primary-color, #173264);
+  padding: 1rem;
 }
 
-/* Estilos para la lista de navegación */
-header nav ul {
+.header__nav {
+  align-items: center;
+  margin: 0 auto;
+}
+
+.header__nav ul {
   display: flex;
-  align-items: center; /*Centra filas*/
-  justify-content: space-between;/*Centra columnas*/
+  justify-content: space-between;
   list-style: none;
-  height: 4.8125rem;
+  align-items: center;
 }
 
-header nav .titles_h2 {
-  text-decoration: none;
-}
+.header__title {
+  color: var(--main-background, #FDF8F8);
 
-/* Estilos para las imágenes en la lista de navegación */
-header nav img {
-  margin: 16px;
+  /* Titles/H2 */
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  /* 1.5rem */
 }

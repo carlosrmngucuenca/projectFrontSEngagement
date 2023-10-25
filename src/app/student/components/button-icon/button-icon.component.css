@@ -1,6 +1,6 @@
-.image-button{
+.button-icon {
   display: flex;
-  justify-content:center ;
+  justify-content: center;
   align-items: center;
   fill: var(--main-accent-color, #F0F0F0);
   width: 100%;
@@ -8,6 +8,12 @@
   border: none;
   border-radius: 0.9375rem;
 }
-.button-icon {
+
+.button-icon__image {
   object-fit: contain;
+}
+
+.button-icon__image img {
+  width: 100%; /* Asegura que la imagen llene el espacio dentro del botón */
+  height: 100%;
 }

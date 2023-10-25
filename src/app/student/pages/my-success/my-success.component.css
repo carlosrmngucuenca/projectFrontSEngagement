@@ -1,17 +1,19 @@
+
 .grid-container {
   padding: 16px;
-  margin-top: 10%;
+  margin-top: 4rem;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr ;
-
+  grid-template-rows: 1fr 1fr 1fr;
+  /* Estilos del bloque 'grid-container' */
 }
 
-img {
+.grid-container__image {
   align-self: center;
   justify-self: center;
+  /* Estilos del elemento 'image' dentro de 'grid-container' */
 }
 
-p {
+.grid-container__message {
   align-self: center;
   justify-self: center;
   color: var(--info-text, #333);
@@ -22,4 +24,5 @@ p {
   font-weight: 400;
   line-height: 130%;
   /* 1.54375rem */
+  /* Estilos del elemento 'message' dentro de 'grid-container' */
 }

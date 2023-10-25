@@ -1,7 +1,7 @@
-<app-header></app-header>
-<student-title-page [displayText]="'Encuesta'"></student-title-page>
-<main>
-  <ng-container *ngIf="questionIndex < poll.questions.length ">
+<app-header class="header"></app-header>
+<student-title-page class="title-page" [displayText]="'Encuesta'"></student-title-page>
+<main class="main">
+  <ng-container *ngIf="questionIndex < poll.questions.length">
     <p class="question__title">{{ currentQuestion.question }}</p>
     <ng-container *ngIf="currentQuestion.type === 'Likert'">
       <app-likert-question [question]="currentQuestion"></app-likert-question>
@@ -12,10 +12,6 @@
     <ng-container *ngIf="currentQuestion.type === 'Multiple Option'">
       <app-multiple-option-question [question]="currentQuestion"></app-multiple-option-question>
     </ng-container>
-
   </ng-container>
 </main>
-<student-button-text class="footer-container"  [textButton]="buttonNext"
-  (click)="navigateToNext()"/>
-
-<!-- <student-footer class="footer-container" /> -->
+<student-button-text class="footer-container" [textButton]="buttonNext" (click)="navigateToNext()" />

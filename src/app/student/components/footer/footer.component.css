@@ -1,6 +1,6 @@
 .grid-nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(6.0625rem,13rem) );
   gap: 16px;
-  margin: 16px;
+  place-content: center;
 }

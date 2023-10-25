@@ -1,31 +1,27 @@
-.grid-question {
+.single-option-question {
   display: grid;
-
-  justify-items: space-around;
-  grid-row-gap: 30px;
-  margin-bottom: 16px;
+  grid-row-gap: 2rem;
 }
 
-label {
+.single-option-question__label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1rem;
   color: var(--info-text, #333);
   font-family: Inter;
   font-size: 1rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 100%;
-
-  /* 1rem */
 }
 
-input[type=radio] {
+.single-option-question__input[type="radio"] {
   appearance: none;
   padding: 7px;
-  background-color:  var(--main-background, #0E5879);
+  background-color: var(--main-background, #0E5879);
   border-radius: 50%;
   border: 3px solid var(--main-secondary-color, #0E5879);
-
 }
 
-input[type=radio]:checked {
+.single-option-question__input[type="radio"]:checked {
   background-color: var(--main-secondary-color, #0E5879);
 }
