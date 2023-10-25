@@ -36,97 +36,53 @@
       "__v": 0
     },
     {
-      "_id": "6514b01a8c3c10f5b3e3133e",
-      "type": "Likert",
-      "question": "How satisfied are you with our service?",
+      "_id": "6514b01a8c3c10f5b3e31343",
+      "type": "Multiple Option",
+      "question": "Which programming languages do you use?",
       "answers": [
         {
           "option": 1,
-          "text": "Not Satisfied",
+          "text": "JavaScript",
           "correct": false,
-          "_id": "6514b01a8c3c10f5b3e3133f"
+          "_id": "6514b01a8c3c10f5b3e31344"
         },
         {
           "option": 2,
-          "text": "Somewhat Satisfied",
+          "text": "Python",
           "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31340"
+          "_id": "6514b01a8c3c10f5b3e31345"
         },
         {
           "option": 3,
-          "text": "Satisfied",
+          "text": "Java",
           "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31341"
+          "_id": "6514b01a8c3c10f5b3e31346"
         },
         {
           "option": 4,
-          "text": "Very Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31342"
+          "text": "C++",
+          "correct": true,
+          "_id": "6514b01a8c3c10f5b3e31347"
         }
       ],
       "__v": 0
     },
     {
-      "_id": "6514b01a8c3c10f5b3e3133e",
-      "type": "Likert",
-      "question": "How satisfied are you with our service?",
+      "_id": "6514b01a8c3c10f5b3e31348",
+      "type": "Single Option",
+      "question": "Do you prefer working from home or from the office?",
       "answers": [
         {
           "option": 1,
-          "text": "Not Satisfied",
+          "text": "Home",
           "correct": false,
-          "_id": "6514b01a8c3c10f5b3e3133f"
+          "_id": "6514b01a8c3c10f5b3e31349"
         },
         {
           "option": 2,
-          "text": "Somewhat Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31340"
-        },
-        {
-          "option": 3,
-          "text": "Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31341"
-        },
-        {
-          "option": 4,
-          "text": "Very Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31342"
-        }
-      ],
-      "__v": 0
-    },
-    {
-      "_id": "6514b01a8c3c10f5b3e3133e",
-      "type": "Likert",
-      "question": "How satisfied are you with our service?",
-      "answers": [
-        {
-          "option": 1,
-          "text": "Not Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e3133f"
-        },
-        {
-          "option": 2,
-          "text": "Somewhat Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31340"
-        },
-        {
-          "option": 3,
-          "text": "Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31341"
-        },
-        {
-          "option": 4,
-          "text": "Very Satisfied",
-          "correct": false,
-          "_id": "6514b01a8c3c10f5b3e31342"
+          "text": "Office",
+          "correct": true,
+          "_id": "6514b01a8c3c10f5b3e3134a"
         }
       ],
       "__v": 0

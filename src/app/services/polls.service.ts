@@ -6,10 +6,9 @@ const apiUrl = environment.baseUrl;
   providedIn: 'root',
 })
 export class PollsService {
-
   constructor(private Http: HttpClient) {}
 
   getAllPolls() {
-    return this.Http.get( `${ apiUrl }`);
+    return this.Http.get(`${apiUrl}`);
   }
 }
