@@ -15,13 +15,7 @@ export class LoginComponent implements OnInit {
     private roomService: RoomService
   ) { }
 
-  ngOnInit(): void {
-    if (this.tokenService.getToken() && this.tokenService.isValidToken()) {
-      const roomCode = this.roomService.getRoomCode();
-      if (roomCode) {
-        this.router.navigateByUrl(`/student/home`);
-      }
-    }
+  ngOnInit() {
   }
 
 }
