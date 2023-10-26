@@ -23,26 +23,32 @@ const routes: Routes = [
       },
       {
         path: 'home',
+        canActivate: [authGuard],
         component: HomeComponent,
       },
       {
         path: 'my-poll',
+        canActivate: [authGuard],
         component: MyPollComponent,
       },
       {
         path: 'my-engagement-poll',
+        canActivate: [authGuard],
         component: MyEngagementPollComponent,
       },
       {
         path: 'my-doubt',
+        canActivate: [authGuard],
         component: MyDoubtComponent,
       },
       {
         path: 'my-success',
+        canActivate: [authGuard],
         component: MySuccessComponent,
       },
       {
         path: 'my-emotions',
+        canActivate: [authGuard],
         component: MyEmotionsComponent,
       },
     ],
