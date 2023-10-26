@@ -1,33 +1,33 @@
 <div class="form-container">
-  <form [formGroup]="miFormulario" class="main-form" (ngSubmit)="loginRoom()">
-    <input type="text" formControlName="userPin" placeholder="Tu pin de sala" class="input input-pin"
+  <form [formGroup]="miFormulario" class="form-container__main-form" (ngSubmit)="loginRoom()">
+    <input type="text" formControlName="userPin" placeholder="Tu pin de sala" class="form-container__input form-container__input--pin"
       [class.is-valid]="isPinValid" [class.is-invalid]="isPinInvalid" [ngClass]="{ 'is-invalid': isRoomInvalid }" />
 
-    <div class="messages" [class.active]="isPinInvalid" *ngIf="isPinInvalid">
+    <div class="form-container__messages" [class.active]="isPinInvalid" *ngIf="isPinInvalid">
       <p>
-        <strong *ngIf="
-            miFormulario.get('userPin')?.touched &&
-            miFormulario.get('userPin')?.hasError('required')
-          ">Campo Requerido</strong>
+        <strong *ngIf="miFormulario.get('userPin')?.touched && miFormulario.get('userPin')?.hasError('required')">Campo Requerido</strong>
       </p>
       <p>
-        <strong *ngIf="
-            miFormulario.get('userPin')?.touched &&
-            miFormulario.get('userPin')?.hasError('maxlength')
-          ">maximo 5 caracteres</strong>
+        <strong *ngIf="miFormulario.get('userPin')?.touched && miFormulario.get('userPin')?.hasError('maxlength')">Máximo 5 caracteres</strong>
       </p>
     </div>
 
-    <div class="messages" [class.active]="isRoomInvalid">
+    <div class="form-container__messages" [class.active]="isRoomInvalid">
       <p>
         <strong>Sala no existe.</strong>
       </p>
     </div>
-    <button type="submit" class="button primary-button" [class.is-enabled]="isPinValid ">
+    <button type="submit" class="form-container__button form-container__button--primary" [class.is-enabled]="isPinValid">
       Ingresar
     </button>
   </form>
   <p class="form-container__message">
-    También puedes ingresar en un computador en mote.ucuenca.edu.ec
+    <!-- salto de linea -->
+
+    También puedes ingresar <br>
+    desde un computador en  <br>
+    <a href="">{{baseUrl}}</a> <br>
+    <a href="">Términos</a>|<a href="">Privacidad</a>
+
   </p>
 </div>

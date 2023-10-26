@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestStatus } from 'src/app/models/request-status.model';
 import { RoomService } from '../../../services/room.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'auth-login-form',
@@ -13,6 +14,7 @@ export class LoginFormComponent {
   isRoomInvalid: boolean = false; // Variable para rastrear si la sala no es válida
   miFormulario!: FormGroup;
   status: RequestStatus = 'init';
+  baseUrl=environment.API_URL;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
