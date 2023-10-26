@@ -1,31 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Poll, pollJson } from 'src/app/interfaces/poll.interface';
+import { Poll, Question, pollJson } from 'src/app/interfaces/poll.interface';
+import { PollsService } from 'src/app/services/polls.service';
 
 @Component({
   selector: 'app-my-poll',
   templateUrl: './my-poll.component.html',
-  styleUrls: ['./my-poll.component.css']
+  styleUrls: ['./my-poll.component.css'],
 })
-export class MyPollComponent {
+export class MyPollComponent implements OnInit {
   questionIndex = 0;
-  poll: Poll = pollJson;
-  buttonNext = "Siguiente";
-  constructor(private router: Router) { }
+  pollTitle: string = '';
+  questions: Question[] = [];
+  surveyForm: FormGroup = this.formBuilder.group({});
+  buttonNext = 'Siguiente';
+  buttonPrevious = 'Anterior';
+  isPreviousButtonEnabled = false;
+  constructor(
+    private router: Router,
+    private pollService: PollsService,
+    private formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.pollService.getAllPolls().subscribe((data) => {
+      this.pollTitle = data.pollTitle;
+      this.questions = data.questions;
+      this.loadQuestion();
+      console.log(this.surveyForm);
+    });
+  }
   get currentQuestion() {
-    return this.poll.questions[this.questionIndex];
+    return this.questions[this.questionIndex];
+  }
+  loadQuestion() {
+    const question = this.currentQuestion;
+    this.surveyForm.addControl(question._id, this.formBuilder.control(''));
   }
 
   navigateToNext() {
-
     this.questionIndex++;
-    if (this.questionIndex + 1 == this.poll.questions.length) {//sumamos uno ya que index comienza en 0
-      this.buttonNext = "Enviar";
+    if (this.questionIndex + 1 == this.questions.length) {
+      //sumamos uno ya que index comienza en 0
+      this.buttonNext = 'Enviar';
     }
     // Asegúrate de que el índice de la pregunta actual no supere el límite del número de preguntas.
-    if (this.questionIndex >= this.poll.questions.length) {
+    if (this.questionIndex >= this.questions.length) {
+      this.submitSurvey();
       this.router.navigate(['/student/my-success']);
-      this.questionIndex = this.poll.questions.length - 1;
+
+      this.questionIndex = this.questions.length - 1;
     }
+  }
+  previousQuestion() {
+    if (this.questionIndex > 0) {
+      this.questionIndex--;
+      this.buttonNext = 'Siguiente';
+      this.isPreviousButtonEnabled = true;
+    }
+    this.isPreviousButtonEnabled = false;
+  }
+
+  submitSurvey() {
+    console.log(this.surveyForm);
   }
 }

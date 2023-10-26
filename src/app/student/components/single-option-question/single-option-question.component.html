@@ -1,7 +1,13 @@
 <form [formGroup]="form">
   <div class="single-option-question">
     <div class="single-option-question__label" *ngFor="let answer of answers">
-      <input type="radio" [value]="answer.option" formControlName="answer" class="single-option-question__input">
+      <input
+        type="radio"
+        [formControlName]="question._id"
+        [name]="question._id"
+        [value]="answer.text"
+        class="single-option-question__input"
+      />
       {{ answer.text }}
     </div>
   </div>

@@ -4,7 +4,6 @@
   /* Estilos del bloque 'main' */
 }
 
-
 .question__title {
   margin-bottom: 30px;
   color: var(--info-text, #333);
@@ -17,4 +16,10 @@
   line-height: 130%;
   /* 1.3rem */
   /* Estilos del bloque 'question__title' */
+}
+
+.footer-container--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
 }

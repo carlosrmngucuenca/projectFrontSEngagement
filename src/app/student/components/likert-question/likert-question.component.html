@@ -1,10 +1,14 @@
-
-  <form [formGroup]="form">
-    <div class="likert-question">
+<form [formGroup]="form">
+  <div class="likert-question">
     <div class="likert-question__label" *ngFor="let answer of answers">
-      <input type="radio" [value]="answer.option" formControlName="answer" class="likert-question__input">
+      <input
+        type="radio"
+        [formControlName]="question._id"
+        [name]="question._id"
+        [value]="answer.text"
+        class="likert-question__input"
+      />
       {{ answer.text }}
     </div>
   </div>
-  </form>
-
+</form>

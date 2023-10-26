@@ -18,14 +18,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'home',
         pathMatch: 'full',
-      },
-      {
-        path: 'auth',
-        canActivate: [redirectGuard],
-        loadChildren: () =>
-          import('../auth/auth.module').then((module) => module.AuthModule),
       },
       {
         path: 'home',
