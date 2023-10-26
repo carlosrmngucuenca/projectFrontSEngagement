@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentRoutingModule } from './student-routing.module';
 import { HeaderComponent } from './components/header/header.component';
-import { MainComponent } from './components/main/main.component';
 
 import { EngagementComponent } from './components/engagement/engagement.component';
 import { EngagementIconQuestionComponent } from './components/engagement-icon-question/engagement-icon-question.component';
-import { PollsComponent } from './components/polls/polls.component';
+
 import { MyPollComponent } from './pages/my-poll/my-poll.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MyEngagementPollComponent } from './pages/my-engagement-poll/my-engagement-poll.component';
@@ -29,10 +28,10 @@ import { MultipleOptionQuestionComponent } from './components/multiple-option-qu
 @NgModule({
   declarations: [
     HeaderComponent,
-    MainComponent,
+
     EngagementComponent,
     EngagementIconQuestionComponent,
-    PollsComponent,
+
     MyPollComponent,
     HomeComponent,
     MyEngagementPollComponent,

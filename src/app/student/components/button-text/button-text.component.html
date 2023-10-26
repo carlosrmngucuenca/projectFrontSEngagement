@@ -1,3 +1,3 @@
-<button class="button">
-  <span class="button-text">{{textButton}}</span>
+<button (click)="onClick()" [disabled]="!isButtonEnabled" class="button">
+  <span class="button-text">{{ textButton }}</span>
 </button>

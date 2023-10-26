@@ -3,22 +3,33 @@ import { RouterModule, Routes } from '@angular/router';
 /*Componentes propios*/
 
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { redirectGuard } from './guards/redirect.guard';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'student',
+    redirectTo: 'auth',
     pathMatch: 'full',
   },
   {
+    path: 'auth',
+    canActivate: [redirectGuard],
+    loadChildren: () =>
+      import('./auth/auth.module').then((module) => module.AuthModule),
+  },
+  {
     path: 'student',
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./student/student.module').then((module) => module.StudentModule),
   },
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then((module) => module.DashboardModule),
+      import('./dashboard/dashboard.module').then(
+        (module) => module.DashboardModule
+      ),
   },
   {
     path: '**',
@@ -27,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ bindToComponentInputs: true })],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -8,6 +8,8 @@ import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
 import { MySuccessComponent } from './pages/my-success/my-success.component';
 import { MyEmotionsComponent } from './pages/my-emotions/my-emotions.component';
 
+import { redirectGuard } from './../guards/redirect.guard';
+import { authGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,13 +18,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'home',
         pathMatch: 'full',
-      },
-      {
-        path: 'auth',
-        loadChildren: () =>
-          import('../auth/auth.module').then((module) => module.AuthModule),
       },
       {
         path: 'home',
@@ -56,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class StudentRoutingModule { }
+export class StudentRoutingModule {}

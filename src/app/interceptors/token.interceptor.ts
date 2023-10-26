@@ -19,13 +19,15 @@ export function checkToken() {
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
   constructor(
     private tokenService: TokenService,
     private authRoomService: AuthRoomService
   ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     if (request.context.get(CHECK_TOKEN)) {
       const isValidToken = this.tokenService.isValidToken(); // accessToken
       if (isValidToken) {
@@ -41,21 +43,23 @@ export class TokenInterceptor implements HttpInterceptor {
     const accessToken = this.tokenService.getToken();
     if (accessToken) {
       const authRequest = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${accessToken}`)
+        headers: request.headers.set('Authorization', `Bearer ${accessToken}`),
       });
       return next.handle(authRequest);
     }
     return next.handle(request);
   }
 
-  private updateAccessTokenAndRefreshToken(request: HttpRequest<unknown>, next: HttpHandler) {
+  private updateAccessTokenAndRefreshToken(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ) {
     const refreshToken = this.tokenService.getRefreshToken();
     const isValidRefreshToken = this.tokenService.isValidRefreshToken();
     if (refreshToken && isValidRefreshToken) {
-      return this.authRoomService.refreshToken(refreshToken)
-      .pipe(
-        switchMap(() => this.addToken(request, next)),
-      )
+      return this.authRoomService
+        .refreshToken(refreshToken)
+        .pipe(switchMap(() => this.addToken(request, next)));
     }
     return next.handle(request);
   }

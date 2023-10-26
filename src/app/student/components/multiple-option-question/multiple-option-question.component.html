@@ -1,9 +1,15 @@
-  <form [formGroup]="form">
-    <div class="multiple-option-question">
-    <label class="multiple-option-question__label" *ngFor="let answer of answers">
-      <input class="multiple-option-question__input" type="checkbox" ngChecked="answersFormArray.value.includes(answer.option)">
+<form [formGroup]="form">
+  <div [formGroupName]="question._id" class="multiple-option-question">
+    <label
+      class="multiple-option-question__label"
+      *ngFor="let answer of answers"
+    >
+      <input
+        class="multiple-option-question__input"
+        type="checkbox"
+        [formControlName]="'' + answer._id"
+      />
       {{ answer.text }}
     </label>
   </div>
-  </form>
-
+</form>

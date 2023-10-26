@@ -16,7 +16,7 @@
 }
 
 .header__title {
-  color: var(--main-background, #FDF8F8);
+  color: var(--main-background, #fdf8f8);
 
   /* Titles/H2 */
   font-family: var(--font-family);

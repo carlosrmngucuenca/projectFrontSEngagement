@@ -1,16 +1,35 @@
-<student-title-page class="title-page" [displayText]="'Encuesta'"></student-title-page>
+<student-title-page
+  class="title-page"
+  [displayText]="'Encuesta'"
+></student-title-page>
 <main class="main">
-  <ng-container *ngIf="questionIndex < poll.questions.length">
+  <ng-container *ngIf="questionIndex < questions.length">
     <p class="question__title">{{ currentQuestion.question }}</p>
     <ng-container *ngIf="currentQuestion.type === 'Likert'">
-      <app-likert-question [question]="currentQuestion"></app-likert-question>
+      <app-likert-question
+        [question]="currentQuestion"
+        [form]="surveyForm"
+      ></app-likert-question>
     </ng-container>
     <ng-container *ngIf="currentQuestion.type === 'Single Option'">
-      <app-single-option-question [question]="currentQuestion"></app-single-option-question>
+      <app-single-option-question
+        [question]="currentQuestion"
+        [form]="surveyForm"
+      ></app-single-option-question>
     </ng-container>
     <ng-container *ngIf="currentQuestion.type === 'Multiple Option'">
-      <app-multiple-option-question [question]="currentQuestion"></app-multiple-option-question>
+      <app-multiple-option-question
+        [question]="currentQuestion"
+        [form]="surveyForm"
+      ></app-multiple-option-question>
     </ng-container>
   </ng-container>
 </main>
-<student-button-text class="footer-container" [textButton]="buttonNext" (click)="navigateToNext()" />
+<div class="footer-container footer-container--grid">
+  <student-button-text
+    [textButton]="buttonPrevious"
+    (buttonClick)="previousQuestion()"
+    [isButtonEnabled]="!isPreviousButtonEnabled"
+  />
+  <student-button-text [textButton]="buttonNext" (click)="navigateToNext()" />
+</div>
