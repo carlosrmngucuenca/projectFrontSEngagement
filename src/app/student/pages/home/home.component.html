@@ -14,18 +14,17 @@
     />
 
     <student-button-icon-text
-      class="boton fila2"
-      [imageUrl]="'./../../../../assets/icons/lost-continuity-icon.svg'"
-      [textButton]="'Perdí el hilo de la clase'"
-      [altImg]="'Button lost-continuity'"
+      class="boton fila1"
+      [imageUrl]="'./../../../../assets/icons/comment-icon.svg'"
+      [textButton]="'Comentario acerca de la clase'"
+      [altImg]="'Button comment'"
     />
 
     <student-button-icon-text
-      class="boton fila3-col3"
-      routerLink="../my-emotions"
-      [imageUrl]="'./../../../../assets/icons/emotions-icon.svg'"
-      [textButton]="'Expresarme'"
-      [altImg]="'Button emotions'"
+      class="boton fila2-col1"
+      [imageUrl]="'./../../../../assets/icons/take-break-icon.svg'"
+      [textButton]="'Solicitar un descanso'"
+      [altImg]="'Button get a break'"
     />
 
     <student-button-icon-text
@@ -33,23 +32,31 @@
       [imageUrl]="'./../../../../assets/icons/sleep-icon.svg'"
       [textButton]="'Tengo Sueño'"
       [altImg]="'Botón tengo sueño'"
-      class="boton fila3-col4"
+      class="boton fila2-col2"
     />
 
     <student-button-icon-text
-      (click)="buttonActivityIdontGetIt()"
-      class="boton fila4-col3"
-      [imageUrl]="'./../../../../assets/icons/dontgetit-icon.svg'"
-      [textButton]="'No entiendo'"
-      [altImg]="'No entiendo'"
+      class="boton fila3-col1"
+      routerLink="../my-emotions"
+      [imageUrl]="'./../../../../assets/icons/emotions-icon.svg'"
+      [textButton]="'Expresar mis emociones'"
+      [altImg]="'Button emotions'"
     />
 
     <student-button-icon-text
-      (click)="buttonActivityIdontGetIt()"
-      class="boton fila4-col4"
+      (click)="buttonActivityExcelentClass()"
+      class="boton fila3-col2"
       [imageUrl]="'./../../../../assets/icons/good-class-icon.svg'"
       [textButton]="'Excelente clase'"
       [altImg]="'Excelente clase'"
+    />
+
+    <student-button-icon-text
+      (click)="buttonActivityIdontGetIt()"
+      class="boton fila4"
+      [imageUrl]="'./../../../../assets/icons/dontgetit-icon.svg'"
+      [textButton]="'No entiendo'"
+      [altImg]="'No entiendo'"
     />
   </section>
 </main>

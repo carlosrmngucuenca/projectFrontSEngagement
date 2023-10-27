@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   roomCode = this.roomService.getRoomCode();//get data from URL
 
+
   constructor(
     private socketService: SocketService,
     private roomService: RoomService
@@ -39,6 +40,9 @@ export class HomeComponent implements OnInit {
   }
   buttonActivityIdontGetIt() {
     this.socketService.emit('saveActivityIdontGetIt', { roomCode: this.roomCode });
+  }
+  buttonActivityExcelentClass(){
+    this.socketService.emit('saveActivityExcelentClass', { roomCode: this.roomCode });
   }
   ngOnDestroy() {
     this.socketService.disconnect();

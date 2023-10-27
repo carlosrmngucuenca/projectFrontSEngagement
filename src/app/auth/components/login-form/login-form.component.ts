@@ -53,9 +53,11 @@ export class LoginFormComponent {
 
       this.roomService.checkRoomExists(userPin).subscribe((roomExists) => {
         if (roomExists.ok) {
-          this.router.navigateByUrl(`/student/home/`);
+          this.router.navigateByUrl(`/student/home`);
         }
-        else { this.miFormulario.markAllAsTouched(); }
+        else {
+          this.isRoomInvalid = true;
+          this.miFormulario.markAllAsTouched(); }
       });
     }
     else {
