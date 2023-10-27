@@ -24,6 +24,7 @@ import { MyEmotionsComponent } from './pages/my-emotions/my-emotions.component';
 import { LikertQuestionComponent } from './components/likert-question/likert-question.component';
 import { SingleOptionQuestionComponent } from './components/single-option-question/single-option-question.component';
 import { MultipleOptionQuestionComponent } from './components/multiple-option-question/multiple-option-question.component';
+import { StudentProgressBarComponent } from './components/student-progress-bar/student-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MultipleOptionQuestionComponent } from './components/multiple-option-qu
     LikertQuestionComponent,
     SingleOptionQuestionComponent,
     MultipleOptionQuestionComponent,
+    StudentProgressBarComponent,
   ],
   imports: [
     CommonModule,

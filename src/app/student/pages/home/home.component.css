@@ -1,15 +1,13 @@
 .grid-container {
   display: grid;
-  grid-template-rows: repeat(4, minmax(4.3125rem,1fr));
-  grid-template-columns: repeat(2, minmax(9.6875rem,20.5rem));
+  grid-template-rows: repeat(4, minmax(4.3125rem, 1fr));
+  grid-template-columns: repeat(2, minmax(9.6875rem, 20.5rem));
   gap: 16px;
   margin: 16px;
   place-content: center;
 }
 
-
 .boton.fila1 {
-
   grid-row: 1;
   grid-column: 1 / span 2;
 }
@@ -22,24 +20,23 @@
 .boton.fila3-col3 {
   grid-row: 3;
   grid-column: 1;
-
 }
 
 .boton.fila3-col4 {
   grid-row: 3;
   grid-column: 2;
-
 }
 
 .boton.fila4-col3 {
   grid-row: 4;
   grid-column: 1;
-
 }
 
 .boton.fila4-col4 {
   grid-row: 4;
   grid-column: 2;
-
 }
 
+progress {
+  margin: 0 auto;
+}

@@ -1,0 +1,33 @@
+.progressBar-container {
+  display: grid;
+  grid-template-columns: auto; /* Dos columnas: una para el icono y otra para el texto */
+  align-items: center; /* Alinea el contenido verticalmente en el centro */
+  justify-content: center;
+  width: 100%;
+  height: 4.3125rem;
+  padding: 0 1rem;
+  border: none;
+  background: var(--main-accent-color, #f0f0f0);
+}
+
+.progressBar-container__text {
+  display: inline-block;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--text-paragraph);
+  color: var(--info-text, #333);
+}
+.progressBar-container__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#item-progressBar {
+  width: 550px;
+}
+
+.progressBar-container__text::before {
+  content: " ";
+  display: inline-block;
+  width: 40px;
+}
