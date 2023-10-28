@@ -7,7 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonTextComponent {
   @Input() textButton = '';
-  @Input() isButtonEnabled: boolean = true; // Propiedad para habilitar/deshabilitar el botón
+  @Input() isButtonValid: boolean = true;
+  @Input() isButtonEnabled: boolean = true;
   @Output() buttonClick = new EventEmitter<void>();
 
   onClick() {

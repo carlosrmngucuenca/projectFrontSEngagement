@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Question } from 'src/app/interfaces/poll.interface';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Answer, Question } from 'src/app/interfaces/poll.interface';
 
 @Component({
   selector: 'app-likert-question',
@@ -8,10 +8,10 @@ import { Question } from 'src/app/interfaces/poll.interface';
   styleUrls: ['./likert-question.component.css'],
 })
 export class LikertQuestionComponent implements OnInit {
-  @Input() question!: Question; // Replace 'any' with the appropriate question interface
+  @Input() question!: Question;
   @Input() form!: FormGroup;
-  myOptions = this.formBuilder.group({});
-
+  myOption = this.formBuilder.group({});
+  formInvalid: boolean = true;
   ngOnInit() {
     this.buildForm();
   }
@@ -19,9 +19,19 @@ export class LikertQuestionComponent implements OnInit {
   buildForm() {
     let idQuestion = this.question._id;
 
-    this.form.addControl(idQuestion, this.formBuilder.control(false));
+    this.form.addControl(
+      this.question._id,
+      this.formBuilder.control(null, [Validators.required])
+    );
   }
+
   get answers() {
     return this.question.answers;
+  }
+
+  validForm() {
+    if (this.form.invalid) {
+    } else {
+    }
   }
 }

@@ -3,10 +3,10 @@
     <div class="likert-question__label" *ngFor="let answer of answers">
       <input
         type="radio"
-        [formControlName]="question._id"
         [name]="question._id"
-        [value]="answer.text"
+        [value]="answer.option"
         class="likert-question__input"
+        [formControlName]="question._id"
       />
       {{ answer.text }}
     </div>

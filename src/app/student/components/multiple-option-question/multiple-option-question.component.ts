@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Answer, Question } from 'src/app/interfaces/poll.interface';
-
+import { MyValidators } from 'src/app/utils/validators';
 @Component({
   selector: 'app-multiple-option-question',
   templateUrl: './multiple-option-question.component.html',
@@ -16,13 +16,18 @@ export class MultipleOptionQuestionComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    console.log(this.question);
   }
   buildForm() {
     this.question.answers.forEach((answer: Answer) => {
-      let idAnswer = '' + answer._id;
-      this.myOptions.addControl(idAnswer, this.formBuilder.control(false));
+      let idAnswerOption = '' + answer.option;
+      this.myOptions.addControl(
+        idAnswerOption,
+        this.formBuilder.control(false)
+      );
     });
     this.form.addControl(this.question._id, this.myOptions);
+    this.myOptions.setValidators(MyValidators.atLeastOneCheckedValidator());
   }
 
   get answers() {
@@ -31,16 +36,5 @@ export class MultipleOptionQuestionComponent implements OnInit {
 
   get answersFormArray() {
     return this.form.get('answers') as FormArray;
-  }
-
-  onCheckboxChange(option: number, isChecked: boolean) {
-    if (isChecked) {
-      this.answersFormArray.push(new FormControl(option));
-    } else {
-      const index = this.answersFormArray.controls.findIndex(
-        (x) => x.value === option
-      );
-      this.answersFormArray.removeAt(index);
-    }
   }
 }

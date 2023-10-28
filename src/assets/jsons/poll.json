@@ -4,6 +4,38 @@
   "startDate": "2023-09-27T22:43:38.547Z",
   "questions": [
     {
+      "_id": "6514b01a8c3c10f5b3e313436",
+      "type": "Multiple Option",
+      "question": "What are your favorite features of our product?",
+      "answers": [
+        {
+          "option": 1,
+          "text": "The ease of use",
+          "correct": false,
+          "_id": "6514b01a8c3c10f5b3e31344"
+        },
+        {
+          "option": 2,
+          "text": "The functionality",
+          "correct": false,
+          "_id": "6514b01a8c3c10f5b3e31345"
+        },
+        {
+          "option": 3,
+          "text": "The price",
+          "correct": false,
+          "_id": "6514b01a8c3c10f5b3e31346"
+        },
+        {
+          "option": 4,
+          "text": "The customer support",
+          "correct": false,
+          "_id": "6514b01a8c3c10f5b3e31347"
+        }
+      ],
+      "__v": 0
+    },
+    {
       "_id": "6514b01a8c3c10f5b3e3133e",
       "type": "Likert",
       "question": "How satisfied are you with our service?",
@@ -38,30 +70,30 @@
     {
       "_id": "6514b01a8c3c10f5b3e31343",
       "type": "Multiple Option",
-      "question": "Which programming languages do you use?",
+      "question": "What are your favorite features of our product?",
       "answers": [
         {
           "option": 1,
-          "text": "JavaScript",
+          "text": "The ease of use",
           "correct": false,
           "_id": "6514b01a8c3c10f5b3e31344"
         },
         {
           "option": 2,
-          "text": "Python",
+          "text": "The functionality",
           "correct": false,
           "_id": "6514b01a8c3c10f5b3e31345"
         },
         {
           "option": 3,
-          "text": "Java",
+          "text": "The price",
           "correct": false,
           "_id": "6514b01a8c3c10f5b3e31346"
         },
         {
           "option": 4,
-          "text": "C++",
-          "correct": true,
+          "text": "The customer support",
+          "correct": false,
           "_id": "6514b01a8c3c10f5b3e31347"
         }
       ],
@@ -70,18 +102,18 @@
     {
       "_id": "6514b01a8c3c10f5b3e31348",
       "type": "Single Option",
-      "question": "Do you prefer working from home or from the office?",
+      "question": "Would you recommend our product to a friend?",
       "answers": [
         {
           "option": 1,
-          "text": "Home",
+          "text": "Yes",
           "correct": false,
           "_id": "6514b01a8c3c10f5b3e31349"
         },
         {
           "option": 2,
-          "text": "Office",
-          "correct": true,
+          "text": "No",
+          "correct": false,
           "_id": "6514b01a8c3c10f5b3e3134a"
         }
       ],

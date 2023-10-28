@@ -1,12 +1,13 @@
 <form [formGroup]="form">
-  <div [formGroupName]="question._id" class="single-option-question">
+  <div class="single-option-question">
     <div class="single-option-question__label" *ngFor="let answer of answers">
       <input
         type="radio"
         [name]="question._id"
-        [value]="answer.text"
+        [value]="answer.option"
+        [formControlName]="question._id"
         class="single-option-question__input"
-        (click)="saveOption('' + answer._id, '' + answer.text)"
+       
       />
       {{ answer.text }}
     </div>

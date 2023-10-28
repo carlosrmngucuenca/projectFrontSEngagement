@@ -7,13 +7,18 @@
   height: 4.3125rem;
   border: none;
   border-radius: 0.9375rem;
-  background: var(--main-accent-color, #F0F0F0);
+  background: var(--main-accent-color, #f0f0f0);
   color: var(--info-text, #333);
   text-align: center;
   padding: 0rem 1rem;
   font-family: var(--font-family);
   font-size: var(--text-paragraph);
-
-
 }
 
+.button.is-valid {
+  background: var(--main-primary-color, #173264);
+}
+
+.button.is-invalid {
+  border: 2px solid red;
+}

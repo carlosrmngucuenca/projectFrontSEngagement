@@ -17,6 +17,8 @@ export class MyPollComponent implements OnInit {
   buttonNext = 'Siguiente';
   buttonPrevious = 'Anterior';
   isPreviousButtonEnabled = false;
+  pollID: string = '';
+  showMessage = false;
   constructor(
     private router: Router,
     private pollService: PollsService,
@@ -27,6 +29,7 @@ export class MyPollComponent implements OnInit {
     this.pollService.getAllPolls().subscribe((data) => {
       this.pollTitle = data.pollTitle;
       this.questions = data.questions;
+      this.pollID = data._id;
       this.loadQuestion();
       console.log(this.surveyForm);
     });
@@ -36,11 +39,19 @@ export class MyPollComponent implements OnInit {
   }
   loadQuestion() {
     const question = this.currentQuestion;
-    this.surveyForm.addControl(question._id, this.formBuilder.control(''));
+    this.surveyForm.addControl(
+      'id_survey',
+      this.formBuilder.control(this.pollID)
+    );
   }
 
   navigateToNext() {
-    this.questionIndex++;
+    if (this.surveyForm.valid) {
+      this.questionIndex++;
+    } else {
+      this.showMessage = false;
+    }
+
     if (this.questionIndex + 1 == this.questions.length) {
       //sumamos uno ya que index comienza en 0
       this.buttonNext = 'Enviar';
@@ -53,8 +64,9 @@ export class MyPollComponent implements OnInit {
       this.questionIndex = this.questions.length - 1;
     }
   }
+
   previousQuestion() {
-    if (this.questionIndex > 0) {
+    if (this.questionIndex > 0 && this.surveyForm.valid) {
       this.questionIndex--;
       this.buttonNext = 'Siguiente';
       this.isPreviousButtonEnabled = true;
@@ -64,5 +76,8 @@ export class MyPollComponent implements OnInit {
 
   submitSurvey() {
     console.log(this.surveyForm);
+    if (this.surveyForm.valid) {
+      console.log('hola submit survey');
+    }
   }
 }
