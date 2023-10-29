@@ -10,6 +10,7 @@ import { MyEmotionsComponent } from './pages/my-emotions/my-emotions.component';
 
 import { redirectGuard } from './../guards/redirect.guard';
 import { authGuard } from '../guards/auth.guard';
+import { MyCommentComponent } from './pages/my-comment/my-comment.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
         path: 'my-doubt',
         canActivate: [authGuard],
         component: MyDoubtComponent,
+      },
+      {
+        path: 'my-comment',
+        canActivate: [authGuard],
+        component: MyCommentComponent,
       },
       {
         path: 'my-success',

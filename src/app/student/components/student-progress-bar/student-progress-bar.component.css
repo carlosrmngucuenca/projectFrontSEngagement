@@ -23,11 +23,11 @@
   align-items: center;
 }
 #item-progressBar {
-  width: 550px;
+  width: 100%;
 }
 
-.progressBar-container__text::before {
+/* .progressBar-container__text::before {
   content: " ";
   display: inline-block;
   width: 40px;
-}
+} */

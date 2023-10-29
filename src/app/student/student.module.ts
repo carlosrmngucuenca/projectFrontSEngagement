@@ -25,6 +25,8 @@ import { LikertQuestionComponent } from './components/likert-question/likert-que
 import { SingleOptionQuestionComponent } from './components/single-option-question/single-option-question.component';
 import { MultipleOptionQuestionComponent } from './components/multiple-option-question/multiple-option-question.component';
 import { StudentProgressBarComponent } from './components/student-progress-bar/student-progress-bar.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
+import { MyCommentComponent } from './pages/my-comment/my-comment.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { StudentProgressBarComponent } from './components/student-progress-bar/s
     SingleOptionQuestionComponent,
     MultipleOptionQuestionComponent,
     StudentProgressBarComponent,
+    TextAreaComponent,
+    MyCommentComponent,
   ],
   imports: [
     CommonModule,

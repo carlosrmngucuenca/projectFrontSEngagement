@@ -1,0 +1,20 @@
+
+.grid-container {
+
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  row-gap: 16px;
+  grid-template-columns: minmax(20.5rem,40rem);
+  place-content: center;
+  /* Estilos del bloque 'grid-container' */
+}
+
+
+.paragraph{
+  padding: 16px;
+  align-self: center; /* Alinea el texto en la esquina superior izquierda de su celda */
+  font-family: var(--font-family);
+  font-size: var(--text-paragraph);
+  color: var(--info-text, #333);
+}
