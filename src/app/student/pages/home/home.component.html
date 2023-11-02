@@ -8,32 +8,32 @@
   <section class="grid-container">
     <student-button-icon-text
       class="boton fila1"
-      [imageUrl]="'./../../../../assets/icons/take-break-icon.svg'"
-      [textButton]="'Solicitar un descanso'"
-      [altImg]="'Button get a break'"
-    />
-
-    <student-button-icon-text
-      class="boton fila1"
       [imageUrl]="'./../../../../assets/icons/comment-icon.svg'"
       [textButton]="'Comentario acerca de la clase'"
       [altImg]="'Button comment'"
       routerLink="../my-comment"
     />
-
+    <student-button-icon-text
+    class="boton fila1-col2"
+    routerLink="/student/my-poll"
+    [imageUrl]="'./../../../../assets/icons/poll-icon.svg'"
+    [textButton]="'Encuestas'"
+    [altImg]="'Encuesta'"
+    />
     <student-button-icon-text
       class="boton fila2-col1"
       [imageUrl]="'./../../../../assets/icons/take-break-icon.svg'"
       [textButton]="'Solicitar un descanso'"
       [altImg]="'Button get a break'"
+      (click)="buttonSaveActivity(ACTIVITY.break)"
     />
 
     <student-button-icon-text
-      (click)="buttonActivitySleep()"
       [imageUrl]="'./../../../../assets/icons/sleep-icon.svg'"
       [textButton]="'Tengo Sueño'"
       [altImg]="'Botón tengo sueño'"
       class="boton fila2-col2"
+      (click)="buttonSaveActivity(ACTIVITY.sleep)"
     />
 
     <student-button-icon-text
@@ -45,19 +45,19 @@
     />
 
     <student-button-icon-text
-      (click)="buttonActivityExcelentClass()"
       class="boton fila3-col2"
       [imageUrl]="'./../../../../assets/icons/good-class-icon.svg'"
       [textButton]="'Excelente clase'"
       [altImg]="'Excelente clase'"
+      (click)="buttonSaveActivity(ACTIVITY.iloveit)"
     />
 
     <student-button-icon-text
-      (click)="buttonActivityIdontGetIt()"
       class="boton fila4"
       [imageUrl]="'./../../../../assets/icons/dontgetit-icon.svg'"
       [textButton]="'No entiendo'"
       [altImg]="'No entiendo'"
+      (click)="buttonSaveActivity(ACTIVITY.iDontGetIt)"
     />
   </section>
 </main>

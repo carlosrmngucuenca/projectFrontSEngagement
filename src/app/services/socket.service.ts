@@ -8,17 +8,25 @@ import { JoinRoom } from '../interfaces/room/room.interface';
   providedIn: 'root'
 })
 export class SocketService {
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket) {
+
+  }
 
   connect() {
     this.socket.connect();
+    console.log('socket connected');
   }
 
   disconnect() {
     this.socket.disconnect();
+    console.log('socket disconnected');
   }
 
-  emit<T>(event: string, data: T): Observable<JoinRoom> {
+  getSocket(): Socket {
+    return this.socket;
+  }
+
+  emit<T>(event: string, data: T): Observable<T> {
     return this.socket.emit(event, data);
   }
 

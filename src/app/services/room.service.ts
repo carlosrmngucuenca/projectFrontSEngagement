@@ -11,12 +11,15 @@ import { TokenService } from './token.service';
 })
 export class RoomService {
   private apiUrl = environment.baseUrl; // Reemplaza con la URL de tu backend
-
+  private idRoom: string ="";
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
   ) { }
 
+  getIdRoom(): string  {
+    return this.idRoom;
+  }
 
   getRoomCode(): string | undefined {
     const payload = this.tokenService.decodeToken();
@@ -53,6 +56,7 @@ export class RoomService {
       tap((response) => {
         if (response.ok) {
           this.tokenService.saveToken(response.token);
+          this.idRoom=response.roomId;
         }
       })
     );

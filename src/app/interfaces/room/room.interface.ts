@@ -16,6 +16,6 @@ export interface RoomExists {
   ok:     boolean;
   token: string;
   error?: string;
-  room?:  Room;
+  roomId:  string;
 }
 

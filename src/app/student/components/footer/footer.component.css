@@ -3,4 +3,9 @@
   grid-template-columns: repeat(3, minmax(6.0625rem,9rem) );
   gap: 16px;
   place-content: center;
+
+}
+.footer{
+
+  background-color:  var(--main-accent_color);
 }

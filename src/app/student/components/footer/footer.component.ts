@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Poll } from 'src/app/interfaces/poll.interface';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'student-footer',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
+  constructor(
+
+  ) { }
 
 }

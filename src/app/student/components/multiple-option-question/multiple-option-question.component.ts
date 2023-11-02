@@ -16,7 +16,7 @@ export class MultipleOptionQuestionComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    console.log(this.question);
+
   }
   buildForm() {
     this.question.answers.forEach((answer: Answer) => {

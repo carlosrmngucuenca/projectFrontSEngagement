@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Poll, Question, pollJson } from 'src/app/interfaces/poll.interface';
-import { PollsService } from 'src/app/services/polls.service';
+import { Question } from 'src/app/interfaces/poll.interface';
+import { PollService } from '../../../services/poll.service';
 
 @Component({
   selector: 'app-my-poll',
@@ -19,19 +19,21 @@ export class MyPollComponent implements OnInit {
   isPreviousButtonEnabled = false;
   pollID: string = '';
   showMessage = false;
+  @Output() pollReceived = new EventEmitter<Boolean>();
   constructor(
     private router: Router,
-    private pollService: PollsService,
-    private formBuilder: FormBuilder
-  ) {}
+    private pollService: PollService,
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit(): void {
-    this.pollService.getAllPolls().subscribe((data) => {
-      this.pollTitle = data.pollTitle;
-      this.questions = data.questions;
-      this.pollID = data._id;
-      this.loadQuestion();
-      console.log(this.surveyForm);
+    this.pollService.getPoll$().subscribe((poll) => {
+      if (poll) {
+        this.pollTitle = poll.pollTitle;
+        this.questions = poll.questions;
+        this.pollID = poll._id;
+        this.loadQuestion();
+      }
     });
   }
   get currentQuestion() {
@@ -75,9 +77,10 @@ export class MyPollComponent implements OnInit {
   }
 
   submitSurvey() {
-    console.log(this.surveyForm);
+    console.log("submit to send", this.surveyForm);
     if (this.surveyForm.valid) {
       console.log('hola submit survey');
     }
   }
+
 }

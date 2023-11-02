@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ButtonIconComponent {
   @Input() imageUrl = '';
   @Input() altImg = '';
+  @Input() isActived = false;
 }
