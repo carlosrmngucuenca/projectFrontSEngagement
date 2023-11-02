@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Poll, Question, pollJson } from 'src/app/interfaces/poll.interface';
+import { Jsonresponse } from 'src/app/models/responsejson.model';
 import { PollsService } from 'src/app/services/polls.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class MyPollComponent implements OnInit {
   buttonPrevious = 'Anterior';
   isPreviousButtonEnabled = false;
   pollID: string = '';
-  showMessage = false;
+  surveyStatus: boolean = false;
+  isAnswered: boolean = true;
   constructor(
     private router: Router,
     private pollService: PollsService,
@@ -35,21 +37,27 @@ export class MyPollComponent implements OnInit {
     });
   }
   get currentQuestion() {
+    //this.isAnswered = this.isQuestionAnswered();
     return this.questions[this.questionIndex];
+  }
+  isQuestionAnswered() {
+    if (this.surveyForm.invalid) {
+      return true;
+    }
+
+    return false;
   }
   loadQuestion() {
     const question = this.currentQuestion;
-    this.surveyForm.addControl(
-      'id_survey',
-      this.formBuilder.control(this.pollID)
-    );
+    this.surveyForm.addControl('PollId', this.formBuilder.control(this.pollID));
   }
 
   navigateToNext() {
     if (this.surveyForm.valid) {
       this.questionIndex++;
+      this.isAnswered = true;
     } else {
-      this.showMessage = false;
+      this.isAnswered = false;
     }
 
     if (this.questionIndex + 1 == this.questions.length) {
@@ -69,15 +77,44 @@ export class MyPollComponent implements OnInit {
     if (this.questionIndex > 0 && this.surveyForm.valid) {
       this.questionIndex--;
       this.buttonNext = 'Siguiente';
-      this.isPreviousButtonEnabled = true;
+      this.isAnswered = true;
     }
-    this.isPreviousButtonEnabled = false;
+    this.isAnswered = false;
   }
 
   submitSurvey() {
     console.log(this.surveyForm);
     if (this.surveyForm.valid) {
-      console.log('hola submit survey');
+      const data = this.surveyForm.value;
+
+      console.log('estoy en submitSurvey survey', data);
+      const pollId = data.PollId;
+      console.log(Object.keys(data));
+
+      const pollResponses = Object.keys(data).reduce(
+        (acc: Jsonresponse[], key) => {
+          if (key !== 'PollId' && typeof data[key] === 'object') {
+            const questionId = key;
+            const options = data[key];
+            acc.push({
+              questionId,
+              option: Object.keys(options)
+                .filter((key) => options[key] === true)
+                .map((element) => parseInt(element, 10)),
+            });
+          } else if (typeof data[key] === 'number') {
+            acc.push({
+              questionId: key,
+              option: [data[key]],
+            });
+          }
+          return acc;
+        },
+        []
+      );
+      const surveyDataForm = { pollID: pollId, questions: pollResponses };
+      const jsonSurveyResponse = JSON.stringify(surveyDataForm, null, 2);
+      console.log(jsonSurveyResponse);
     }
   }
 }

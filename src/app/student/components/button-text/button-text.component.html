@@ -1,3 +1,7 @@
-<button (click)="onClick()" [disabled]="!isButtonEnabled" class="button">
+<button
+  [disabled]="isButtonEnabled"
+  [ngClass]="{ answered: isAnswered }"
+  class="button"
+>
   <span class="button-text">{{ textButton }}</span>
 </button>

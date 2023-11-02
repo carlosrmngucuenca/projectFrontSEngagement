@@ -29,9 +29,9 @@ export class LikertQuestionComponent implements OnInit {
     return this.question.answers;
   }
 
-  validForm() {
-    if (this.form.invalid) {
-    } else {
-    }
+  get isAnswered() {
+    return (
+      this.form.dirty === true && !this.form.get(this.question._id)?.errors
+    );
   }
 }

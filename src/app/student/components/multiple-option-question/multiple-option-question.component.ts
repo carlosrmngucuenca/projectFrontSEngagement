@@ -34,7 +34,9 @@ export class MultipleOptionQuestionComponent implements OnInit {
     return this.question['answers'];
   }
 
-  get answersFormArray() {
-    return this.form.get('answers') as FormArray;
+  get isAnswered() {
+    return (
+      this.form.dirty === true && !this.form.get(this.question._id)?.errors
+    );
   }
 }

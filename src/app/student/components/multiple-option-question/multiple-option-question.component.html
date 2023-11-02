@@ -1,4 +1,10 @@
 <form [formGroup]="form">
+  <p
+    [ngClass]="{ answered: isAnswered, unanswered: !isAnswered }"
+    class="multiple-option-messagge"
+  >
+    Preguntas requeridas
+  </p>
   <div [formGroupName]="question._id" class="multiple-option-question">
     <label
       class="multiple-option-question__label"

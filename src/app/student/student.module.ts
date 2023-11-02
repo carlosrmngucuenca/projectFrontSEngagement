@@ -27,6 +27,7 @@ import { MultipleOptionQuestionComponent } from './components/multiple-option-qu
 import { StudentProgressBarComponent } from './components/student-progress-bar/student-progress-bar.component';
 import { TextAreaComponent } from './components/text-area/text-area.component';
 import { MyCommentComponent } from './pages/my-comment/my-comment.component';
+import { StudentDropdownOptionsComponent } from './components/student-dropdown-options/student-dropdown-options.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MyCommentComponent } from './pages/my-comment/my-comment.component';
     StudentProgressBarComponent,
     TextAreaComponent,
     MyCommentComponent,
+    StudentDropdownOptionsComponent,
   ],
   imports: [
     CommonModule,

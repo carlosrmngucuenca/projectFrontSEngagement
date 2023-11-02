@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { JoinRoom } from 'src/app/interfaces/room/room.interface';
 import { SocketService } from 'src/app/services/socket.service';
 
-
 import { RoomService } from '../../../services/room.service';
 
 @Component({
@@ -12,24 +11,23 @@ import { RoomService } from '../../../services/room.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
-  roomCode = this.roomService.getRoomCode();//get data from URL
-
+  roomCode = this.roomService.getRoomCode(); //get data from URL
 
   constructor(
     private socketService: SocketService,
     private roomService: RoomService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     console.log(this.roomCode);
     if (this.roomCode) {
-      this.socketService.emit<JoinRoom>('joinRoom', { roomCode: this.roomCode });
+      this.socketService.emit<JoinRoom>('joinRoom', {
+        roomCode: this.roomCode,
+      });
     }
 
     this.socketService.onSuccess().subscribe((success) => {
       console.log(success);
-
     });
     this.socketService.onError().subscribe((error) => {
       console.log(error);
@@ -39,10 +37,14 @@ export class HomeComponent implements OnInit {
     this.socketService.emit('saveActivitySleep', { roomCode: this.roomCode });
   }
   buttonActivityIdontGetIt() {
-    this.socketService.emit('saveActivityIdontGetIt', { roomCode: this.roomCode });
+    this.socketService.emit('saveActivityIdontGetIt', {
+      roomCode: this.roomCode,
+    });
   }
-  buttonActivityExcelentClass(){
-    this.socketService.emit('saveActivityExcelentClass', { roomCode: this.roomCode });
+  buttonActivityExcelentClass() {
+    this.socketService.emit('saveActivityExcelentClass', {
+      roomCode: this.roomCode,
+    });
   }
   ngOnDestroy() {
     this.socketService.disconnect();
