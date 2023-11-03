@@ -5,5 +5,6 @@ export enum ACTIVITY {
   break= "break",
   comment ="comment",
   question= "question",
+  emotion = "emotion",
 }
 
