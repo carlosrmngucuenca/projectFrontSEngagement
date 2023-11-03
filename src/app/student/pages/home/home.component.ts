@@ -10,17 +10,15 @@ import { ActivityService } from 'src/app/services/activity.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
-  roomCode = this.roomService.getRoomCode();//get data from URL
+  roomCode = this.roomService.getRoomCode(); //get data from URL
   roomId = this.roomService.getRoomId();
-  ACTIVITY = ACTIVITY;//This is for bind enum in html
+  ACTIVITY = ACTIVITY; //This is for bind enum in html
   isPollActived: boolean = false;
 
   constructor(
-
     private roomService: RoomService,
     private pollService: PollService,
-    private activityService: ActivityService,
+    private activityService: ActivityService
   ) {
     this.pollService.isPollActive$().subscribe((isPollActive) => {
       if (isPollActive) {
@@ -33,7 +31,6 @@ export class HomeComponent implements OnInit {
     if (this.roomCode) {
       this.roomService.joinRoom(this.roomCode);
     }
-
   }
 
   buttonSaveActivity(activity: ACTIVITY) {

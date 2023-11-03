@@ -1,2 +1,6 @@
-<student-header/>
+<student-header (openModalEvent)="openModal()" />
+<student-dropdown-options
+  *ngIf="displayModal"
+  (optionSelected)="onOptionSelected($event)"
+></student-dropdown-options>
 <router-outlet></router-outlet>

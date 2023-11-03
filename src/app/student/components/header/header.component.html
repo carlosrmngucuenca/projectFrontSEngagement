@@ -1,14 +1,31 @@
 <header class="header">
-  <nav class="header__nav">
+  <img
+    class="header__logo"
+    src="../../assets/logos/main-logo.svg"
+    loading="lazy"
+    alt="Logo"
+  />
+
+  <p class="header__title">{{ name }}</p>
+
+  <nav>
     <ul>
-      <li>
-        <img class="header__logo" src="../../assets/logos/main-logo.svg" loading="lazy" routerLink="/student/home" alt="Logo">
-      </li>
-      <li>
-        <p class="header__title" routerLink="/student/home">{{ name }}</p>
-      </li>
-      <li>
-        <img class="header__icon" src="../../assets/icons/Tres puntos.svg" loading="lazy" alt="Tres puntos">
+      <li (click)="toggleDropdown()">
+        <img
+          class="header__icon"
+          src="../../assets/icons/Tres puntos.svg"
+          loading="lazy"
+          alt="Tres puntos"
+        />
+        <ul class="dropdown">
+          <li>
+            <student-dropdown-options
+              (mouseleave)="toggleDropdown()"
+              *ngIf="showDropdown"
+              (optionSelected)="redirect($event)"
+            ></student-dropdown-options>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>

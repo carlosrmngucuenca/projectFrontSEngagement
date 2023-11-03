@@ -1,4 +1,10 @@
 <form [formGroup]="form">
+  <p
+    [ngClass]="{ answered: isAnswered, unanswered: !isAnswered }"
+    class="single-option-messagge"
+  >
+    Preguntas requeridas
+  </p>
   <div class="single-option-question">
     <div class="single-option-question__label" *ngFor="let answer of answers">
       <input
@@ -7,7 +13,6 @@
         [value]="answer.option"
         [formControlName]="question._id"
         class="single-option-question__input"
-       
       />
       {{ answer.text }}
     </div>

@@ -1,4 +1,31 @@
-<button class="button">
-  <img [src]="imageUrl" [alt]="altImg" class="button__icon" >
+<button class="button" (click)="toggleHeart()">
+  <ng-container
+    *ngIf="
+      imageUrl === './../../../../assets/icons/good-class-icon.svg';
+      else otherOption
+    "
+  >
+    <svg
+      width="30"
+      height="26"
+      viewBox="0 0 30 26"
+      class="heart-icon"
+      [ngClass]="{ fill: isLiked, unfilled: !isLiked }"
+      fill="tomato"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9.15 2C5.20125 2 2 5.1565 2 9.05005C2 16.1001 10.45 22.5092 15 24C19.55 22.5092 28 16.1001 28 9.05005C28 5.1565 24.7987 2 20.85 2C18.432 2 16.2935 3.18377 15 4.99563C14.3407 4.06964 13.4648 3.31393 12.4465 2.79248C11.4282 2.27103 10.2974 1.9992 9.15 2Z"
+        stroke="#0E5879"
+        stroke-width="3.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </ng-container>
+  <ng-template #otherOption
+    ><img [src]="imageUrl" [alt]="altImg" class="button__icon" #option
+  /></ng-template>
+
   <span class="button__text">{{ textButton }}</span>
 </button>

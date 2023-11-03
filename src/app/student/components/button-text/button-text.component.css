@@ -15,10 +15,13 @@
   font-size: var(--text-paragraph);
 }
 
-.button.is-valid {
-  background: var(--main-primary-color, #173264);
+button.answered {
+  background-color: var(--main-primary-color, #173264);
+  color: #fff;
 }
 
-.button.is-invalid {
-  border: 2px solid red;
+button.unanswered {
+  background-color: #d9534f;
+  color: #fff;
+  border: 1px solid #d43f3a;
 }
