@@ -10,7 +10,7 @@
 
   <nav>
     <ul>
-      <li (click)="toggleDropdown()" (mouseleave)="toggleDropdown()">
+      <li (click)="toggleDropdown()">
         <img
           class="header__icon"
           src="../../assets/icons/Tres puntos.svg"
@@ -20,6 +20,7 @@
         <ul class="dropdown">
           <li>
             <student-dropdown-options
+              (mouseleave)="toggleDropdown()"
               *ngIf="showDropdown"
               (optionSelected)="redirect($event)"
             ></student-dropdown-options>

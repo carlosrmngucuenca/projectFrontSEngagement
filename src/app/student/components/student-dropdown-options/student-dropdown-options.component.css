@@ -1,16 +1,25 @@
 .dropdown-options {
-  padding: 16px;
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
   color: var(--info-text, #333);
   background: white;
   border-radius: 8px;
   /* Titles/Link */
   font-family: Inter;
-  font-size: 1rem;
+  font-size: var(--text-paragraph);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
 }
 .dropdown-options_element {
-  padding: 1rem 0;
+  padding: 1rem;
   width: 4rem;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
 }
