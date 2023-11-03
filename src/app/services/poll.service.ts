@@ -23,12 +23,9 @@ export class PollService {
     private Http: HttpClient
   ) {
     this.socketService.on<Poll>('putPolls').subscribe((poll: Poll) => {
-      this.setPoll(poll);
+      this.pollSubject.next(poll);
       this.isPollActivedSubject.next(true);
     });
-  }
-  setPoll(poll: Poll) {
-    this.pollSubject.next(poll);
   }
 
   getPoll$(): Observable<Poll | null> {
@@ -37,6 +34,10 @@ export class PollService {
 
   isPollActive$(): Observable<boolean> {
     return this.isPollActived$;
+  }
+
+  setPollActive$(isPollActive: boolean) {
+    this.isPollActivedSubject.next(isPollActive);
   }
 
   getAllPolls() {

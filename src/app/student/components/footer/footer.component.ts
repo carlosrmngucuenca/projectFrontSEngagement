@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Poll } from 'src/app/interfaces/poll.interface';
-import { SocketService } from 'src/app/services/socket.service';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'student-footer',
   templateUrl: './footer.component.html',

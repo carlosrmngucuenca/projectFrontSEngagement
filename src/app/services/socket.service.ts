@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,9 +7,15 @@ import { JoinRoom } from '../interfaces/room/room.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class SocketService {
+export class SocketService  {
   constructor(private socket: Socket) {
-
+    //el constructor se inicializa una sola vez
+    this.onSuccess().subscribe((success) => {
+      console.log(success);
+    });
+    this.onError().subscribe((error) => {
+      console.error(error);
+    });
   }
 
   connect() {
@@ -26,7 +32,7 @@ export class SocketService {
     return this.socket;
   }
 
-  emit<T>(event: string, data: T): Observable<T> {
+  emit<T>(event: string, data: T) {
     return this.socket.emit(event, data);
   }
 

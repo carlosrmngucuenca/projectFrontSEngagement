@@ -9,6 +9,6 @@ export interface Engagementcomponent {
 }
 
 export interface Datapoll {
-  idRoom: string;
+  roomId: string;
   idPoll: string;
 }

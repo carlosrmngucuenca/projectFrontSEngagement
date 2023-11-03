@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Room } from '../interfaces/room/room.interface';
+import { JoinRoom, Room } from '../interfaces/room/room.interface';
 import { RoomExists } from '../interfaces/room/room.interface';
 import { TokenService } from './token.service';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
   private apiUrl = environment.baseUrl; // Reemplaza con la URL de tu backend
-  private idRoom: string ="";
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private socketService: SocketService,
   ) { }
 
-  getIdRoom(): string  {
-    return this.idRoom;
+  roomId: string = '';
+  private storageKey = 'roomId'; // Nombre clave para LocalStorage
+  setRoomId(roomId: string) {
+    this.roomId = roomId;
+    localStorage.setItem(this.storageKey, roomId);
+  }
+
+  joinRoom(roomCode: string) {
+    this.socketService.emit<JoinRoom>('joinRoom', { roomCode });
+  }
+  getRoomId(): string {
+    const roomId = this.roomId || localStorage.getItem(this.storageKey);
+    return roomId || '';
   }
 
   getRoomCode(): string | undefined {
@@ -56,7 +68,7 @@ export class RoomService {
       tap((response) => {
         if (response.ok) {
           this.tokenService.saveToken(response.token);
-          this.idRoom=response.roomId;
+          this.setRoomId(response.roomId);
         }
       })
     );

@@ -2,7 +2,7 @@
 <p class="paragraph">Estos comentarios serán vistos por el docente al finalizar la clase.</p>
 
 <main class="grid-container">
-  <student-text-area></student-text-area>
-  <student-button-text (click)="submitComment()" routerLink="/student/home" [textButton]="'Enviar pregunta al docente'" />
+  <textarea class="text-area" placeholder="Escribe tu comentario aquí" #textAreaComment></textarea>
+  <student-button-text (click)="submitComment(ACTIVITY.comment)" [textButton]="'Enviar pregunta al docente'" />
 </main>
 <student-footer class="footer-container" />

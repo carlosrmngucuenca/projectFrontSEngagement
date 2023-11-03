@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/interfaces/poll.interface';
 import { PollService } from '../../../services/poll.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
   selector: 'app-my-poll',
   templateUrl: './my-poll.component.html',
   styleUrls: ['./my-poll.component.css'],
 })
-export class MyPollComponent implements OnInit {
+export class MyPollComponent implements OnInit, OnDestroy {
   questionIndex = 0;
   pollTitle: string = '';
   questions: Question[] = [];
@@ -24,9 +25,14 @@ export class MyPollComponent implements OnInit {
     private router: Router,
     private pollService: PollService,
     private formBuilder: FormBuilder,
+    // private socketService: SocketService,
   ) { }
+  ngOnDestroy(): void {
+    // this.socketService.disconnect();
+  }
 
   ngOnInit(): void {
+    // this.socketService.connect();
     this.pollService.getPoll$().subscribe((poll) => {
       if (poll) {
         this.pollTitle = poll.pollTitle;
@@ -79,6 +85,7 @@ export class MyPollComponent implements OnInit {
   submitSurvey() {
     console.log("submit to send", this.surveyForm);
     if (this.surveyForm.valid) {
+      this.pollService.setPollActive$(false);
       console.log('hola submit survey');
     }
   }
