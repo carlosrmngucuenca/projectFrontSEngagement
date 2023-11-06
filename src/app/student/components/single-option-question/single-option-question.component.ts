@@ -28,4 +28,10 @@ export class SingleOptionQuestionComponent implements OnInit {
   get answers() {
     return this.question.answers;
   }
+
+  get isAnswered() {
+    return (
+      this.form.dirty === true && !this.form.get(this.question._id)?.errors
+    );
+  }
 }

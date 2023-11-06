@@ -28,8 +28,14 @@
 <div class="footer-container footer-container--grid">
   <student-button-text
     [textButton]="buttonPrevious"
-    (buttonClick)="previousQuestion()"
-    [isButtonEnabled]="!isPreviousButtonEnabled"
+    (click)="previousQuestion()"
+    [isButtonEnabled]="isPreviousButtonEnabled"
+    [isAnswered]="isAnswered"
   />
-  <student-button-text [textButton]="buttonNext" (click)="navigateToNext()" />
+  <student-button-text
+    [textButton]="buttonNext"
+    (click)="navigateToNext()"
+    [isButtonEnabled]="isPreviousButtonEnabled"
+    [isAnswered]="isAnswered"
+  />
 </div>

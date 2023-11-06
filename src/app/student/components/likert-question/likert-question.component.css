@@ -9,18 +9,40 @@
   column-gap: 1rem;
   align-items: center;
   color: var(--info-text, #333);
-  font-family: var( --font-family);
-  font-size: var( --text-paragraph);
+  font-family: var(--font-family);
+  font-size: var(--text-paragraph);
 }
 
 .likert-question__input {
   appearance: none;
   padding: 0.5rem;
-  background-color: var(--main-background, #0E5879);
+  background-color: var(--main-background, #0e5879);
   border-radius: 50%;
-  border: 3px solid var(--main-secondary-color, #0E5879);
+  border: 3px solid var(--main-secondary-color, #0e5879);
 }
 
 .likert-question__input:checked {
-  background-color: var(--main-secondary-color, #0E5879);
+  background-color: var(--main-secondary-color, #0e5879);
+}
+
+.likert-option-messagge {
+  margin-bottom: 16px;
+  color: var(--info-text, #333);
+
+  /* Titles/Link */
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+p.unanswered {
+  color: #d9534f;
+  transition: all 0.5s ease-in;
+}
+
+p.answered {
+  color: var(--main-background);
+  transition: all 0.5s ease-in;
 }

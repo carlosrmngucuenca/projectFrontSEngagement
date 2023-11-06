@@ -7,13 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonTextComponent {
   @Input() textButton = '';
-  @Input() isButtonValid: boolean = true;
+  @Input() isAnswered: boolean = true;
   @Input() isButtonEnabled: boolean = true;
   @Output() buttonClick = new EventEmitter<void>();
-
-  onClick() {
-    if (this.isButtonEnabled) {
-      this.buttonClick.emit();
-    }
-  }
 }

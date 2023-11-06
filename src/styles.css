@@ -7,7 +7,7 @@
   --main-background: #fdf8f8;
   --main-accent_color: #f0f0f0;
 
-  --font-family: 'Inter', sans-serif;
+  --font-family: "Inter", sans-serif;
   --titles-h1: 1.875rem;
   --titles-h2: 1.5rem;
   --titles-h3: 1.25rem;
@@ -21,26 +21,22 @@
   box-sizing: border-box;
 }
 
-
 body {
   font-family: var(--titles-link);
   background-color: var(--main-background);
   min-height: 100vh;
-
 }
 
-.footer-container{
+.footer-container {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-
 }
-
 
 .text-area {
   border: 1px solid var(--info-text, #333);
-  background: var(--main-background, #FDF8F8);
+  background: var(--main-background, #fdf8f8);
   color: var(--info-text, #333);
   font-family: Inter;
   font-size: 1.1875rem;

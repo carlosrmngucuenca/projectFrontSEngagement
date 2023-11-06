@@ -1,4 +1,11 @@
 <form [formGroup]="form">
+  <p
+    [ngClass]="{ answered: isAnswered, unanswered: !isAnswered }"
+    class="likert-option-messagge"
+  >
+    Preguntas requeridas
+  </p>
+
   <div class="likert-question">
     <div class="likert-question__label" *ngFor="let answer of answers">
       <input

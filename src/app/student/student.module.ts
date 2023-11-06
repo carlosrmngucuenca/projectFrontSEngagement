@@ -26,7 +26,8 @@ import { SingleOptionQuestionComponent } from './components/single-option-questi
 import { MultipleOptionQuestionComponent } from './components/multiple-option-question/multiple-option-question.component';
 import { StudentProgressBarComponent } from './components/student-progress-bar/student-progress-bar.component';
 import { MyCommentComponent } from './pages/my-comment/my-comment.component';
-import { MyBagdeComponent } from './pages/my-bagde/my-bagde.component';
+
+import { StudentDropdownOptionsComponent } from './components/student-dropdown-options/student-dropdown-options.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { MyBagdeComponent } from './pages/my-bagde/my-bagde.component';
     MultipleOptionQuestionComponent,
     StudentProgressBarComponent,
     MyCommentComponent,
-    MyBagdeComponent,
+    StudentDropdownOptionsComponent,
   ],
   imports: [
     CommonModule,
