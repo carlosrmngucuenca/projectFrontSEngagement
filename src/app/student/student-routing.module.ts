@@ -11,6 +11,7 @@ import { MyEmotionsComponent } from './pages/my-emotions/my-emotions.component';
 import { redirectGuard } from './../guards/redirect.guard';
 import { authGuard } from '../guards/auth.guard';
 import { MyCommentComponent } from './pages/my-comment/my-comment.component';
+import { MyBagdeComponent } from './pages/my-bagde/my-bagde.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
         path: 'my-emotions',
         canActivate: [authGuard],
         component: MyEmotionsComponent,
+      },
+      {
+        path: 'my-badge',
+        canActivate: [authGuard],
+        component: MyBagdeComponent,
       },
     ],
   },
