@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,12 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'mydashboard',
+        path: 'my-dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'my-realtime',
+        component: MyRealtimeComponent,
       },
     ],
   },
