@@ -14,18 +14,18 @@
       routerLink="../my-comment"
     />
     <student-button-icon-text
-    class="boton fila1-col2"
-    routerLink="/student/my-poll"
-    [imageUrl]="'./../../../../assets/icons/poll-icon.svg'"
-    [textButton]="'Encuestas'"
-    [altImg]="'Encuesta'"
+      class="boton fila1-col2"
+      routerLink="/student/my-poll"
+      [imageUrl]="'./../../../../assets/icons/poll-icon.svg'"
+      [textButton]="'Encuestas'"
+      [altImg]="'Encuesta'"
     />
     <student-button-icon-text
       class="boton fila2-col1"
       [imageUrl]="'./../../../../assets/icons/take-break-icon.svg'"
       [textButton]="'Solicitar un descanso'"
       [altImg]="'Button get a break'"
-      (click)="buttonSaveActivity(ACTIVITY.break)"
+      (click)="handlerButtonTakeBreak()"
     />
 
     <student-button-icon-text
@@ -33,7 +33,7 @@
       [textButton]="'Tengo Sueño'"
       [altImg]="'Botón tengo sueño'"
       class="boton fila2-col2"
-      (click)="buttonSaveActivity(ACTIVITY.sleep)"
+      (click)="handlerButtonSleep()"
     />
 
     <student-button-icon-text
@@ -49,7 +49,7 @@
       [imageUrl]="'./../../../../assets/icons/good-class-icon.svg'"
       [textButton]="'Excelente clase'"
       [altImg]="'Excelente clase'"
-      (click)="buttonSaveActivity(ACTIVITY.iloveit)"
+      (click)="handlerButtonLoveClass()"
     />
 
     <student-button-icon-text
@@ -57,7 +57,7 @@
       [imageUrl]="'./../../../../assets/icons/dontgetit-icon.svg'"
       [textButton]="'No entiendo'"
       [altImg]="'No entiendo'"
-      (click)="buttonSaveActivity(ACTIVITY.iDontGetIt)"
+      (click)="handlerButtonDonotGetIt()"
     />
   </section>
 </main>

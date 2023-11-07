@@ -1,4 +1,4 @@
-<button class="button" (click)="toggleHeart()">
+<button class="button" (mousedown)="toggleHeart()" (mouseup)="toggleHeart()">
   <ng-container
     *ngIf="
       imageUrl === './../../../../assets/icons/good-class-icon.svg';
