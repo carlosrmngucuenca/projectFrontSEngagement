@@ -7,4 +7,6 @@ export interface PollResponse  {
   }[];
 }
 
+
+
 export default PollResponse;

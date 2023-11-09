@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/interfaces/poll.interface';
 import { PollService } from '../../../services/poll.service';
-import { SocketService } from 'src/app/services/socket.service';
 import { Jsonresponse } from 'src/app/models/responsejson.model';
+import { PollResponse } from 'src/app/models/pollResponse.interface';
 
 @Component({
   selector: 'app-my-poll',
@@ -31,9 +31,9 @@ export class MyPollComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private pollService: PollService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) // private socketService: SocketService,
-  {}
+  { }
   ngOnDestroy(): void {
     // this.socketService.disconnect();
   }
@@ -96,38 +96,37 @@ export class MyPollComponent implements OnInit, OnDestroy {
   }
 
   submitSurvey() {
-    console.log('submit to send', this.surveyForm);
+    // console.log('submit to send', this.surveyForm);
     if (this.surveyForm.valid) {
       const data = this.surveyForm.value;
 
-      console.log('estoy en submitSurvey survey', data);
+      // console.log('estoy en submitSurvey survey', data);
       const pollId = data.PollId;
-      console.log(Object.keys(data));
 
-      const pollResponses = Object.keys(data).reduce(
-        (acc: Jsonresponse[], key) => {
-          if (key !== 'PollId' && typeof data[key] === 'object') {
-            const questionId = key;
-            const options = data[key];
-            acc.push({
-              questionId,
-              option: Object.keys(options)
-                .filter((key) => options[key] === true)
-                .map((element) => parseInt(element, 10)),
-            });
-          } else if (typeof data[key] === 'number') {
-            acc.push({
-              questionId: key,
-              option: [data[key]],
-            });
+      const responses = Object.keys(data)
+        .filter(key => key !== 'PollId')
+        .map(key => {
+          let option: number[];
+          if (typeof data[key] === 'number') {
+            option = [data[key]];
+          } else if (typeof data[key] === 'object') {
+            option = Object.keys(data[key])
+              .filter(subKey => data[key][subKey])
+              .map(subKey => Number(subKey));
+          } else {
+            option = [];
           }
-          return acc;
-        },
-        []
-      );
-      const surveyDataForm = { pollID: pollId, questions: pollResponses };
-      const jsonSurveyResponse = JSON.stringify(surveyDataForm, null, 2);
-      console.log(jsonSurveyResponse);
+          return {
+            questionId: key,
+            option: option
+          };
+        });
+      const pollResponse: PollResponse = {
+        pollId: pollId,
+        responses: responses,
+      };
+      this.pollService.savePollResponses(pollResponse);
+
     }
   }
 }
