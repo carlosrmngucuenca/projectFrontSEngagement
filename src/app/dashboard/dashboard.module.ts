@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     HomeComponent,
     LayoutComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    MyRealtimeComponent
   ],
   imports: [
     CommonModule,

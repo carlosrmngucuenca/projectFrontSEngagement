@@ -5,7 +5,8 @@ import { Poll } from '../interfaces/poll.interface';
 import { SocketService } from './socket.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-const baseUrl = environment.jsonURL;
+import PollResponse from '../models/pollResponse.interface';
+const baseUrl = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class PollService {
 
   constructor(
     private socketService: SocketService,
-    private Http: HttpClient
+    private http: HttpClient
   ) {
     this.socketService.on<Poll>('putPolls').subscribe((poll: Poll) => {
       this.pollSubject.next(poll);
@@ -41,6 +42,13 @@ export class PollService {
   }
 
   getAllPolls() {
-    return this.Http.get<Poll>(`${baseUrl}`);
+    return this.http.get<Poll>(`${baseUrl}`);
   }
+
+  //save poll with socket
+  savePollResponses(pollResponse: PollResponse) {
+    this.socketService.emit('savePollResponses', pollResponse);
+  }
+
+
 }

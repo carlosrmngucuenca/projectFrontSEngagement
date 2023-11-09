@@ -5,8 +5,9 @@ header {
   justify-content: space-around;
   align-items: center;
   justify-items: center;
-  background-color: var(--main-primary_color);
+  background-color: var(--main-accent_color);
   min-width: 240px;
+
 }
 
 .header__logo {
@@ -34,6 +35,7 @@ header {
 
 .header__info__title {
   display: flex;
+
 }
 
 .header__info__detail {
