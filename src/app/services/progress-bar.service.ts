@@ -14,10 +14,6 @@ export class ProgressBarService {
   }
 
   getProgress$(): number {
-    if (this.progressBarSubject.getValue() > 100) {
-      return 0;
-    } else {
-      return this.progressBarSubject.getValue();
-    }
+    return this.progressBarSubject.getValue();
   }
 }

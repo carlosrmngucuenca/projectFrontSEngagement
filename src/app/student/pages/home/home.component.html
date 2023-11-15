@@ -11,7 +11,7 @@
       [imageUrl]="'./../../../../assets/icons/comment-icon.svg'"
       [textButton]="'Comentario acerca de la clase'"
       [altImg]="'Button comment'"
-      routerLink="../my-comment"
+      (click)="handlerButtonSendComment()"
     />
     <student-button-icon-text
       class="boton fila1-col2"
@@ -38,10 +38,10 @@
 
     <student-button-icon-text
       class="boton fila3-col1"
-      routerLink="../my-emotions"
       [imageUrl]="'./../../../../assets/icons/emotions-icon.svg'"
       [textButton]="'Expresar mis emociones'"
       [altImg]="'Button emotions'"
+      (click)="handlerButtonEmotions()"
     />
 
     <student-button-icon-text

@@ -4,7 +4,7 @@
     <progress
       id="item-progressBar"
       min="0"
-      max="100"
+      [max]="maxProgressBarValue"
       [value]="progress"
     ></progress>
     <img [src]="imageUrl" [alt]="altImg" class="item__icon" />

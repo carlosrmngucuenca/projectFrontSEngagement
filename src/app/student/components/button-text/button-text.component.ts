@@ -8,6 +8,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonTextComponent {
   @Input() textButton = '';
   @Input() isAnswered: boolean = true;
-  @Input() isButtonEnabled: boolean = true;
+  @Input() isButtonEnabled: boolean = false;
   @Output() buttonClick = new EventEmitter<void>();
 }
