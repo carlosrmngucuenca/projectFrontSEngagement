@@ -1,21 +1,15 @@
 import { RoomService } from './../../../../services/room.service';
 import { Component, OnInit } from '@angular/core';
+import { Activity } from 'src/app/interfaces/activity,interface';
+import { JoinRoom } from 'src/app/interfaces/room.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
+import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'dashboard-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
-  roomCode = this.roomService.getRoomCode() || 'MRA123'; //Cabmiar a el codigo de la sala
-  constructor(
-    private roomService: RoomService,
-    private dataRealTimeService: DataRealTimeService,
-    ) { }
-  ngOnInit(): void {
-    if (this.roomCode) {
-      this.roomService.joinRoom(this.roomCode);
-    }
-  }
+export class HomeComponent  {
+
 }

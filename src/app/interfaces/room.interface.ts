@@ -9,7 +9,8 @@ export interface Room {
   __v:       number;
 }
 export interface JoinRoom{
-  roomCode: string | undefined
+  roomCode: string | undefined;
+  token: string | undefined;
 }
 //interface for exists room
 export interface RoomExists {

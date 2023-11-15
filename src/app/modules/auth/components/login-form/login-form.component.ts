@@ -51,7 +51,7 @@ export class LoginFormComponent {
       const { userPin } = this.miFormulario.getRawValue();
       this.status = 'loading';
 
-      this.roomService.checkRoomExists(userPin).subscribe((roomExists) => {
+      this.roomService.checkRoomExists(userPin, 'user').subscribe((roomExists) => {
         if (roomExists.ok) {
           this.router.navigateByUrl(`/student/home`);
         }

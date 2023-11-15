@@ -25,9 +25,14 @@ export class RoomService {
     localStorage.setItem(this.storageKey, roomId);
   }
 
-  joinRoom(roomCode: string) {
-    this.socketService.emit<JoinRoom>('joinRoom', { roomCode });
+  joinRoom(roomCode: string, token?: string) {
+    if (!token) {
+      token = this.tokenService.getToken();
+    }
+
+    this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token});
   }
+
   getRoomId(): string {
     const roomId = this.roomId || localStorage.getItem(this.storageKey);
     return roomId || '';
@@ -63,8 +68,11 @@ export class RoomService {
     return this.http.patch<Room>(`${this.apiUrl}/room/${id}`, { newName });
   }
 
-  checkRoomExists(roomCode: string): Observable<RoomExists> {
-    return this.http.get<RoomExists>(`${this.apiUrl}/room/${roomCode}/exists`).pipe(
+  checkRoomExists(roomCode: string, rol:string): Observable<RoomExists> {
+    const headers = {
+      'rol': rol
+    };
+    return this.http.get<RoomExists>(`${this.apiUrl}/room/${roomCode}/exists`, { headers }).pipe(
       tap((response) => {
         if (response.ok) {
           this.tokenService.saveToken(response.token);
@@ -73,6 +81,7 @@ export class RoomService {
       })
     );
   }
+
 
   deleteRoom(roomCode: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/room/${roomCode}`);
