@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription, map } from 'rxjs';
-import { ButtonService } from 'src/app/services/button.service';
+import { ClickCounterService } from 'src/app/services/click-counter.service';
 import { ProgressBarService } from 'src/app/services/progress-bar.service';
 
 @Component({
@@ -13,24 +13,23 @@ export class StudentProgressBarComponent implements OnInit {
   @Input() imageUrl = '';
   @Input() altImg = '';
   progress: number = 0;
+  maxProgressBarValue: number = 90;
+  minProgressBarValue: number = 0;
   private loveClassSubscription: Subscription = new Subscription();
   private sendCommentsSubscription: Subscription = new Subscription();
   private sleepSubscription: Subscription = new Subscription();
   private takeBreakSubscription: Subscription = new Subscription();
   private doNotGetItSubscription: Subscription = new Subscription();
   private progressSubscription: Subscription = new Subscription();
-  constructor(
-    private buttonService: ButtonService,
-    private progressService: ProgressBarService
-  ) {}
+  constructor(private progressService: ProgressBarService) {}
   ngOnInit() {
     this.progress = this.progressService.getProgress$();
 
     this.progressSubscription = this.progressService.progress$
       .pipe(
         map<number, number>((value) => {
-          if (value > 100) {
-            return 0;
+          if (value >= 90) {
+            return value;
           }
           return value;
         })
@@ -45,6 +44,7 @@ export class StudentProgressBarComponent implements OnInit {
     this.sleepSubscription.unsubscribe();
     this.takeBreakSubscription.unsubscribe();
     this.doNotGetItSubscription.unsubscribe();
+    this.sendCommentsSubscription.unsubscribe();
     this.progressSubscription.unsubscribe();
     this.progressService.setProgress(this.progress);
     console.log('onDestroy');

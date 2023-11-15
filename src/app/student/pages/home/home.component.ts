@@ -4,10 +4,9 @@ import { ACTIVITY } from '../../enums/activity.enum';
 import { PollService } from 'src/app/services/poll.service';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Observable, of } from 'rxjs';
-import { ButtonService } from 'src/app/services/button.service';
-import { ProgressBarService } from 'src/app/services/progress-bar.service';
 
-const observable = of(1);
+import { SumService } from 'src/app/services/sum.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,8 +23,8 @@ export class HomeComponent implements OnInit {
     private roomService: RoomService,
     private pollService: PollService,
     private activityService: ActivityService,
-    private buttonService: ButtonService,
-    private progressService: ProgressBarService
+    private sumService: SumService,
+    private router: Router
   ) {
     this.pollService.isPollActive$().subscribe((isPollActive) => {
       if (isPollActive) {
@@ -50,24 +49,30 @@ export class HomeComponent implements OnInit {
 
   handlerButtonLoveClass() {
     this.buttonSaveActivity(ACTIVITY.iloveit);
-    this.buttonService.sendValueForLoveClass(3);
-    this.progressService.setProgress(this.progressService.getProgress$() + 3);
+    this.sumService.addValuePointsLoveClass();
   }
   handlerButtonSleep() {
     this.buttonSaveActivity(ACTIVITY.sleep);
-    this.buttonService.sendValueForSleep(2);
-    this.progressService.setProgress(this.progressService.getProgress$() + 2);
+    this.sumService.addValuePointsSleep();
   }
 
   handlerButtonTakeBreak() {
     this.buttonSaveActivity(ACTIVITY.break);
-    this.buttonService.sendValueForTakeBreak(1);
-    this.progressService.setProgress(this.progressService.getProgress$() + 1);
+    this.sumService.addValuePointsTakeBreak();
   }
 
   handlerButtonDonotGetIt() {
     this.buttonSaveActivity(ACTIVITY.iDontGetIt);
-    this.buttonService.sendValueForDonotGetITComment(1);
-    this.progressService.setProgress(this.progressService.getProgress$() + 1);
+    this.sumService.addValuePointsDoNotGetIt();
+  }
+
+  handlerButtonSendComment() {
+    this.sumService.addValuePointsSendComments();
+    this.router.navigateByUrl('/student/my-comment');
+  }
+
+  handlerButtonEmotions() {
+    this.sumService.addValuePointsEmotions();
+    this.router.navigateByUrl('/student/my-emotions');
   }
 }
