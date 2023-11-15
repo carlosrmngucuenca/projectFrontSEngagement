@@ -8,9 +8,9 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Question } from 'src/app/interfaces/poll.interface';
-import { PollService } from '../../../services/poll.service';
-import { Jsonresponse } from 'src/app/models/responsejson.model';
-import { PollResponse } from 'src/app/models/pollResponse.interface';
+import { PollService } from '../../../../services/poll.service';
+import { Jsonresponse } from 'src/app/interfaces/models/responsejson.model';
+import { PollResponse } from 'src/app/interfaces/models/pollResponse.interface';
 
 @Component({
   selector: 'app-my-poll',

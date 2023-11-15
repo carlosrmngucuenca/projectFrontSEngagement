@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { JoinRoom, Room } from '../interfaces/room/room.interface';
-import { RoomExists } from '../interfaces/room/room.interface';
+import { JoinRoom, Room } from '../interfaces/room.interface';
+import { RoomExists } from '../interfaces/room.interface';
 import { TokenService } from './token.service';
 import { SocketService } from './socket.service';
 

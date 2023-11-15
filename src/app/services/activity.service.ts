@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SocketService } from './socket.service';
 import { Activity } from '../interfaces/activity,interface';
-import { ACTIVITY } from '../student/enums/activity.enum';
+import { ACTIVITY } from '../modules/student/enums/activity.enum';
 
 @Injectable({
   providedIn: 'root'

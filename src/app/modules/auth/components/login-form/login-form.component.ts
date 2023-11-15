@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RequestStatus } from 'src/app/models/request-status.model';
-import { RoomService } from '../../../services/room.service';
+import { RequestStatus } from 'src/app/interfaces/models/request-status.model';
+import { RoomService } from '../../../../services/room.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({

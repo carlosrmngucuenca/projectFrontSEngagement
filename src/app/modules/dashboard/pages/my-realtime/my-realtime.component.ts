@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { SocketService } from 'src/app/services/socket.service';
-
+import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 @Component({
   selector: 'app-my-realtime',
   templateUrl: './my-realtime.component.html',
@@ -9,9 +8,12 @@ import { SocketService } from 'src/app/services/socket.service';
 export class MyRealtimeComponent {
 
 
-  constructor(private socketService: SocketService) { }
+  constructor(
+    private dataRealTimeService: DataRealTimeService,
+    ) { }
 
   ngOnInit() {
+
 
   }
 

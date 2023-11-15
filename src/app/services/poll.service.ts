@@ -5,7 +5,7 @@ import { Poll } from '../interfaces/poll.interface';
 import { SocketService } from './socket.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import PollResponse from '../models/pollResponse.interface';
+import PollResponse from '../interfaces/models/pollResponse.interface';
 const baseUrl = environment.baseUrl;
 
 @Injectable({

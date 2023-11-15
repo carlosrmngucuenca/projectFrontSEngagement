@@ -12,7 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MyEngagementPollComponent } from './pages/my-engagement-poll/my-engagement-poll.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { MyDoubtComponent } from './pages/my-doubt/my-doubt.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
 import { ButtonIconTextComponent } from './components/button-icon-text/button-icon-text.component';

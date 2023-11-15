@@ -16,18 +16,18 @@ const routes: Routes = [
     path: 'auth',
     canActivate: [redirectGuard],
     loadChildren: () =>
-      import('./auth/auth.module').then((module) => module.AuthModule),
+      import('./modules/auth/auth.module').then((module) => module.AuthModule),
   },
   {
     path: 'student',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./student/student.module').then((module) => module.StudentModule),
+      import('./modules/student/student.module').then((module) => module.StudentModule),
   },
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then(
+      import('./modules/dashboard/dashboard.module').then(
         (module) => module.DashboardModule
       ),
   },

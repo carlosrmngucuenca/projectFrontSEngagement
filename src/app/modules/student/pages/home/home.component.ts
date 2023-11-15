@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { RoomService } from '../../../services/room.service';
+import { RoomService } from '../../../../services/room.service';
 import { ACTIVITY } from '../../enums/activity.enum';
 import { PollService } from 'src/app/services/poll.service';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Observable, of } from 'rxjs';
 import { ButtonService } from 'src/app/services/button.service';
 import { ProgressBarService } from 'src/app/services/progress-bar.service';
+
 
 const observable = of(1);
 
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
     private pollService: PollService,
     private activityService: ActivityService,
     private buttonService: ButtonService,
-    private progressService: ProgressBarService
+    private progressService: ProgressBarService,
   ) {
     this.pollService.isPollActive$().subscribe((isPollActive) => {
       if (isPollActive) {

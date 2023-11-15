@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Engagementcomponent } from 'src/app/models/data.model';
+import { Engagementcomponent } from 'src/app/interfaces/models/data.model';
 
 @Component({
   selector: 'app-engagement',

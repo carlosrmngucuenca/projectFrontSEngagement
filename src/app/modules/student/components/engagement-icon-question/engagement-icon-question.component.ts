@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Poll } from '../../../interfaces/poll.interface'; // Importa la interfaz Poll
+import { Poll } from '../../../../interfaces/poll.interface'; // Importa la interfaz Poll
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'student-engagement-icon-question',
