@@ -1,10 +1,19 @@
 <footer class="footer">
   <nav class="grid-nav">
-    <student-button-icon routerLink="/student/my-doubt" [imageUrl]="'./../../../../assets/icons/question-icon.svg'"
-      [altImg]="'Pregunta'" />
-    <student-button-icon routerLink="/student/home" [imageUrl]="'./../../../../assets/icons/home-icon.svg'"
-      [altImg]="'Home'" />
     <student-button-icon
-    routerLink="/student/my-badge" [imageUrl]="'./../../../../assets/icons/win-icon.svg'" [altImg]="'Badges'" />
+      (click)="handlerButtonSendDoubts()"
+      [imageUrl]="'./../../../../assets/icons/question-icon.svg'"
+      [altImg]="'Pregunta'"
+    />
+    <student-button-icon
+      routerLink="/student/home"
+      [imageUrl]="'./../../../../assets/icons/home-icon.svg'"
+      [altImg]="'Home'"
+    />
+    <student-button-icon
+      routerLink="/student/my-badge"
+      [imageUrl]="'./../../../../assets/icons/win-icon.svg'"
+      [altImg]="'Badges'"
+    />
   </nav>
 </footer>
