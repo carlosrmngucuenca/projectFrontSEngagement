@@ -45,5 +45,7 @@
   padding-top: calc(100vh - 95vh);
 }
 
-
-
+.disabled-button {
+  /*opacity: 0.5;  Puedes ajustar este valor para cambiar la opacidad */
+  pointer-events: none; /* Opcional: desactiva los eventos del ratón sobre el botón deshabilitado */
+}

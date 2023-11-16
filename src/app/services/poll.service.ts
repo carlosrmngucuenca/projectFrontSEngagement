@@ -27,6 +27,11 @@ export class PollService {
       this.pollSubject.next(poll);
       this.isPollActivedSubject.next(true);
     });
+    this.socketService.on<string>('closePoll').subscribe((data) => {
+      console.log(data);
+      this.isPollActivedSubject.next(false);
+      this.isPollActived$ = this.isPollActivedSubject.asObservable();
+    });
   }
 
   getPoll$(): Observable<Poll | null> {
@@ -36,6 +41,7 @@ export class PollService {
   isPollActive$(): Observable<boolean> {
     return this.isPollActived$;
   }
+
 
   setPollActive$(isPollActive: boolean) {
     this.isPollActivedSubject.next(isPollActive);

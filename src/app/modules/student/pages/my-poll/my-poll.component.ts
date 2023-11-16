@@ -127,7 +127,8 @@ export class MyPollComponent implements OnInit, OnDestroy {
         responses: responses,
       };
       this.pollService.savePollResponses(pollResponse);
-      this.pollService.setPollActive$(false);
+
+
     }
 
   }

@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
   roomCode = this.roomService.getRoomCode(); //get data from URL
   roomId = this.roomService.getRoomId();
   ACTIVITY = ACTIVITY; //This is for bind enum in html
-  buttonColor: string = 'primary';
+  buttonColor: string = '';
+  isButtonDisabled:boolean=true;
   constructor(
     private roomService: RoomService,
     private pollService: PollService,
@@ -36,10 +37,11 @@ export class HomeComponent implements OnInit {
       if (isPollActive) {
         console.log('notificacion de poll activada');
         this.buttonColor='#fffec8';
+        this.isButtonDisabled=false;
       }else{
         console.log('notificacion de poll desactivada');
-
-
+        this.buttonColor='';
+        this.isButtonDisabled=true;
       }
     });
   }

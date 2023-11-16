@@ -12,7 +12,6 @@ export class ButtonIconTextComponent {
   @Input() imageUrl = '';
   @Input() altImg = '';
   @Input() buttonColor: string = '';
-
   isLiked: boolean = false;
   constructor() {}
   toggleHeart() {
