@@ -11,6 +11,7 @@ export class ButtonIconTextComponent {
   @Input() textButton = '';
   @Input() imageUrl = '';
   @Input() altImg = '';
+  @Input() buttonColor: string = '';
 
   isLiked: boolean = false;
   constructor() {}

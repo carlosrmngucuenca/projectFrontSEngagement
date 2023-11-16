@@ -10,7 +10,7 @@ export class DataRealTimeService {
   constructor(
     private socketService: SocketService,
   ){
-    this.socketService.on('activityRealTime').subscribe((activity: any) => {
+    this.socketService.on<Activity>('activityRealTime').subscribe((activity: Activity) => {
       console.log(activity);
     } );
   }

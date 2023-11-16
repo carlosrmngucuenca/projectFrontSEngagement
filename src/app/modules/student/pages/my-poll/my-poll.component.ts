@@ -46,6 +46,7 @@ export class MyPollComponent implements OnInit, OnDestroy {
         this.questions = poll.questions;
         this.pollID = poll._id;
         this.loadQuestion();
+
       }
     });
   }
@@ -126,7 +127,8 @@ export class MyPollComponent implements OnInit, OnDestroy {
         responses: responses,
       };
       this.pollService.savePollResponses(pollResponse);
-
+      this.pollService.setPollActive$(false);
     }
+
   }
 }

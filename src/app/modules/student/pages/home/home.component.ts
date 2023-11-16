@@ -17,8 +17,7 @@ export class HomeComponent implements OnInit {
   roomCode = this.roomService.getRoomCode(); //get data from URL
   roomId = this.roomService.getRoomId();
   ACTIVITY = ACTIVITY; //This is for bind enum in html
-  isPollActived: boolean = false;
-
+  buttonColor: string = 'primary';
   constructor(
     private roomService: RoomService,
     private pollService: PollService,
@@ -26,17 +25,23 @@ export class HomeComponent implements OnInit {
     private sumService: SumService,
     private router: Router
   ) {
-    this.pollService.isPollActive$().subscribe((isPollActive) => {
-      if (isPollActive) {
-        console.log('notificacion de poll activada');
-      }
-    });
+
   }
 
   ngOnInit(): void {
     if (this.roomCode) {
       this.roomService.joinRoom(this.roomCode);
     }
+    this.pollService.isPollActive$().subscribe((isPollActive) => {
+      if (isPollActive) {
+        console.log('notificacion de poll activada');
+        this.buttonColor='#fffec8';
+      }else{
+        console.log('notificacion de poll desactivada');
+
+
+      }
+    });
   }
 
   buttonSaveActivity(activity: ACTIVITY) {
