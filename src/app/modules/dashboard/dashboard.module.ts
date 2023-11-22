@@ -7,6 +7,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
+import { ExcellentClassChartComponent } from './components/excellent-class-chart/excellent-class-chart.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
     LayoutComponent,
     HeaderComponent,
     DashboardComponent,
-    MyRealtimeComponent
+    MyRealtimeComponent,
+    ExcellentClassChartComponent
   ],
   imports: [
     CommonModule,
