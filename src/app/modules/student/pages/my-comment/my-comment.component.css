@@ -17,4 +17,5 @@
   font-family: var(--font-family);
   font-size: var(--text-paragraph);
   color: var(--info-text, #333);
+  text-align: center;
 }
