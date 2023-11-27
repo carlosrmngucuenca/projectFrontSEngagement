@@ -1,1 +1,27 @@
+  <student-button-icon-text
+      [imageUrl]="'./../../../../assets/badges/badge-participative.svg'"
+      [textButton]="titleButton"
+      [altImg]="'Reclamar mi premio '"
+    />
+
 <student-footer class="footer-container" />
+<div class="badge-container">
+  <img *ngIf="isShowedBadge" src="./../../../../assets/badges/badge.svg" alt="">
+  <div *ngIf="isShowedBadge" src="./../../../../assets/badges/badge.svg" alt="">
+    <h1>¡Felicitaciones!</h1>
+    <br>
+    <p>Has ganado el premio de participación.</p>
+    <br>
+    <h2>+1 punto extra
+      en tu clase</h2>
+      <br>
+      <p>Muestra este badge a tu profesor.</p>
+  </div>
+  <br>
+  <div *ngIf="!isShowedBadge">
+    <h2>¡Sigue expresandote!</h2>
+    <br>
+    <p>Continua expresandote para <br>
+      reclamar un premio.</p>
+  </div>
+</div>
