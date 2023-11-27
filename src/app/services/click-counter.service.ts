@@ -129,4 +129,14 @@ export class ClickCounterService {
   getDoubtsClicks(): number {
     return this.sendDoubtsSubject.value;
   }
+
+  resetCountClicks() {
+    this.sendCommentsSubject.next(0);
+    this.donotGetItkSubject.next(0);
+    this.emotionsSubject.next(0);
+    this.sendDoubtsSubject.next(0);
+    this.loveClassClicksSubject.next(0);
+    this.sleepSubject.next(0);
+    this.takeBreakSubject.next(0);
+  }
 }

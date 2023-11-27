@@ -5,9 +5,9 @@ import { map } from 'rxjs/operators';
 import { JoinRoom } from '../interfaces/room.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SocketService  {
+export class SocketService {
   constructor(private socket: Socket) {
     //el constructor se inicializa una sola vez
     this.onSuccess().subscribe((success) => {
@@ -32,8 +32,8 @@ export class SocketService  {
     return this.socket;
   }
 
-  emit<T>(event: string, data: T) {
-    return this.socket.emit(event, data);
+  emit<T>(event: string, data: T, callback?: {}) {
+    return this.socket.emit(event, data, callback);
   }
 
   onUnauthorized(): Observable<string> {
@@ -49,8 +49,6 @@ export class SocketService  {
   }
 
   on<T>(event: string): Observable<T> {
-    return this.socket.fromEvent<T>(event).pipe(
-      map((data: T) => data as T)
-    );
+    return this.socket.fromEvent<T>(event).pipe(map((data: T) => data as T));
   }
 }
