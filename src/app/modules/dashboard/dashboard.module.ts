@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
 import { ExcellentClassChartComponent } from './components/excellent-class-chart/excellent-class-chart.component';
+import { CommentCardComponent } from './components/comment-card/comment-card.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ExcellentClassChartComponent } from './components/excellent-class-chart
     HeaderComponent,
     DashboardComponent,
     MyRealtimeComponent,
-    ExcellentClassChartComponent
+    ExcellentClassChartComponent,
+    CommentCardComponent
   ],
   imports: [
     CommonModule,

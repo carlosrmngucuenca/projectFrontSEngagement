@@ -16,4 +16,8 @@ export class ProgressBarService {
   getProgress$(): number {
     return this.progressBarSubject.getValue();
   }
+
+  resetProgressBar() {
+    this.progressBarSubject.next(0);
+  }
 }

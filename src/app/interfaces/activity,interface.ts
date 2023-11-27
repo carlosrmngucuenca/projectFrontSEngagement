@@ -4,3 +4,6 @@ export interface Activity {
   text?: string;
 }
 
+export interface CreateActivitytDTO extends Omit<Activity, 'text'> {
+  text: string;
+}
