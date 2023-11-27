@@ -18,5 +18,6 @@ export interface RoomExists {
   token: string;
   error?: string;
   roomId:  string;
+  userId:  string;
 }
 

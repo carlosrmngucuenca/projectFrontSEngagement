@@ -19,23 +19,37 @@ export class RoomService {
   ) { }
 
   roomId: string = '';
-  private storageKey = 'roomId'; // Nombre clave para LocalStorage
+  userId: string = '';
+
   setRoomId(roomId: string) {
+    let storageKey = 'roomId'; // Nombre clave para LocalStorage
     this.roomId = roomId;
-    localStorage.setItem(this.storageKey, roomId);
+    localStorage.setItem(storageKey, roomId);
   }
+  setUserId(userId: string ) {
+    let storageKey = 'userId'; // Nombre clave para LocalStorage
+    this.userId = userId;
+    localStorage.setItem(storageKey, userId);
+  }
+
 
   joinRoom(roomCode: string, token?: string) {
     if (!token) {
       token = this.tokenService.getToken();
     }
 
-    this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token});
+    this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token });
   }
 
   getRoomId(): string {
-    const roomId = this.roomId || localStorage.getItem(this.storageKey);
+    let storageKey = 'roomId';
+    const roomId = this.roomId || localStorage.getItem(storageKey);
     return roomId || '';
+  }
+  getUserId(): string {
+    let storageKey = 'userId';
+    const userId = this.userId || localStorage.getItem(storageKey);
+    return userId || '';
   }
 
   getRoomCode(): string | undefined {
@@ -68,7 +82,7 @@ export class RoomService {
     return this.http.patch<Room>(`${this.apiUrl}/room/${id}`, { newName });
   }
 
-  checkRoomExists(roomCode: string, rol:string): Observable<RoomExists> {
+  checkRoomExists(roomCode: string, rol: string): Observable<RoomExists> {
     const headers = {
       'rol': rol
     };
@@ -77,6 +91,7 @@ export class RoomService {
         if (response.ok) {
           this.tokenService.saveToken(response.token);
           this.setRoomId(response.roomId);
+          this.setUserId(response.userId);
         }
       })
     );

@@ -14,7 +14,7 @@ export class LoginFormComponent {
   isRoomInvalid: boolean = false; // Variable para rastrear si la sala no es válida
   miFormulario!: FormGroup;
   status: RequestStatus = 'init';
-  baseUrl=environment.API_URL;
+  baseUrl = environment.API_URL;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -55,9 +55,10 @@ export class LoginFormComponent {
         if (roomExists.ok) {
           this.router.navigateByUrl(`/student/home`);
         }
-        else {
+        else if (!roomExists.ok) {
           this.isRoomInvalid = true;
-          this.miFormulario.markAllAsTouched(); }
+          this.miFormulario.markAllAsTouched();
+        }
       });
     }
     else {
