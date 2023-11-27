@@ -7,11 +7,16 @@ import { Activity, CreateActivitytDTO } from '../interfaces/activity,interface';
   providedIn: 'root',
 })
 export class DataRealTimeService {
-  private activity: Activity = { roomId: '', activityType: '' };
+  private activity: Activity = {
+    roomId: '',
+    activityType: '',
+    userId: '',
+  };
   private activityComment: CreateActivitytDTO = {
     roomId: '',
     activityType: '',
     text: '',
+    userId: '',
   };
   private activitySubject = new BehaviorSubject<Activity>(this.activity);
   public activity$ = this.activitySubject.asObservable();
