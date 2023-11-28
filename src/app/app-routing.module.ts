@@ -22,7 +22,9 @@ const routes: Routes = [
     path: 'student',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./modules/student/student.module').then((module) => module.StudentModule),
+      import('./modules/student/student.module').then(
+        (module) => module.StudentModule
+      ),
   },
   {
     path: 'dashboard',
@@ -38,7 +40,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      bindToComponentInputs: true,
+      useHash: true,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
