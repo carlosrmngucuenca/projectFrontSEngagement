@@ -9,6 +9,7 @@ import {
   takeUntil,
   tap,
 } from 'rxjs';
+import { Activity } from 'src/app/interfaces/activity,interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { SocketService } from 'src/app/services/socket.service';
 @Component({
@@ -25,7 +26,7 @@ export class ExcellentClassChartComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   constructor(private dataRealTimeService: DataRealTimeService) {}
   ngOnInit(): void {
-    const updateInterval$ = interval(10000);
+    const updateInterval$ = interval(600000);
     this.subscription = updateInterval$
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
@@ -35,10 +36,12 @@ export class ExcellentClassChartComponent implements OnInit, OnDestroy {
       .getActivity$()
       .pipe(
         tap((res) => console.log(res)),
-        filter<any>((activity) => activity.activityType == 'excellent class')
+        filter<Activity>(
+          (activity) => activity.activityType == 'excellent class'
+        )
       )
-      .subscribe((activity: string) => {
-        this.fetchRealTimeData(activity);
+      .subscribe((activity: Activity) => {
+        this.fetchRealTimeData(activity.activityType);
       });
     this.populateLineCharts();
   }
@@ -53,12 +56,12 @@ export class ExcellentClassChartComponent implements OnInit, OnDestroy {
   updateLineCharts(): void {
     this.time = this.time + 10;
 
-    this.lineChart.data.labels?.push(`${this.time} seg`);
+    this.lineChart.data.labels?.push(`${this.time} min`);
     this.lineChart.data.datasets[0].data.push(this.saveData.length);
     this.lineChart.update();
     console.log('FetchRealTime method', this.lineChart.data.datasets[0].data);
     this.saveData = [];
-    this.destroy$.next();
+    //this.destroy$.next();
   }
   createLineChart(chartId: string, chartLabel: string, data: number[]): Chart {
     const ctx = document.getElementById(chartId) as HTMLCanvasElement;

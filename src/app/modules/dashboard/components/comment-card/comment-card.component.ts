@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { filter, tap } from 'rxjs';
 import {
   Activity,
-  CreateActivitytDTO,
+  CreateActivityCommentDTO,
 } from 'src/app/interfaces/activity,interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 
@@ -14,6 +14,7 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 export class CommentCardComponent implements OnInit {
   comment: string = '';
   constructor(private dataRealTimeService: DataRealTimeService) {}
+  comments: string[] = [];
   ngOnInit() {
     this.dataRealTimeService
       .getActivityComment$()
@@ -27,8 +28,8 @@ export class CommentCardComponent implements OnInit {
       });
   }
 
-  fetchRealTimeData(activity: string | any) {
+  fetchRealTimeData(activity: string) {
     console.log('hola soy commn card fetch', activity);
-    this.comment = activity;
+    this.comments.push(activity);
   }
 }

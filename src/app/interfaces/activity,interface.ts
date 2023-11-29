@@ -5,6 +5,7 @@ export interface Activity {
   userId: string;
 }
 
-export interface CreateActivitytDTO extends Omit<Activity, 'text'> {
+export interface CreateActivityCommentDTO
+  extends Omit<Activity, 'text' | 'userId'> {
   text: string;
 }

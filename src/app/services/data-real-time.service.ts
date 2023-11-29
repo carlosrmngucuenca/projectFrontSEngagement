@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { SocketService } from './socket.service';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { Activity, CreateActivitytDTO } from '../interfaces/activity,interface';
+import {
+  Activity,
+  CreateActivityCommentDTO,
+} from '../interfaces/activity,interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,33 +15,47 @@ export class DataRealTimeService {
     activityType: '',
     userId: '',
   };
-  private activityComment: CreateActivitytDTO = {
+  private activityComment: CreateActivityCommentDTO = {
     roomId: '',
     activityType: '',
     text: '',
-    userId: '',
   };
   private activitySubject = new BehaviorSubject<Activity>(this.activity);
   public activity$ = this.activitySubject.asObservable();
-  private activityCommentSubject = new BehaviorSubject<CreateActivitytDTO>(
-    this.activityComment
-  );
+  private activityCommentSubject =
+    new BehaviorSubject<CreateActivityCommentDTO>(this.activityComment);
   public activityComment$ = this.activityCommentSubject.asObservable();
   constructor(private socketService: SocketService) {
     this.socketService
-      .on('activityRealTime')
+      .on<Activity>('activityRealTime')
       .pipe(
         tap((value) =>
           console.log('real time from DataRealTimeService tap operator', value)
         )
       )
-      .subscribe(console.log);
+      .subscribe((activity: Activity) => {
+        this.activitySubject.next(activity);
+      });
+
+    this.socketService
+      .on<CreateActivityCommentDTO>('activityCommentRealTime')
+      .pipe(
+        tap((value) =>
+          console.log(
+            'real time from DataRealTimeCommentService tap operator',
+            value
+          )
+        )
+      )
+      .subscribe((activity: CreateActivityCommentDTO) => {
+        this.activityCommentSubject.next(activity);
+      });
   }
 
-  getActivity$(): Observable<Activity | CreateActivitytDTO> {
+  getActivity$(): Observable<Activity> {
     return this.activity$;
   }
-  getActivityComment$(): Observable<CreateActivitytDTO> {
+  getActivityComment$(): Observable<CreateActivityCommentDTO> {
     return this.activityComment$;
   }
 }
