@@ -6,6 +6,7 @@ import { SocketService } from './socket.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import PollResponse from '../interfaces/models/pollResponse.interface';
+import { RoomService } from './room.service';
 const baseUrl = environment.baseUrl;
 
 @Injectable({
@@ -21,7 +22,8 @@ export class PollService implements OnInit {
 
   constructor(
     private socketService: SocketService,
-    private http: HttpClient
+    private http: HttpClient,
+    private roomService: RoomService
   ) {
     this.socketService.on<Poll>('putPolls').subscribe((poll: Poll) => {
       this.pollSubject.next(poll);
@@ -73,4 +75,24 @@ export class PollService implements OnInit {
   deletePollSavedLocalStorage() {
     localStorage.removeItem('pollSaved');
   }
+
+  sendPoll() {
+    const roomCode = this.roomService.getRoomCode();
+    const idPoll: string = '6577c3fd7be3e4528aac6277';
+    const data = {
+      roomCode: roomCode,
+      idPoll: idPoll
+    }
+    this.socketService.emit('sendPoll',data);
+  }
+  closePoll() {
+    const roomCode = this.roomService.getRoomCode();
+    const idPoll: string = '6577c3fd7be3e4528aac6277';
+    const data = {
+      roomCode: roomCode,
+      idPoll: idPoll
+    }
+    this.socketService.emit('closePoll',data);
+  }
+
 }
