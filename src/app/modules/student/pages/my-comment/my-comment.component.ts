@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ACTIVITY } from '../../enums/activity.enum';
 import { ActivityService } from 'src/app/services/activity.service';
 import { RoomService } from 'src/app/services/room.service';
+import { SumService } from 'src/app/services/sum.service';
 
 @Component({
   selector: 'app-my-comment',
@@ -13,23 +14,25 @@ export class MyCommentComponent {
   roomId = this.roomService.getRoomId();
   @ViewChild('textAreaComment') textAreaComment!: ElementRef;
   ACTIVITY = ACTIVITY;
-
+  text: string = '';
   constructor(
     private router: Router,
     private serviceActivity: ActivityService,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private sumService: SumService
   ) {}
 
   submitComment(activity: ACTIVITY) {
     //get text from textarea
-    const text = this.textAreaComment.nativeElement.value.trim();
-    if (text && this.roomId) {
-      console.log('submit comment', text);
+    this.text = this.textAreaComment.nativeElement.value.trim();
+    if (this.text && this.roomId) {
+      console.log('submit comment', this.text);
       this.serviceActivity.saveComment(
         this.roomId,
         this.ACTIVITY.comment,
-        text
+        this.text
       );
+      this.sumService.addValuePointsSendComments();
       this.router.navigate(['/student/home']);
       //redirect to path /student/home
     } else {

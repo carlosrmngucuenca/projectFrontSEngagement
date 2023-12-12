@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, OnDestroy,ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { RoomService } from '../../../../services/room.service';
 import { ACTIVITY } from '../../enums/activity.enum';
 import { PollService } from 'src/app/services/poll.service';
@@ -18,15 +24,14 @@ export class HomeComponent implements OnInit {
   roomId = this.roomService.getRoomId();
   ACTIVITY = ACTIVITY; //This is for bind enum in html
   buttonColor: string = '';
-  isButtonDisabled:boolean=true;
+  isButtonDisabled: boolean = true;
   constructor(
     private roomService: RoomService,
     private pollService: PollService,
     private activityService: ActivityService,
     private sumService: SumService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.roomCode) {
@@ -34,20 +39,18 @@ export class HomeComponent implements OnInit {
     }
     this.pollService.isPollActive$().subscribe((isPollActive) => {
       const isPollSaved = this.pollService.getPollSavedLocalStorage();
-      if (isPollActive && !isPollSaved ) {
+      if (isPollActive && !isPollSaved) {
         console.log('notificacion de poll activada');
-        this.buttonColor='#fffec8';
-        this.isButtonDisabled=false;
+        this.buttonColor = '#fffec8';
+        this.isButtonDisabled = false;
         //change opacity of button
-
-      }else{
+      } else {
         console.log('notificacion de poll desactivada');
-        this.buttonColor='';
-        this.isButtonDisabled=true;
+        this.buttonColor = '';
+        this.isButtonDisabled = true;
       }
     });
   }
-
 
   buttonSaveActivity(activity: ACTIVITY) {
     if (this.roomCode) {
@@ -77,7 +80,6 @@ export class HomeComponent implements OnInit {
   }
 
   handlerButtonSendComment() {
-    this.sumService.addValuePointsSendComments();
     this.router.navigateByUrl('/student/my-comment');
   }
 

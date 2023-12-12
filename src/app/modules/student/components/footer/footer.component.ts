@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { SumService } from 'src/app/services/sum.service';
 @Component({
@@ -10,7 +10,10 @@ export class FooterComponent {
   constructor(private sumService: SumService, private router: Router) {}
 
   handlerButtonSendDoubts() {
-    this.sumService.addValuePointsDoubts();
     this.router.navigateByUrl('/student/my-doubt');
+  }
+
+  handlerButtonHome() {
+    this.router.navigate(['/student/home']);
   }
 }

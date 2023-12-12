@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ACTIVITY } from '../../enums/activity.enum';
 import { ActivityService } from 'src/app/services/activity.service';
 import { RoomService } from 'src/app/services/room.service';
+import { SumService } from 'src/app/services/sum.service';
 
 @Component({
   selector: 'app-my-doubt',
@@ -15,7 +16,8 @@ export class MyDoubtComponent {
   constructor(
     private router: Router,
     private serviceActivity: ActivityService,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private sumService: SumService
   ) {}
 
   @ViewChild('textAreaDoubts') textAreaComment!: ElementRef;
@@ -30,6 +32,7 @@ export class MyDoubtComponent {
         this.ACTIVITY.comment,
         text
       );
+      this.sumService.addValuePointsDoubts();
       this.router.navigate(['/student/home']);
     } else {
       console.log('text area is empty or contains only blank spaces');
