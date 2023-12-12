@@ -28,7 +28,7 @@ export class DonnutsEmotionsComponent
     'Sad',
     'Happy',
   ];
-  donnutChartLabelName: string = 'Emotions Class';
+  donnutChartLabelName: string = 'Emotion';
   emotionsDataSubscription: Subscription = new Subscription();
   backgroundColors = charDonnutColors.backgroundColors;
   borderColors = charDonnutColors.borderColors;
@@ -37,11 +37,11 @@ export class DonnutsEmotionsComponent
   chartRef!: ElementRef;
   initData: Emotion = {
     _id: '',
-    surprised: 2,
-    afraid: 2,
-    angry: 2,
-    sad: 2,
-    happy: 2,
+    surprised: 0,
+    afraid: 0,
+    angry: 0,
+    sad: 0,
+    happy: 0,
   };
   constructor(private dataRealTimeService: DataRealTimeService) {}
   ngOnInit() {}
@@ -49,7 +49,7 @@ export class DonnutsEmotionsComponent
   ngAfterViewInit() {
     this.initChart(this.initData);
     this.emotionsDataSubscription = this.dataRealTimeService
-      .getEmotionsDataObservable()
+      .getEmotionsDataObservable$()
       .subscribe((newData: Emotion) => {
         if (this.emotionsChart) {
           this.updateChart(newData);
@@ -114,7 +114,7 @@ export class DonnutsEmotionsComponent
     ];
 
     this.emotionsChart.update();
-    console.log('hola estoy actualisando emotion chart', this.emotionsChart);
+    console.log('hola estoy actualisando emotion chart', newData);
   }
   ngOnDestroy() {}
 }

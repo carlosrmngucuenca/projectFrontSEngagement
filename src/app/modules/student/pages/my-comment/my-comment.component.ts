@@ -13,6 +13,7 @@ export class MyCommentComponent {
   roomId = this.roomService.getRoomId();
   @ViewChild('textAreaComment') textAreaComment!: ElementRef;
   ACTIVITY = ACTIVITY;
+
   constructor(
     private router: Router,
     private serviceActivity: ActivityService,
@@ -22,19 +23,17 @@ export class MyCommentComponent {
   submitComment(activity: ACTIVITY) {
     //get text from textarea
     const text = this.textAreaComment.nativeElement.value.trim();
-    if (text) {
+    if (text && this.roomId) {
       console.log('submit comment', text);
-      //redirect to path /student/home
-    } else {
-      console.log('text area is empty or contains only blank spaces');
-    }
-    if (this.roomId) {
       this.serviceActivity.saveComment(
         this.roomId,
         this.ACTIVITY.comment,
         text
       );
       this.router.navigate(['/student/home']);
+      //redirect to path /student/home
+    } else {
+      console.log('text area is empty or contains only blank spaces');
     }
   }
 }

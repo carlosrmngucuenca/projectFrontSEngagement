@@ -12,6 +12,7 @@ import { CommentCardComponent } from './components/comment-card/comment-card.com
 import { DonnutsEmotionsComponent } from './components/donnuts-emotions/donnuts-emotions.component';
 import { TakeAbreakChartComponent } from './components/take-abreak-chart/take-abreak-chart.component';
 import { SleepChartComponent } from './components/sleep-chart/sleep-chart.component';
+import { IDoNotGetItChartComponent } from './components/ido-not-get-it-chart/ido-not-get-it-chart.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SleepChartComponent } from './components/sleep-chart/sleep-chart.compon
     CommentCardComponent,
     DonnutsEmotionsComponent,
     TakeAbreakChartComponent,
-    SleepChartComponent
+    SleepChartComponent,
+    IDoNotGetItChartComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,13 @@
 <student-title-page [displayText]="'Dudas'"></student-title-page>
 <main class="grid-container">
-  <textarea class="text-area" placeholder="Escribe tu comentario aquí" #textAreaComment></textarea>
-  <student-button-text (click)="submitQuestion(ACTIVITY.question)" routerLink="/student/home" [textButton]="'Enviar duda al docente'" />
+  <textarea
+    class="text-area"
+    placeholder="Escribe tu comentario aquí"
+    #textAreaDoubts
+  ></textarea>
+  <student-button-text
+    (click)="submitQuestion(ACTIVITY.question)"
+    [textButton]="'Enviar duda al docente'"
+  />
 </main>
 <student-footer class="footer-container" />

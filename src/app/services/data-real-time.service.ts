@@ -23,11 +23,11 @@ export class DataRealTimeService {
   };
   private emotion: Emotion = {
     _id: '',
-    surprised: 2,
-    afraid: 2,
-    angry: 2,
-    sad: 2,
-    happy: 2,
+    surprised: 0,
+    afraid: 0,
+    angry: 0,
+    sad: 0,
+    happy: 0,
   };
   private emotionsDataSubject = new BehaviorSubject<Emotion>(this.emotion);
   private activitySubject = new BehaviorSubject<Activity>(this.activity);
@@ -61,6 +61,20 @@ export class DataRealTimeService {
       .subscribe((activity: CreateActivityCommentDTO) => {
         this.activityCommentSubject.next(activity);
       });
+
+    this.socketService
+      .on<Emotion>('dashboardEmotions')
+      .pipe(
+        tap((value) =>
+          console.log(
+            'real time from DataRealTimeService dashboardEmotions',
+            value
+          )
+        )
+      )
+      .subscribe((activity: Emotion) => {
+        this.emotionsDataSubject.next(activity);
+      });
   }
 
   getActivity$(): Observable<Activity> {
@@ -70,7 +84,7 @@ export class DataRealTimeService {
     return this.activityComment$;
   }
 
-  getEmotionsDataObservable(): Observable<Emotion> {
+  getEmotionsDataObservable$(): Observable<Emotion> {
     return this.emotionsData$;
   }
 }

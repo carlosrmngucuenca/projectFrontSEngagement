@@ -46,7 +46,7 @@ export class StudentProgressBarComponent implements OnInit {
     this.doNotGetItSubscription.unsubscribe();
     this.sendCommentsSubscription.unsubscribe();
     this.progressSubscription.unsubscribe();
-    this.progressService.setProgress(this.progress);
+
     console.log('onDestroy');
   }
 }

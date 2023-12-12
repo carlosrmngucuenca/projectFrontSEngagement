@@ -7,33 +7,32 @@ import { RoomService } from 'src/app/services/room.service';
 @Component({
   selector: 'app-my-doubt',
   templateUrl: './my-doubt.component.html',
-  styleUrls: ['./my-doubt.component.css']
+  styleUrls: ['./my-doubt.component.css'],
 })
 export class MyDoubtComponent {
   ACTIVITY = ACTIVITY;
-  constructor(private router: Router,
+  roomId = this.roomService.getRoomId();
+  constructor(
+    private router: Router,
     private serviceActivity: ActivityService,
-    private roomService: RoomService,
-  ) { }
+    private roomService: RoomService
+  ) {}
 
-
-  @ViewChild('textAreaComment') textAreaComment!: ElementRef;
-  submitQuestion(activity: ACTIVITY,) {
+  @ViewChild('textAreaDoubts') textAreaComment!: ElementRef;
+  submitQuestion(activity: ACTIVITY) {
     //get text from textarea
     const text = this.textAreaComment.nativeElement.value.trim();
-    if (text) {
+    if (text && this.roomId) {
       console.log('submit comment', text);
       //redirect to path /student/home
+      this.serviceActivity.saveComment(
+        this.roomId,
+        this.ACTIVITY.comment,
+        text
+      );
       this.router.navigate(['/student/home']);
     } else {
       console.log('text area is empty or contains only blank spaces');
     }
-    const roomId=this.roomService.getRoomId()
-    if(roomId){
-      this.serviceActivity.saveComment(roomId, this.ACTIVITY.comment, text);
-    }
-
-
-
   }
 }
