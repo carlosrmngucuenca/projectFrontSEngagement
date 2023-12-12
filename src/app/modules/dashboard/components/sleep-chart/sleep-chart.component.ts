@@ -1,6 +1,6 @@
 import {
-  AfterViewInit,
   Component,
+  AfterViewInit,
   ElementRef,
   OnDestroy,
   OnInit,
@@ -20,15 +20,13 @@ import { Activity } from 'src/app/interfaces/activity,interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { lineChartColors } from 'src/app/utils/configcolorschart';
 @Component({
-  selector: 'excellent-class-chart',
-  templateUrl: './excellent-class-chart.component.html',
-  styleUrls: ['./excellent-class-chart.component.css'],
+  selector: 'app-sleep-chart',
+  templateUrl: './sleep-chart.component.html',
+  styleUrls: ['./sleep-chart.component.css'],
 })
-export class ExcellentClassChartComponent
-  implements OnInit, OnDestroy, AfterViewInit
-{
+export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
   barChartName: string = 'barChart1';
-  barChartLabelName: string = 'Excellent Class';
+  barChartLabelName: string = 'Sleep';
   chartLabel: string = '';
   saveData: string[] = [];
   intervalTime: number = 60000;
@@ -68,9 +66,7 @@ export class ExcellentClassChartComponent
       .getActivity$()
       .pipe(
         tap((res) => console.log(res)),
-        filter<Activity>(
-          (activity) => activity.activityType == 'excellent class'
-        )
+        filter<Activity>((activity) => activity.activityType == 'sleep')
       )
       .subscribe((activity: Activity) => {
         this.fetchRealTimeData(activity.activityType);

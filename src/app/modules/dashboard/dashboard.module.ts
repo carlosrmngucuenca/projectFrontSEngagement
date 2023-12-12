@@ -9,6 +9,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
 import { ExcellentClassChartComponent } from './components/excellent-class-chart/excellent-class-chart.component';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
+import { DonnutsEmotionsComponent } from './components/donnuts-emotions/donnuts-emotions.component';
+import { TakeAbreakChartComponent } from './components/take-abreak-chart/take-abreak-chart.component';
+import { SleepChartComponent } from './components/sleep-chart/sleep-chart.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { CommentCardComponent } from './components/comment-card/comment-card.com
     DashboardComponent,
     MyRealtimeComponent,
     ExcellentClassChartComponent,
-    CommentCardComponent
+    CommentCardComponent,
+    DonnutsEmotionsComponent,
+    TakeAbreakChartComponent,
+    SleepChartComponent
   ],
   imports: [
     CommonModule,

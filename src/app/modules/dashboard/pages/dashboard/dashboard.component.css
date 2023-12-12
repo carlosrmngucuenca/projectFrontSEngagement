@@ -4,3 +4,19 @@ main {
   min-width: 230px;
   height: calc(100vh - 80px);
 }
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, minmax(250px, 300px));
+  place-content: center;
+  gap: 4px;
+}
+
+.dashboard-donutChart {
+  padding: 0px 8px 0px 8px;
+}
+
+.dashboard-barChart {
+  padding: 0px 8px 0px 8px;
+}

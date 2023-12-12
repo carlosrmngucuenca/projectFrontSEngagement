@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  name: String = 'NIVELACIÓN';
+  name: String = 'MOTE APP';
   showDropdown: boolean = false;
 
   constructor(private authservice: AuthService) {}
