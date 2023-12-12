@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Poll } from '../interfaces/poll.interface';
 //import socketService
@@ -11,7 +11,7 @@ const baseUrl = environment.baseUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class PollService {
+export class PollService implements OnInit {
   private pollSubject = new BehaviorSubject<Poll | null>(null);
   public poll$ = this.pollSubject.asObservable();
 
@@ -31,7 +31,14 @@ export class PollService {
       console.log(data);
       this.isPollActivedSubject.next(false);
       this.isPollActived$ = this.isPollActivedSubject.asObservable();
+      //clean local storage pollSaved
+      this.deletePollSavedLocalStorage();
     });
+  }
+
+  ngOnInit(): void {
+  //set poll saved in local storage
+  //clean local storage
   }
 
   getPoll$(): Observable<Poll | null> {
@@ -45,6 +52,7 @@ export class PollService {
 
   setPollActive$(isPollActive: boolean) {
     this.isPollActivedSubject.next(isPollActive);
+    this.isPollActived$ = this.isPollActivedSubject.asObservable();
   }
 
   getAllPolls() {
@@ -56,5 +64,13 @@ export class PollService {
     this.socketService.emit('savePollResponses', pollResponse);
   }
 
-
+  setPollSavedLocalStorage(status:string) {
+    localStorage.setItem('pollSaved',status);
+  }
+  getPollSavedLocalStorage() {
+    return localStorage.getItem('pollSaved');
+  }
+  deletePollSavedLocalStorage() {
+    localStorage.removeItem('pollSaved');
+  }
 }

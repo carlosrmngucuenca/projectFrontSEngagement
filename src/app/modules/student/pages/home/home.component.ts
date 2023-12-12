@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy,ChangeDetectorRef } from '@angular/core';
 import { RoomService } from '../../../../services/room.service';
 import { ACTIVITY } from '../../enums/activity.enum';
 import { PollService } from 'src/app/services/poll.service';
@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
     private sumService: SumService,
     private router: Router
   ) {
-
   }
 
   ngOnInit(): void {
@@ -34,10 +33,13 @@ export class HomeComponent implements OnInit {
       this.roomService.joinRoom(this.roomCode);
     }
     this.pollService.isPollActive$().subscribe((isPollActive) => {
-      if (isPollActive) {
+      const isPollSaved = this.pollService.getPollSavedLocalStorage();
+      if (isPollActive && !isPollSaved ) {
         console.log('notificacion de poll activada');
         this.buttonColor='#fffec8';
         this.isButtonDisabled=false;
+        //change opacity of button
+
       }else{
         console.log('notificacion de poll desactivada');
         this.buttonColor='';
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
 
   buttonSaveActivity(activity: ACTIVITY) {
     if (this.roomCode) {
