@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3002/api/v1',
-  socketUrl: 'http://localhost:3002',
+  baseUrl: 'https://backend-engagement-production.up.railway.app/api/v1',
+  socketUrl: 'https://backend-engagement-production.up.railway.app',
   jsonURL: './../assets/jsons/poll.json',
 };
