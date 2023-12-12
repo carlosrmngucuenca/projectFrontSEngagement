@@ -29,7 +29,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
   barChartLabelName: string = 'Sleep';
   chartLabel: string = '';
   saveData: string[] = [];
-  intervalTime: number = 60000;
+  intervalTime: number = 600000;
   position: number = 0;
   lineChart!: Chart;
   @ViewChild('lineChart')

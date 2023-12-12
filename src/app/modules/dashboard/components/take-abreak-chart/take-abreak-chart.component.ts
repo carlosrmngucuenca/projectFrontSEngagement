@@ -23,7 +23,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   lineChart!: Chart;
   @ViewChild('takebreakchart')
   chartRef!: ElementRef;
-  timeInterval: number = 60000;
+  timeInterval: number = 600000;
   barChartLabelName: string = 'TakeBreak Class';
   interactionsPerInterval = Array(12).fill(0);
   barChartXaxisLabels: number[] = [
