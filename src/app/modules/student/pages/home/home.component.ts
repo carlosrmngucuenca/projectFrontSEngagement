@@ -31,12 +31,7 @@ export class HomeComponent implements OnInit {
     private activityService: ActivityService,
     private sumService: SumService,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    if (this.roomCode) {
-      this.roomService.joinRoom(this.roomCode);
-    }
+  ) {
     this.pollService.isPollActive$().subscribe((isPollActive) => {
       const isPollSaved = this.pollService.getPollSavedLocalStorage();
       if (isPollActive && !isPollSaved) {
@@ -51,6 +46,14 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  ngOnInit(): void {
+    if (this.roomCode) {
+      this.roomService.joinRoom(this.roomCode);
+    }
+
+  }
+
 
   buttonSaveActivity(activity: ACTIVITY) {
     if (this.roomCode) {
