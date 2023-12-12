@@ -130,6 +130,6 @@ export class MyPollComponent implements OnInit, OnDestroy {
 
 
     }
-
+    this.pollService.setPollSavedLocalStorage('true');
   }
 }
