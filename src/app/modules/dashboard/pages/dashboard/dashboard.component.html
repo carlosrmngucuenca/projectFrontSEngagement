@@ -1,8 +1,16 @@
-<div class="dashboard-container">
-  <div class="column">
-    <excellent-class-chart></excellent-class-chart>
+<main>
+  <div class="dashboard-container">
+    <div class="dashboard-barChart">
+      <excellent-class-chart></excellent-class-chart>
+    </div>
+    <div class="dashboard-donutChart">
+      <app-donnuts-emotions></app-donnuts-emotions>
+    </div>
+    <div class="dashboard-barChart dashboard-barChart--take-break">
+      <app-take-abreak-chart></app-take-abreak-chart>
+    </div>
+    <div class="dashboard-barChart dashboard-barChart--sleep">
+      <app-sleep-chart></app-sleep-chart>
+    </div>
   </div>
-  <div class="column">
-    <canvas id="lineChart2"></canvas>
-  </div>
-</div>
+</main>

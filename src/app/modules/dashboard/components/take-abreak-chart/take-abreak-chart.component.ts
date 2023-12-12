@@ -2,76 +2,56 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import Chart from 'chart.js/auto';
-import {
-  Subject,
-  Subscription,
-  filter,
-  interval,
-  map,
-  takeUntil,
-  tap,
-} from 'rxjs';
+import { Subject, Subscription, filter, interval, takeUntil } from 'rxjs';
 import { Activity } from 'src/app/interfaces/activity,interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
+import Chart from 'chart.js/auto';
 import { lineChartColors } from 'src/app/utils/configcolorschart';
+
 @Component({
-  selector: 'excellent-class-chart',
-  templateUrl: './excellent-class-chart.component.html',
-  styleUrls: ['./excellent-class-chart.component.css'],
+  selector: 'app-take-abreak-chart',
+  templateUrl: './take-abreak-chart.component.html',
+  styleUrls: ['./take-abreak-chart.component.css'],
 })
-export class ExcellentClassChartComponent
-  implements OnInit, OnDestroy, AfterViewInit
-{
-  barChartName: string = 'barChart1';
-  barChartLabelName: string = 'Excellent Class';
-  chartLabel: string = '';
+export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
+  destroy$: Subject<void> = new Subject<void>();
   saveData: string[] = [];
-  intervalTime: number = 60000;
   position: number = 0;
   lineChart!: Chart;
-  @ViewChild('lineChart')
+  @ViewChild('takebreakchart')
   chartRef!: ElementRef;
+  timeInterval: number = 60000;
+  barChartLabelName: string = 'TakeBreak Class';
   interactionsPerInterval = Array(12).fill(0);
   barChartXaxisLabels: number[] = [
     10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120,
   ];
   borderColors = lineChartColors.borderColors;
-  private destroy$: Subject<void> = new Subject<void>();
-  private subscription: Subscription = new Subscription();
-  /* */
+  subscription: Subscription = new Subscription();
   constructor(private dataRealTimeService: DataRealTimeService) {}
-  ngOnInit() {
-    const updateInterval$ = interval(this.intervalTime);
-    this.subscription = updateInterval$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        if (this.lineChart) {
-          this.updateChartIntervalPosition();
-        } else {
-          this.finishIntervalObservable();
-        }
-        if (this.position >= this.interactionsPerInterval.length) {
-          this.dataRealTimeServiceUnscription();
-          this.finishIntervalObservable();
-        }
-      });
+  ngOnInit(): void {
+    const updateInterval$ = interval(this.timeInterval);
+    updateInterval$.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      if (this.lineChart) {
+        this.updateChartIntervalPosition();
+      } else {
+        this.finishIntervalObservable();
+      }
+      if (this.position >= this.interactionsPerInterval.length) {
+        this.dataRealTimeServiceUnscription();
+        this.finishIntervalObservable();
+      }
+    });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.initChart();
     this.dataRealTimeService
       .getActivity$()
-      .pipe(
-        tap((res) => console.log(res)),
-        filter<Activity>(
-          (activity) => activity.activityType == 'excellent class'
-        )
-      )
+      .pipe(filter<Activity>((activity) => activity.activityType == 'break'))
       .subscribe((activity: Activity) => {
         this.fetchRealTimeData(activity.activityType);
       });
@@ -88,7 +68,8 @@ export class ExcellentClassChartComponent
     this.position = this.position + 1;
     this.saveData = [];
   }
-  fetchRealTimeData(activity: string): void {
+
+  fetchRealTimeData(activity: string) {
     this.saveData.push(activity);
     this.updateLineCharts();
   }
@@ -137,7 +118,6 @@ export class ExcellentClassChartComponent
       },
     });
   }
-
   finishIntervalObservable() {
     this.destroy$.next();
     this.destroy$.complete();

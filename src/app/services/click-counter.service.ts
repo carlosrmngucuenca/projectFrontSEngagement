@@ -19,14 +19,15 @@ export class ClickCounterService {
   donotGetIt$: Observable<number> = this.donotGetItkSubject.asObservable();
   emotion$: Observable<number> = this.emotionsSubject.asObservable();
   sendDoubt$: Observable<number> = this.sendCommentsSubject.asObservable();
+  private localStorageKeyLove = 'loveClassClicks';
+  private localStorageKeyTakeBreak = 'takeBreakClassClicks';
+  private localStorageKeySleep = 'sleepClassClicks';
+  private localStorageKeyEmotion = 'emotionClassClicks';
+  private localStorageKeyComments = 'commentsClassClicks';
+  private localStorageKeyDoubts = 'doubtsClassClicks';
+  private localStorageKeyDonotGetIt = 'donotGetItClassClicks';
   constructor() {
-    this.loveClassClicksSubject.getValue();
-    this.takeBreakSubject.getValue();
-    this.sleepSubject.getValue();
-    this.takeBreakSubject.getValue();
-    this.emotionsSubject.getValue();
-    this.sendCommentsSubject.getValue();
-    this.sendDoubtsSubject.getValue();
+    this.loadFromLocalStorage();
   }
 
   sendValueForLoveClass(value: number) {
@@ -50,6 +51,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.loveClassClicksSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeyLove, newCount.toString());
     }
   }
 
@@ -62,6 +64,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.takeBreakSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeyTakeBreak, newCount.toString());
     }
   }
 
@@ -74,6 +77,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.sleepSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeySleep, newCount.toString());
     }
   }
 
@@ -86,6 +90,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.donotGetItkSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeyDonotGetIt, newCount.toString());
     }
   }
 
@@ -98,6 +103,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.sendCommentsSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeyComments, newCount.toString());
     }
   }
 
@@ -110,6 +116,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.emotionsSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeyEmotion, newCount.toString());
     }
   }
 
@@ -123,6 +130,7 @@ export class ClickCounterService {
     if (currentCount < 4) {
       const newCount = currentCount + 1;
       this.sendDoubtsSubject.next(newCount);
+      localStorage.setItem(this.localStorageKeyDoubts, newCount.toString());
     }
   }
 
@@ -138,5 +146,55 @@ export class ClickCounterService {
     this.loveClassClicksSubject.next(0);
     this.sleepSubject.next(0);
     this.takeBreakSubject.next(0);
+  }
+
+  private loadFromLocalStorage() {
+    const savedLoveClickCount = localStorage.getItem(this.localStorageKeyLove);
+    const savedTakeBreakClickCount = localStorage.getItem(
+      this.localStorageKeyTakeBreak
+    );
+    const savedSleepClickCount = localStorage.getItem(
+      this.localStorageKeySleep
+    );
+    const savedDonotGgetItClickCount = localStorage.getItem(
+      this.localStorageKeyDonotGetIt
+    );
+    const savedEmotionClickCount = localStorage.getItem(
+      this.localStorageKeyEmotion
+    );
+    const savedCommentClickCount = localStorage.getItem(
+      this.localStorageKeyComments
+    );
+    const savedDoubtClickCount = localStorage.getItem(
+      this.localStorageKeyDoubts
+    );
+    if (savedLoveClickCount !== null) {
+      const count = parseInt(savedLoveClickCount, 10);
+      this.loveClassClicksSubject.next(count);
+    }
+    if (savedTakeBreakClickCount !== null) {
+      const count = parseInt(savedTakeBreakClickCount, 10);
+      this.takeBreakSubject.next(count);
+    }
+    if (savedSleepClickCount !== null) {
+      const count = parseInt(savedSleepClickCount, 10);
+      this.sleepSubject.next(count);
+    }
+    if (savedDonotGgetItClickCount !== null) {
+      const count = parseInt(savedDonotGgetItClickCount, 10);
+      this.donotGetItkSubject.next(count);
+    }
+    if (savedEmotionClickCount !== null) {
+      const count = parseInt(savedEmotionClickCount, 10);
+      this.emotionsSubject.next(count);
+    }
+    if (savedCommentClickCount !== null) {
+      const count = parseInt(savedCommentClickCount, 10);
+      this.sendCommentsSubject.next(count);
+    }
+    if (savedDoubtClickCount !== null) {
+      const count = parseInt(savedDoubtClickCount, 10);
+      this.sendDoubtsSubject.next(count);
+    }
   }
 }

@@ -24,7 +24,10 @@ main {
 }
 
 .main-container__button p {
-  text-align: center;
+  align-self: center;
+  font-family: var(--font-family);
+  font-size: var(--text-paragraph);
+  color: var(--info-text, #333);
 }
 
 .main-container__button button {
