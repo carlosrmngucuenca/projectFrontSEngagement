@@ -1,0 +1,55 @@
+<main>
+  <section class="info">
+    <img src="../../../../../assets/icons/room-class_icon.svg" alt="" />
+    <h2>
+      Tu Codigo de la sala es : <span>{{ newCode }}</span>
+    </h2>
+  </section>
+  <section class="form-container">
+    <form
+      [formGroup]="myFormRoom"
+      class="form-container__-form"
+      (ngSubmit)="createRoom()"
+    >
+      <input
+        type="text"
+        formControlName="roomName"
+        placeholder="Nombre de la sala"
+        class="form-container__input form-container__input--room"
+        [class.is-valid]="isRoomNameValid"
+        [class.is-invalid]="isRoomNameInvalid"
+      />
+      <div
+        class="form-container__messages"
+        [class.active]="isRoomNameInvalid"
+        *ngIf="isRoomNameInvalid"
+      >
+        <p>
+          <strong
+            *ngIf="
+              myFormRoom.get('roomName')?.touched &&
+              myFormRoom.get('roomName')?.hasError('required')
+            "
+            >Campo Requerido</strong
+          >
+        </p>
+        <p>
+          <strong
+            *ngIf="
+              myFormRoom.get('roomName')?.touched &&
+              myFormRoom.get('roomName')?.hasError('maxlength')
+            "
+            >Máximo 8 caracteres</strong
+          >
+        </p>
+      </div>
+      <button
+        type="submit"
+        class="form-container__button form-container__button--primary"
+        [class.is-enabled]="isRoomNameValid"
+      >
+        Crear
+      </button>
+    </form>
+  </section>
+</main>

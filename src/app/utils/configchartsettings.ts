@@ -19,3 +19,11 @@ export const lineChartColors = {
   backgroundColors: [],
   borderColors: 'blue',
 };
+
+export const initChartconf = {
+  barChartXaxisLabels: Array.from(
+    { length: 12 },
+    (_, index) => (index + 1) * 10
+  ),
+  intervalTime: 60000,
+};

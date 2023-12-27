@@ -7,9 +7,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import Chart, { ChartOptions } from 'chart.js/auto';
-import { Subscription } from 'rxjs';
+import { Subscription, map, tap } from 'rxjs';
 import { Emotion } from 'src/app/interfaces/emotion.interface';
-import { charDonnutColors } from 'src/app/utils/configcolorschart';
+import { charDonnutColors } from 'src/app/utils/configchartsettings';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 
 @Component({
@@ -44,7 +44,9 @@ export class DonnutsEmotionsComponent
     happy: 0,
   };
   constructor(private dataRealTimeService: DataRealTimeService) {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadPreviousValues();
+  }
 
   ngAfterViewInit() {
     this.initChart(this.initData);
@@ -116,5 +118,19 @@ export class DonnutsEmotionsComponent
     this.emotionsChart.update();
     console.log('hola estoy actualisando emotion chart', newData);
   }
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    console.log('Destroy Emotions chart');
+  }
+  loadPreviousValues() {
+    this.dataRealTimeService
+      .getDashboardEmotions()
+      .pipe(tap((res) => console.log('tap in emotions chart logic get', res)))
+      .subscribe((data: Emotion) => {
+        if (data != null) {
+          this.updateChart(data);
+        } else {
+          console.log('No "emotions" activity found.');
+        }
+      });
+  }
 }

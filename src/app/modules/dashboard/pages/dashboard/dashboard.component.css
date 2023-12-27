@@ -1,22 +1,28 @@
 main {
   display: grid;
+  justify-content: center;
   width: 100%;
-  min-width: 230px;
-  height: calc(100vh - 80px);
+  height: auto;
 }
 
 .dashboard-container {
   display: grid;
-  grid-template-columns: repeat(2, minmax(100px, 1fr));
-  grid-template-rows: repeat(3, minmax(250px, 310px));
-  place-content: center;
-  gap: 4px;
-}
-
-.dashboard-donutChart {
-  padding: 0px 8px 8px 8px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 650px));
+  grid-template-rows: repeat(5, minmax(100px, 350px));
+  justify-content: center;
+  gap: 20px;
 }
 
 .dashboard-barChart {
   padding: 0px 8px 8px 8px;
+}
+
+@media screen and (min-width: 670px) {
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 650px));
+    grid-template-rows: repeat(3, minmax(100px, 350px));
+    justify-content: center;
+    gap: 20px;
+  }
 }

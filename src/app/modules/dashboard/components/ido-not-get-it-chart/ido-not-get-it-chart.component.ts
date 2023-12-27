@@ -7,18 +7,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import Chart from 'chart.js/auto';
-import {
-  Subject,
-  Subscription,
-  filter,
-  interval,
-  map,
-  takeUntil,
-  tap,
-} from 'rxjs';
-import { Activity } from 'src/app/interfaces/activity,interface';
+import { Subscription, filter, map, tap } from 'rxjs';
+import { DashboardActivity } from 'src/app/interfaces/activity,interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
-import { lineChartColors } from 'src/app/utils/configcolorschart';
+import { lineChartColors } from 'src/app/utils/configchartsettings';
+import { initChartconf } from 'src/app/utils/configchartsettings';
+import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
   selector: 'app-ido-not-get-it-chart',
   templateUrl: './ido-not-get-it-chart.component.html',
@@ -30,36 +24,22 @@ export class IDoNotGetItChartComponent
   barChartName: string = 'barChart1';
   barChartLabelName: string = 'I do not get it';
   chartLabel: string = '';
-  saveData: string[] = [];
-  intervalTime: number = 600000;
-  position: number = 0;
+  currentPosition: number = 0;
   lineChart!: Chart;
   @ViewChild('lineChart')
   chartRef!: ElementRef;
-  interactionsPerInterval = Array(12).fill(0);
-  barChartXaxisLabels: number[] = [
-    10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120,
-  ];
+  interactionsPerInterval: number[] = Array(12).fill(0);
+  barChartXaxisLabels = initChartconf.barChartXaxisLabels;
   borderColors = lineChartColors.borderColors;
-  private destroy$: Subject<void> = new Subject<void>();
+  Interactions: number = 0;
+  previousValues: number[] = [];
   private subscription: Subscription = new Subscription();
-  /* */
+  private localStorageKeyPosition = 'IntervalPosition';
+
+  /* Begin*/
   constructor(private dataRealTimeService: DataRealTimeService) {}
   ngOnInit() {
-    const updateInterval$ = interval(this.intervalTime);
-    this.subscription = updateInterval$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        if (this.lineChart) {
-          this.updateChartIntervalPosition();
-        } else {
-          this.finishIntervalObservable();
-        }
-        if (this.position >= this.interactionsPerInterval.length) {
-          this.dataRealTimeServiceUnscription();
-          this.finishIntervalObservable();
-        }
-      });
+    this.loadPreviousValues();
   }
 
   ngAfterViewInit() {
@@ -67,11 +47,13 @@ export class IDoNotGetItChartComponent
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        tap((res) => console.log(res)),
-        filter<Activity>((activity) => activity.activityType == 'i dont get it')
+        tap((res) => console.log('tap in I do not get it chart logic', res)),
+        filter<DashboardActivity>(
+          (activity) => activity.activityType == ACTIVITY.iDontGetIt
+        )
       )
-      .subscribe((activity: Activity) => {
-        this.fetchRealTimeData(activity.activityType);
+      .subscribe((activity: DashboardActivity) => {
+        this.fetchRealTimeData(activity);
       });
   }
   initChart() {
@@ -82,23 +64,27 @@ export class IDoNotGetItChartComponent
     );
   }
 
-  updateChartIntervalPosition() {
-    this.position = this.position + 1;
-    this.saveData = [];
+  fetchRealTimeData(activity: DashboardActivity): void {
+    this.Interactions = activity.count;
+    this.currentPosition = activity.historial.length;
+    this.updateLineChartData(this.Interactions);
   }
-  fetchRealTimeData(activity: string): void {
-    this.saveData.push(activity);
-    this.updateLineCharts();
-  }
-  updateLineCharts(): void {
-    this.interactionsPerInterval.splice(this.position, 0, this.saveData.length);
-    this.lineChart.data.datasets[0].data = this.interactionsPerInterval;
-    if (this.position != this.lineChart.data.datasets[0].data.length) {
-      this.lineChart.data.datasets[0].data.splice(this.position + 1, 1);
+
+  updateLineChartData(interactions: number): void {
+    if (this.isPositionWithinDataRange()) {
+      this.updateDataInterval(interactions);
+
+      this.lineChart.update();
     } else {
-      this.position = this.position + 1;
+      this.endRealTimeUpdates();
     }
-    this.lineChart.update();
+  }
+
+  isPositionWithinDataRange(): boolean {
+    return this.currentPosition < this.lineChart.data.datasets[0].data.length;
+  }
+  updateDataInterval(interactions: number) {
+    this.lineChart.data.datasets[0].data[this.currentPosition] = interactions;
   }
   createLineChart(
     chartLabel: string,
@@ -136,17 +122,52 @@ export class IDoNotGetItChartComponent
     });
   }
 
-  finishIntervalObservable() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-  dataRealTimeServiceUnscription() {
+  dataRealTimeServiceUnsubscription() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
-  ngOnDestroy(): void {
-    this.finishIntervalObservable();
-    this.dataRealTimeServiceUnscription();
+
+  loadPreviousValues() {
+    this.dataRealTimeService
+      .getDashboardActivities()
+      .pipe(
+        map<DashboardActivity[], DashboardActivity[]>(
+          (activities: DashboardActivity[]) => {
+            return activities.filter((activity: DashboardActivity) => {
+              return activity.activityType === ACTIVITY.iDontGetIt;
+            });
+          }
+        )
+      )
+      .subscribe((data: DashboardActivity[]) => {
+        if (data.length > 0) {
+          this.previousValues = data[0].historial;
+          console.log(
+            'Historial of "I do not get it" activity:',
+            this.previousValues
+          );
+          if (this.isPositionWithinDataRange()) {
+            this.interactionsPerInterval.splice(
+              0,
+              this.previousValues.length,
+              ...this.previousValues
+            );
+            console.log(
+              'Carlos "Historial of "I do not get it" activity found.',
+              this.interactionsPerInterval
+            );
+            this.currentPosition = this.previousValues.length;
+            this.updateLineChartData(data[0].count);
+          }
+        } else {
+          console.log('No "I do not get it" activity found.');
+        }
+      });
   }
+
+  endRealTimeUpdates() {
+    this.dataRealTimeServiceUnsubscription();
+  }
+  ngOnDestroy() {}
 }

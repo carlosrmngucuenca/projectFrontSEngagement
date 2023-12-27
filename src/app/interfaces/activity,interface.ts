@@ -1,8 +1,17 @@
 export interface Activity {
-  roomId: string;
   activityType: string;
+  roomId: string;
   text?: string;
   userId: string;
+}
+
+export interface DashboardActivity {
+  activityType: string;
+  count: number;
+  roomId: string;
+  createAt: Date;
+  updatedAt: Date;
+  historial: number[];
 }
 
 export interface CreateActivityCommentDTO
