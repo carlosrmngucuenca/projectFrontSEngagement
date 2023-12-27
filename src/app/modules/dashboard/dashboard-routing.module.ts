@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
+import { MyConfigroomComponent } from './pages/my-configroom/my-configroom.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'my-realtime',
         component: MyRealtimeComponent,
+      },
+      {
+        path: 'my-configroom',
+        component: MyConfigroomComponent,
       },
     ],
   },

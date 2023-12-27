@@ -3,18 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestStatus } from 'src/app/interfaces/models/request-status.model';
 import { RoomService } from '../../../../services/room.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'auth-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent {
   isRoomInvalid: boolean = false; // Variable para rastrear si la sala no es válida
   miFormulario!: FormGroup;
   status: RequestStatus = 'init';
-  baseUrl = environment.API_URL;
+  baseUrl = environment.baseUrl;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -23,9 +23,7 @@ export class LoginFormComponent {
     this.builForm();
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   get isPinValid() {
     return (
@@ -51,17 +49,17 @@ export class LoginFormComponent {
       const { userPin } = this.miFormulario.getRawValue();
       this.status = 'loading';
 
-      this.roomService.checkRoomExists(userPin, 'user').subscribe((roomExists) => {
-        if (roomExists.ok) {
-          this.router.navigateByUrl(`/student/my-emotions`);
-        }
-        else if (!roomExists.ok) {
-          this.isRoomInvalid = true;
-          this.miFormulario.markAllAsTouched();
-        }
-      });
-    }
-    else {
+      this.roomService
+        .checkRoomExists(userPin, 'user')
+        .subscribe((roomExists) => {
+          if (roomExists.ok) {
+            this.router.navigateByUrl(`/student/my-emotions`);
+          } else if (!roomExists.ok) {
+            this.isRoomInvalid = true;
+            this.miFormulario.markAllAsTouched();
+          }
+        });
+    } else {
       this.miFormulario.markAllAsTouched();
     }
   }

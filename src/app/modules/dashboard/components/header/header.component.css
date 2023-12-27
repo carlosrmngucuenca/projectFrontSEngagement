@@ -13,17 +13,16 @@ header {
   margin: 0 8px;
 }
 
+.header__nav-list {
+  display: none;
+}
+
 .header__nav-list ul {
   display: flex;
   flex-direction: row;
   align-items: center;
   list-style-type: none;
-
   gap: 16px;
-}
-
-.header__nav-list li {
-  list-style-type: none;
 }
 
 .header__nav-list li a {
@@ -46,4 +45,10 @@ header {
 .header__info__detail img {
   width: 22px;
   height: 14px;
+}
+
+@media screen and (min-width: 670px) {
+  .header__nav-list {
+    display: inline-block;
+  }
 }

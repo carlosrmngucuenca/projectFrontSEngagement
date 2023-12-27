@@ -13,7 +13,9 @@ import { DonnutsEmotionsComponent } from './components/donnuts-emotions/donnuts-
 import { TakeAbreakChartComponent } from './components/take-abreak-chart/take-abreak-chart.component';
 import { SleepChartComponent } from './components/sleep-chart/sleep-chart.component';
 import { IDoNotGetItChartComponent } from './components/ido-not-get-it-chart/ido-not-get-it-chart.component';
-
+import { MyConfigroomComponent } from './pages/my-configroom/my-configroom.component';
+import { ConfigRoomFormComponent } from './components/config-room-form/config-room-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,15 @@ import { IDoNotGetItChartComponent } from './components/ido-not-get-it-chart/ido
     DonnutsEmotionsComponent,
     TakeAbreakChartComponent,
     SleepChartComponent,
-    IDoNotGetItChartComponent
+    IDoNotGetItChartComponent,
+    MyConfigroomComponent,
+    ConfigRoomFormComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
-  ]
+    DashboardRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}
