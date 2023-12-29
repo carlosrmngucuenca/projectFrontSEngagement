@@ -1,6 +1,16 @@
 .login {
+  position: relative;
+  left: 80px;
   display: flex;
   justify-content: center;
-  height: calc(100vh - 80px);
+  width: calc(100% - 80px);
+  height: 100vh;
   background-color: #f2f2f2;
+}
+
+.blurred {
+  filter: blur(5px); /* Apply blur effect */
+  /* OR */
+  opacity: 0.7; /* Reduce opacity */
+  transition: filter 0.3s ease; /* Add transition for a smooth effect */
 }

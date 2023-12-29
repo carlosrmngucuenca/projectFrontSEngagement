@@ -1,32 +1,61 @@
-<header>
-  <img
-    class="header__logo"
-    src="../../../../../assets/logos/main-logo.svg"
-    loading="lazy"
-    alt="logo"
-  />
-  <div class="header__nav-list">
-    <ul>
-      <li routerLink="/dashboard">
-        <a >Principal</a>
+<nav class="sidebar close" [class.close]="activeMenu">
+  <header class="sidebar__content">
+    <div class="image-text">
+      <span class="image">
+        <img
+          src="../../../../../assets/logos/main-logo.svg"
+          loading="lazy"
+          alt="logo"
+        />
+      </span>
+      <div class="text text-header">
+        <span class="name"></span>
+      </div>
+      <i class="bx bx-chevron-right toggle" (click)="toggleMenu()"></i>
+    </div>
+
+    <!-- <div class="header__info">
+      <div class="header__info__title"></div>
+      <div class="header__info__detail">
+        <div class="total"><span></span></div>
+        <img
+          src="../../../../../assets/icons/alumnos_icon.svg"
+          alt="icono alumno"
+          class="logo"
+        />
+      </div>
+    </div> -->
+  </header>
+  <div class="menu-bar">
+    <div class="menu">
+      <ul class="menu-links">
+        <li routerLink="/dashboard">
+          <a
+            ><i class="bx bx-home-alt icon"></i>
+            <span class="text nav-text"> principal </span>
+          </a>
+        </li>
+        <li routerLink="/dashboard/my-realtime">
+          <a>
+            <i class="bx bx-comment-dots icon"></i>
+            <span class="text nav-text"> comentarios </span>
+          </a>
+        </li>
+        <li routerLink="/dashboard/my-dashboard">
+          <a>
+            <i class="bx bxs-dashboard icon"></i>
+            <span class="text nav-text"> Dashboard </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="button-content">
+      <li class="">
+        <a>
+          <i class="bx bxs-log-out icon"></i>
+          <span class="text nav-text"> logout </span>
+        </a>
       </li>
-      <li routerLink="/dashboard/my-realtime">
-        <a>Comentarios</a>
-      </li>
-      <li routerLink="/dashboard/my-dashboard">
-        <a >Analytics</a>
-      </li>
-    </ul>
-  </div>
-  <div class="header__info">
-    <div class="header__info__title"></div>
-    <div class="header__info__detail">
-      <div class="total"><span></span></div>
-      <img
-        src="../../../../../assets/icons/alumnos_icon.svg"
-        alt="icono alumno"
-        class="logo"
-      />
     </div>
   </div>
-</header>
+</nav>
