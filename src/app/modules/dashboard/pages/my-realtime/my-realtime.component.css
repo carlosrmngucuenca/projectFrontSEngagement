@@ -1,4 +1,6 @@
 .main-content.close {
-  left: 250px;
-  width: calc(100% - 250px);
+  filter: blur(5px); /* Apply blur effect */
+  /* OR */
+  opacity: 0.7; /* Reduce opacity */
+  transition: filter 0.3s ease; /* Add transition for a smooth effect */
 }

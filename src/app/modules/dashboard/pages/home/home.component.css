@@ -2,16 +2,18 @@ main {
   position: relative;
   left: 80px;
   display: grid;
-  min-width: 230px;
   width: calc(100% - 80px);
   height: 100vh;
+  transition: var(--tran-05);
   justify-content: center;
   align-content: center;
 }
 
 .main-content.close {
-  left: 250px;
-  width: calc(100% - 250px);
+  filter: blur(5px); /* Apply blur effect */
+  /* OR */
+  opacity: 0.7; /* Reduce opacity */
+  transition: filter 0.3s ease; /* Add transition for a smooth effect */
 }
 
 .main-container {
@@ -44,8 +46,8 @@ main {
 }
 
 .main-container__button button img {
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
 }
 
 .blurred {
@@ -53,4 +55,13 @@ main {
   /* OR */
   opacity: 0.7; /* Reduce opacity */
   transition: filter 0.3s ease; /* Add transition for a smooth effect */
+}
+
+@media screen and (min-width: 670px) {
+  .main-content.close {
+    position: relative;
+    left: 250px;
+    width: calc(100% - 250px);
+    transition: var(--tran-05);
+  }
 }

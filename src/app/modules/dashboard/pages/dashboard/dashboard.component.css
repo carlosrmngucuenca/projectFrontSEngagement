@@ -1,10 +1,12 @@
 main {
+  display: grid;
+  align-items: center;
   position: relative;
   left: 80px;
   width: calc(100% - 80px);
-  display: grid;
-  justify-content: center;
-  height: auto;
+  transition: var(--tran-05);
+
+  height: 100vh;
 }
 
 main p {
@@ -12,35 +14,36 @@ main p {
 }
 
 .main-content.close {
-  left: 250px;
-  width: calc(100% - 250px);
-}
-
-.dashboard-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 650px));
-  grid-template-rows: repeat(5, minmax(100px, 350px));
-  justify-content: center;
-  gap: 20px;
-}
-
-.dashboard-barChart {
-  padding: 0px 8px 8px 8px;
-}
-
-.blurred {
   filter: blur(5px); /* Apply blur effect */
   /* OR */
   opacity: 0.7; /* Reduce opacity */
   transition: filter 0.3s ease; /* Add transition for a smooth effect */
 }
 
+.dashboard-container {
+  --min-column-size: 22rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--min-column-size, 100%)), 1fr)
+  );
+  place-content: center;
+  grid-auto-rows: 20rem;
+
+  /*grid-template-rows: repeat(5, minmax(100px, 350px));*/
+  /*justify-content: center;*/
+}
+
+.dashboard-barChart {
+  padding: 0px 8px 8px 8px;
+}
+
 @media screen and (min-width: 670px) {
-  .dashboard-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 650px));
-    grid-template-rows: repeat(3, minmax(100px, 350px));
-    justify-content: center;
-    gap: 20px;
+  .main-content.close {
+    position: relative;
+    left: 250px;
+    width: calc(100% - 250px);
+    transition: var(--tran-05);
   }
 }
