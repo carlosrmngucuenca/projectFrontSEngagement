@@ -141,6 +141,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
       .subscribe((data: DashboardActivity[]) => {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
+          this.currentPosition = this.previousValues.length;
           console.log(
             'Historial of "takeBreak class" activity:',
             this.previousValues
@@ -155,8 +156,12 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
               'Carlos "Historial of "takeBreak" activity found.',
               this.interactionsPerInterval
             );
-            this.currentPosition = this.previousValues.length;
-            this.updateLineChartData(data[0].count);
+
+            if (this.currentPosition == this.previousValues.length) {
+              /* End Updates*/
+            } else {
+              this.updateLineChartData(data[0].count);
+            }
           }
         } else {
           console.log('No "takeBreak" activity found.');

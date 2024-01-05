@@ -81,7 +81,7 @@ export class ExcellentClassChartComponent
   }
 
   isPositionWithinDataRange(): boolean {
-    return this.currentPosition < this.lineChart.data.datasets[0].data.length;
+    return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
     this.lineChart.data.datasets[0].data[this.currentPosition] = interactions;
@@ -143,6 +143,7 @@ export class ExcellentClassChartComponent
       .subscribe((data: DashboardActivity[]) => {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
+          this.currentPosition = this.previousValues.length;
           console.log(
             'Historial of "excellent class" activity:',
             this.previousValues
@@ -157,8 +158,11 @@ export class ExcellentClassChartComponent
               'Carlos "Historial of "excellent class" activity found.',
               this.interactionsPerInterval
             );
-            this.currentPosition = this.previousValues.length;
-            this.updateLineChartData(data[0].count);
+            if (this.currentPosition == this.previousValues.length) {
+              /* End Updates*/
+            } else {
+              this.updateLineChartData(data[0].count);
+            }
           }
         } else {
           console.log('No "excellent class" activity found.');

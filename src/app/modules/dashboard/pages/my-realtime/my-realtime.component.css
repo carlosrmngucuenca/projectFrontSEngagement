@@ -1,3 +1,12 @@
+main {
+  position: relative;
+  left: 84px;
+  display: grid;
+  width: calc(100% - 84px);
+  height: 100vh;
+  transition: var(--tran-05);
+}
+
 .main-content.close {
   filter: blur(5px); /* Apply blur effect */
   /* OR */

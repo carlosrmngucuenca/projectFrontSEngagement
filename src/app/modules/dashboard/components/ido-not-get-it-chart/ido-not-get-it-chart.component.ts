@@ -143,6 +143,7 @@ export class IDoNotGetItChartComponent
       .subscribe((data: DashboardActivity[]) => {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
+          this.currentPosition = this.previousValues.length;
           console.log(
             'Historial of "I do not get it" activity:',
             this.previousValues
@@ -157,8 +158,12 @@ export class IDoNotGetItChartComponent
               'Carlos "Historial of "I do not get it" activity found.',
               this.interactionsPerInterval
             );
-            this.currentPosition = this.previousValues.length;
-            this.updateLineChartData(data[0].count);
+
+            if (this.currentPosition == this.previousValues.length) {
+              /* End Updates*/
+            } else {
+              this.updateLineChartData(data[0].count);
+            }
           }
         } else {
           console.log('No "I do not get it" activity found.');

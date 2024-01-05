@@ -143,6 +143,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
           console.log('Historial of "sleep" activity:', this.previousValues);
+          this.currentPosition = this.previousValues.length;
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
               0,
@@ -153,8 +154,12 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
               'Carlos "Historial of "sleep" activity found.',
               this.interactionsPerInterval
             );
-            this.currentPosition = this.previousValues.length;
-            this.updateLineChartData(data[0].count);
+
+            if (this.currentPosition == this.previousValues.length) {
+              /* End Updates*/
+            } else {
+              this.updateLineChartData(data[0].count);
+            }
           }
         } else {
           console.log('No "sleep" activity found.');
