@@ -41,7 +41,7 @@ export class LoginFormComponent {
 
   private builForm() {
     this.miFormulario = this.formBuilder.group({
-      userPin: ['MRA123', [Validators.required, Validators.maxLength(10)]],
+      userPin: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
   loginRoom() {

@@ -10,7 +10,7 @@ import { RoomService } from 'src/app/services/room.service';
 })
 export class ConfigRoomFormComponent {
   myFormRoom: FormGroup = this.formBuilder.group({});
-  newCode: string = 'mpFX';
+  newCode: string = '';
   newRoomId: string = '';
   constructor(
     private formBuilder: FormBuilder,
@@ -21,7 +21,7 @@ export class ConfigRoomFormComponent {
 
   private builForm() {
     this.myFormRoom = this.formBuilder.group({
-      roomName: ['test', [Validators.required, Validators.maxLength(10)]],
+      roomName: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
