@@ -35,7 +35,7 @@
             <span class="text nav-text"> principal </span>
           </a>
         </li>
-        <li routerLink="/dashboard/my-realtime">
+        <li (click)="goComments()">
           <a>
             <i class="bx bx-comment-dots icon"></i>
             <span class="text nav-text"> comentarios </span>
@@ -50,7 +50,7 @@
       </ul>
     </div>
     <div class="button-content">
-      <li class="">
+      <li class="" (click)="logout()">
         <a>
           <i class="bx bxs-log-out icon"></i>
           <span class="text nav-text"> logout </span>

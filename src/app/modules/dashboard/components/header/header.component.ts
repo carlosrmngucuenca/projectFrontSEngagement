@@ -28,4 +28,14 @@ export class HeaderComponent {
     this.sideBarService.setSidebarWidth(this.sidebarWidth);
     this.router.navigateByUrl('/dashboard/my-dashboard');
   }
+
+  goComments() {
+    this.sideBarService.setSidebarWidth(this.sidebarWidth);
+    this.router.navigateByUrl('/dashboard/my-realtime');
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/dashboard']);
+  }
 }

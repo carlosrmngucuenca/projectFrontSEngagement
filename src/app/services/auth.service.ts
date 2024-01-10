@@ -15,8 +15,8 @@ export class AuthService {
 
   logout() {
     this.tokenService.removeToken();
-    this.valueManagerService.resetValues();
     localStorage.clear();
     this.router.navigate(['/auth']);
+    this.valueManagerService.resetValues();
   }
 }
