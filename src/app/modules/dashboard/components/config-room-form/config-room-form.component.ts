@@ -9,6 +9,7 @@ import { RoomService } from 'src/app/services/room.service';
   styleUrls: ['./config-room-form.component.css'],
 })
 export class ConfigRoomFormComponent {
+  isRoomCreated: boolean = true;
   myFormRoom: FormGroup = this.formBuilder.group({});
   newCode: string = '';
   newRoomId: string = '';
@@ -17,6 +18,7 @@ export class ConfigRoomFormComponent {
     private roomService: RoomService
   ) {
     this.builForm();
+    this.isRoomJoined();
   } // TODO: inject service
 
   private builForm() {
@@ -24,6 +26,7 @@ export class ConfigRoomFormComponent {
       roomName: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
+
 
   get isRoomNameValid() {
     return (
@@ -49,6 +52,21 @@ export class ConfigRoomFormComponent {
       });
 
       this.roomService.setRoomId(this.newRoomId);
+      this.roomService.joinRoom(this.newCode);
+      this.isRoomCreated = true;
     }
   }
+  exitRoom() {
+    this.isRoomCreated = false;
+    this.roomService.leaveRoom(this.newCode);
+  }
+
+  isRoomJoined() {
+    if(this.roomService.isRoomCreated()){
+      this.isRoomCreated = true;
+      this.newCode = this.roomService.getRoomCode() || '';
+    }
+    return ;
+  }
+
 }

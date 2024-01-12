@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/services/sidebar.service';
+import { AuthGoogleService } from '../../../../services/auth-google.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 export class HeaderComponent {
   sidebarWidth = true; // Initial width
   activeMenu = true;
-  constructor(private sideBarService: SidebarService, private router: Router) {}
+  constructor(private sideBarService: SidebarService, private router: Router, private authGoogleService:AuthGoogleService ) {}
   toggleMenu() {
     this.activeMenu = !this.activeMenu;
     this.sidebarWidth = !this.sidebarWidth;
@@ -36,6 +37,7 @@ export class HeaderComponent {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/auth/login-dashboard']);
+    this.authGoogleService.signOut();
   }
 }

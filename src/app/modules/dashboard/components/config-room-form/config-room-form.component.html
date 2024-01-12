@@ -2,10 +2,12 @@
   <section class="info">
     <img src="../../../../../assets/icons/room-class_icon.svg" alt="" />
     <h2>
-      Tu Codigo de la sala es : <span>{{ newCode }}</span>
+      Tu Codigo de la sala es :
+      <span>{{ newCode }}</span>
     </h2>
   </section>
-  <section class="form-container">
+  <br>
+  <section class="form-container" *ngIf="!isRoomCreated" >
     <form
       [formGroup]="myFormRoom"
       class="form-container__-form"
@@ -52,4 +54,14 @@
       </button>
     </form>
   </section>
+  <section class="form-container__-form" *ngIf="isRoomCreated">
+    <button
+    type="submit"
+    class="form-container__button form-container__button--primary"
+    (click)="exitRoom()"
+  >
+    Salir de la Sala
+  </button>
+
+    </section>
 </main>

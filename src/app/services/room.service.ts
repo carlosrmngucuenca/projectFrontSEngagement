@@ -26,7 +26,7 @@ export class RoomService {
     this.roomId = roomId;
     localStorage.setItem(storageKey, roomId);
   }
-  setUserId(userId: string ) {
+  setUserId(userId: string) {
     let storageKey = 'userId'; // Nombre clave para LocalStorage
     this.userId = userId;
     localStorage.setItem(storageKey, userId);
@@ -39,6 +39,16 @@ export class RoomService {
     }
 
     this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token });
+  }
+  //logout
+  leaveRoom(roomCode: string, token?: string) {
+    if (!token) {
+      token = this.tokenService.getToken();
+    }
+    //clean local storage
+    localStorage.clear();
+
+    this.socketService.emit<JoinRoom>('leaveRoom', { roomCode, token });
   }
 
   getRoomId(): string {
@@ -71,9 +81,18 @@ export class RoomService {
   }
 
   createRoom(name: string): Observable<Room> {
-    return this.http.post<Room>(`${this.apiUrl}/room`, { name });
+    return this.http.post<Room>(`${this.apiUrl}/room`, { name }).pipe(
+      tap((response) => {
+        this.setRoomId(response._id);
+        this.setRoomCode(response.code);
+        //tambien devolver el token desde el backend
+      })
+    );
   }
-
+  setRoomCode(roomCode: string) {
+    let storageKey = 'roomCode'; // Nombre clave para LocalStorage
+    localStorage.setItem(storageKey, roomCode);
+  }
   updateRoom(id: string, changes: any): Observable<Room> {
     return this.http.put<Room>(`${this.apiUrl}/room/${id}`, changes);
   }
@@ -96,12 +115,13 @@ export class RoomService {
       })
     );
   }
-
+  isRoomCreated(): boolean {
+    //verify if roomId is in localStorage
+    const roomId = this.getRoomId();
+    return !!roomId;
+  }
 
   deleteRoom(roomCode: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/room/${roomCode}`);
   }
-
-
-
 }
