@@ -21,8 +21,9 @@ export const lineChartColors = {
 };
 
 export const initChartconf = {
+  numberOfBeans: 150,
   barChartXaxisLabels: Array.from(
-    { length: 12 },
+    { length: 150 },
     (_, index) => (index + 1) * 10
   ),
   excelentClassLabelName: 'Excelente Clase',

@@ -26,7 +26,9 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   lineChart!: Chart;
   @ViewChild('takebreakchart')
   chartRef!: ElementRef;
-  interactionsPerInterval: number[] = Array(12).fill(0);
+  interactionsPerInterval: number[] = Array(initChartconf.numberOfBeans).fill(
+    0
+  );
   barChartXaxisLabels = initChartconf.barChartXaxisLabels;
   borderColors = lineChartColors.borderColors;
   Interactions: number = 0;
@@ -161,6 +163,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
             } else {
               this.updateLineChartData(data[0].count);
             }
+            this.lineChart.update();
           }
         } else {
           console.log('No "takeBreak" activity found.');

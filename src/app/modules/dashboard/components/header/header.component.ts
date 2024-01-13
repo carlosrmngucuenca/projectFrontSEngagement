@@ -43,6 +43,7 @@ export class HeaderComponent {
 
   logout() {
     localStorage.clear();
+    this.tokenService.removeToken();
     this.router.navigate(['/auth/login-dashboard']);
     this.authGoogleService.signOut();
   }

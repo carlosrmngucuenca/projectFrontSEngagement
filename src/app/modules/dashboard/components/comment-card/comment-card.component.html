@@ -1,14 +1,14 @@
 <div class="title">Comentarios y Dudas</div>
 <div class="card-comment-container">
-  <div class="card-comment-grid" *ngFor="let comment of comments; index as i">
-    <div class="card-comment">
+  <div class="card-comment-grid">
+    <div class="card-comment" *ngFor="let comment of comments; index as i">
       <div class="card-comment__header">
         <p>
           Comentario <span>{{ i + 1 }}</span>
         </p>
       </div>
       <div class="card-comment__body">
-        <p>{{ comment }}</p>
+        <p>{{ comment.text }}</p>
       </div>
     </div>
   </div>

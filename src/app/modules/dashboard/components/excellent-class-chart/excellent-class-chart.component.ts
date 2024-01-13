@@ -29,7 +29,9 @@ export class ExcellentClassChartComponent
   lineChart!: Chart;
   @ViewChild('lineChart')
   chartRef!: ElementRef;
-  interactionsPerInterval: number[] = Array(12).fill(0);
+  interactionsPerInterval: number[] = Array(initChartconf.numberOfBeans).fill(
+    0
+  );
   barChartXaxisLabels = initChartconf.barChartXaxisLabels;
   borderColors = lineChartColors.borderColors;
   Interactions: number = 0;
@@ -37,10 +39,10 @@ export class ExcellentClassChartComponent
   private subscription: Subscription = new Subscription();
 
   /* Begin */
-  constructor(private dataRealTimeService: DataRealTimeService) {}
-  ngOnInit() {
+  constructor(private dataRealTimeService: DataRealTimeService) {
     this.loadPreviousValues();
   }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.initChart();
@@ -80,6 +82,7 @@ export class ExcellentClassChartComponent
   }
 
   isPositionWithinDataRange(): boolean {
+    console.log('len dle chart', this.lineChart.data.datasets[0].data.length);
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -147,6 +150,7 @@ export class ExcellentClassChartComponent
             'Historial of "excellent class" activity:',
             this.previousValues
           );
+          console.log('currrent position', this.currentPosition);
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
               0,
@@ -159,9 +163,11 @@ export class ExcellentClassChartComponent
             );
             if (this.currentPosition == this.previousValues.length) {
               /* End Updates*/
+              console.log('end updates');
             } else {
               this.updateLineChartData(data[0].count);
             }
+            this.lineChart.update();
           }
         } else {
           console.log('No "excellent class" activity found.');

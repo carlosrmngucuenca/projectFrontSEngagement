@@ -5,6 +5,7 @@ import {
   Activity,
   CreateActivityCommentDTO,
   DashboardActivity,
+  RecordActivity,
 } from '../interfaces/activity,interface';
 import { Emotion } from '../interfaces/emotion.interface';
 import { environment } from 'src/environments/environment';
@@ -28,6 +29,14 @@ export class DataRealTimeService implements OnInit {
     updatedAt: new Date(),
     historial: [],
   };
+  private Recordactivity: RecordActivity = {
+    _id: '',
+    activityType: '',
+    userId: '',
+    roomId: '',
+    text: '',
+    date: new Date(),
+  };
   private activityComment: CreateActivityCommentDTO = {
     roomId: '',
     activityType: '',
@@ -45,8 +54,9 @@ export class DataRealTimeService implements OnInit {
   private activitySubject = new BehaviorSubject<DashboardActivity>(
     this.Dashboardactivity
   );
-  private activityCommentSubject =
-    new BehaviorSubject<CreateActivityCommentDTO>(this.activityComment);
+  private activityCommentSubject = new BehaviorSubject<RecordActivity>(
+    this.Recordactivity
+  );
   public activity$ = this.activitySubject.asObservable();
   public activityComment$ = this.activityCommentSubject.asObservable();
   public emotionsData$ = this.emotionsDataSubject.asObservable();
@@ -73,7 +83,7 @@ export class DataRealTimeService implements OnInit {
       });
 
     this.socketService
-      .on<CreateActivityCommentDTO>('activityCommentRealTime')
+      .on<RecordActivity>('activityCommentRealTime')
       .pipe(
         tap((value) =>
           console.log(
@@ -82,7 +92,7 @@ export class DataRealTimeService implements OnInit {
           )
         )
       )
-      .subscribe((activity: CreateActivityCommentDTO) => {
+      .subscribe((activity: RecordActivity) => {
         this.activityCommentSubject.next(activity);
       });
 
@@ -106,7 +116,7 @@ export class DataRealTimeService implements OnInit {
   getActivity$(): Observable<DashboardActivity> {
     return this.activity$;
   }
-  getActivityComment$(): Observable<CreateActivityCommentDTO> {
+  getActivityComment$(): Observable<RecordActivity> {
     return this.activityComment$;
   }
 
@@ -125,6 +135,16 @@ export class DataRealTimeService implements OnInit {
     console.log('roomID', this.roomService.getRoomId());
     return this.http.get<Emotion>(
       `${this.apiUrl}/dashboard-emotions/${this.roomService.getRoomId()}`
+    );
+  }
+
+  getCommentsAndDoubts(): Observable<RecordActivity[]> {
+    console.log(
+      'roomID getRecoractivitiesActivities',
+      this.roomService.getRoomId()
+    );
+    return this.http.get<RecordActivity[]>(
+      `${this.apiUrl}/recordActivities/${this.roomService.getRoomId()}/comment`
     );
   }
 }

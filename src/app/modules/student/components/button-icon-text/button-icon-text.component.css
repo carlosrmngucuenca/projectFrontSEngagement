@@ -12,6 +12,19 @@
   cursor: pointer;
 }
 
+button {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.96) translateY(-4px);
+}
+
+button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
 .button__icon {
   margin-right: 10px;
   /* adpatar la imagen aunque sea grande */

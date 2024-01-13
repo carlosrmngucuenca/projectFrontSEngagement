@@ -41,11 +41,9 @@ export class PollListComponent {
     this.pollID = infoMyPoll.IdControl;
     console.log('id Mi encuesta', this.pollID);
     this.pollService.sendPoll(this.pollID);
+    localStorage.setItem('PollID',this.pollID)
     console.log('send poll Mi encuesta');
   }
 
-  closePoll() {
-    this.pollService.closePoll(this.pollID);
-    console.log('close poll');
-  }
+  
 }

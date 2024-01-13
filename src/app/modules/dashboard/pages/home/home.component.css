@@ -3,7 +3,7 @@ main {
   left: 80px;
   display: grid;
   width: calc(100% - 80px);
-  height: 100vh;
+  height: auto;
   transition: var(--tran-05);
   justify-content: center;
   align-content: center;
@@ -31,8 +31,18 @@ main {
   display: flex;
   flex-direction: column;
   width: 215px;
+  cursor: pointer;
+  border-radius: 0.9375rem;
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
+.main-container__button:active {
+  transform: scale(0.96) translateY(-4px);
+}
+
+.main-container__button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 .main-container__button p {
   align-self: center;
   font-family: var(--font-family);

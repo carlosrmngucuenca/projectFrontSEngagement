@@ -10,7 +10,9 @@ button {
 
 .poll-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+  grid-template-columns: minmax(45%, 50%);
+  grid-template-rows: 20rem;
+  justify-content: center;
   gap: 1.5rem;
   margin-block: 1rem;
   padding-block: 1rem;

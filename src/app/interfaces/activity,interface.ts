@@ -14,6 +14,15 @@ export interface DashboardActivity {
   historial: number[];
 }
 
+export interface RecordActivity {
+  _id: string;
+  activityType: string;
+  userId: string;
+  roomId: string;
+  text: string;
+  date: Date;
+}
+
 export interface CreateActivityCommentDTO
   extends Omit<Activity, 'text' | 'userId'> {
   text: string;

@@ -28,7 +28,9 @@ export class IDoNotGetItChartComponent
   lineChart!: Chart;
   @ViewChild('lineChart')
   chartRef!: ElementRef;
-  interactionsPerInterval: number[] = Array(12).fill(0);
+  interactionsPerInterval: number[] = Array(initChartconf.numberOfBeans).fill(
+    0
+  );
   barChartXaxisLabels = initChartconf.barChartXaxisLabels;
   borderColors = lineChartColors.borderColors;
   Interactions: number = 0;
@@ -163,6 +165,7 @@ export class IDoNotGetItChartComponent
             } else {
               this.updateLineChartData(data[0].count);
             }
+            this.lineChart.update();
           }
         } else {
           console.log('No "I do not get it" activity found.');

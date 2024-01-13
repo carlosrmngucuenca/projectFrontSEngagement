@@ -16,7 +16,7 @@ import { SocketService } from 'src/app/services/socket.service';
 export class HomeComponent {
   sidebarWidth = true;
   private subscription: Subscription = new Subscription();
-
+  pollID: string = 'PollID';
   constructor(
     private pollService: PollService,
     private sideBarService: SidebarService,
@@ -27,12 +27,13 @@ export class HomeComponent {
     });
   }
 
-  sendPoll() {
-    //this.pollService.sendPoll();
-    console.log('send poll');
-  }
   closePoll() {
     // this.pollService.closePoll();
+    const savedPollId = localStorage.getItem(this.pollID);
+    if (savedPollId !== null) {
+      this.pollService.closePoll(this.pollID);
+    }
+
     console.log('close poll');
   }
 

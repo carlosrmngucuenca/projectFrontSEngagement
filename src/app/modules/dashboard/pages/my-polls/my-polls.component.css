@@ -1,6 +1,7 @@
 main {
   position: relative;
   left: 85px;
+  align-items: center;
   display: grid;
   width: calc(100% - 85px);
   height: 100vh;
