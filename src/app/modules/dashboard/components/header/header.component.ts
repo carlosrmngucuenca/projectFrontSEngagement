@@ -15,7 +15,8 @@ export class HeaderComponent {
   constructor(
     private sideBarService: SidebarService,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private authGoogleService: AuthGoogleService
   ) {}
   toggleMenu() {
     this.activeMenu = !this.activeMenu;
