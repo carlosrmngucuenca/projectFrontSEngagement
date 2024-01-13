@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/services/sidebar.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,11 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 export class HeaderComponent {
   sidebarWidth = true; // Initial width
   activeMenu = true;
-  constructor(private sideBarService: SidebarService, private router: Router) {}
+  constructor(
+    private sideBarService: SidebarService,
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
   toggleMenu() {
     this.activeMenu = !this.activeMenu;
     this.sidebarWidth = !this.sidebarWidth;
@@ -31,11 +36,12 @@ export class HeaderComponent {
 
   goComments() {
     this.sideBarService.setSidebarWidth(this.sidebarWidth);
-    this.router.navigateByUrl('/dashboard/my-realtime');
+    this.router.navigateByUrl('/dashboard/my-comments');
   }
 
   logout() {
     localStorage.clear();
+    this.tokenService.removeToken();
     this.router.navigate(['/dashboard']);
   }
 }

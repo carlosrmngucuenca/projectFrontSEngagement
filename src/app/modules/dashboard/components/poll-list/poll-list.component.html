@@ -1,0 +1,43 @@
+<main>
+  <form [formGroup]="myPolls" class="margin-inline" (ngSubmit)="sendPoll()">
+    <div class="poll-container">
+      <div class="poll-grid">
+        <div class="poll" *ngFor="let poll of pollList; index as i">
+          <div class="poll__header">
+            <p>
+              Encuesta <span>{{ i + 1 }}</span>
+            </p>
+
+            <p>{{ poll.pollTitle }}</p>
+          </div>
+          <div class="poll__body">
+            <div
+              class="poll__body__quesions"
+              *ngFor="let questions of poll.questions; index as j"
+            >
+              <p>{{ questions.question }}</p>
+            </div>
+          </div>
+          <div class="poll__footer__option">
+            <p>Seleccionar Encuesta</p>
+            <input
+              type="radio"
+              [name]="pollControlName"
+              [value]="poll._id"
+              [formControlName]="pollControlName"
+              class=""
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="myPolls.invalid"
+        class="poll-container__button poll-container__button--primary"
+        [class.is-enabled]="myPolls.valid"
+      >
+        Enviar encuesta
+      </button>
+    </div>
+  </form>
+</main>

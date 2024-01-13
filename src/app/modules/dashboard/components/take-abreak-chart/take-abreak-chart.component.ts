@@ -20,7 +20,7 @@ import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 })
 export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   barChartName: string = 'barChart1';
-  barChartLabelName: string = 'take break Class';
+  barChartLabelName: string = initChartconf.takeBreakLabelName;
   chartLabel: string = '';
   currentPosition: number = 0;
   lineChart!: Chart;
@@ -32,7 +32,6 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   Interactions: number = 0;
   previousValues: number[] = [];
   private subscription: Subscription = new Subscription();
-  private localStorageKeyPosition = 'IntervalPosition';
 
   /* Begin */
   constructor(private dataRealTimeService: DataRealTimeService) {}
@@ -78,7 +77,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   }
 
   isPositionWithinDataRange(): boolean {
-    return this.currentPosition < this.lineChart.data.datasets[0].data.length;
+    return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
     this.lineChart.data.datasets[0].data[this.currentPosition] = interactions;

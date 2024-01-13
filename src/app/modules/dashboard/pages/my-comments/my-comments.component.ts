@@ -6,11 +6,11 @@ import { RoomService } from 'src/app/services/room.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { SocketService } from 'src/app/services/socket.service';
 @Component({
-  selector: 'app-my-realtime',
-  templateUrl: './my-realtime.component.html',
-  styleUrls: ['./my-realtime.component.css'],
+  selector: 'my-comments',
+  templateUrl: './my-comments.component.html',
+  styleUrls: ['./my-comments.component.css'],
 })
-export class MyRealtimeComponent {
+export class MyCommentsComponent {
   sidebarWidth = true;
   private subscription: Subscription = new Subscription();
   constructor(private sideBarService: SidebarService) {

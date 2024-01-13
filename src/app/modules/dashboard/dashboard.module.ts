@@ -6,7 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
+import { MyCommentsComponent } from './pages/my-comments/my-comments.component';
 import { ExcellentClassChartComponent } from './components/excellent-class-chart/excellent-class-chart.component';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
 import { DonnutsEmotionsComponent } from './components/donnuts-emotions/donnuts-emotions.component';
@@ -16,6 +16,8 @@ import { IDoNotGetItChartComponent } from './components/ido-not-get-it-chart/ido
 import { MyConfigroomComponent } from './pages/my-configroom/my-configroom.component';
 import { ConfigRoomFormComponent } from './components/config-room-form/config-room-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MyPollsComponent } from './pages/my-polls/my-polls.component';
+import { PollListComponent } from './components/poll-list/poll-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     HeaderComponent,
     DashboardComponent,
-    MyRealtimeComponent,
+    MyCommentsComponent,
     ExcellentClassChartComponent,
     CommentCardComponent,
     DonnutsEmotionsComponent,
@@ -32,6 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IDoNotGetItChartComponent,
     MyConfigroomComponent,
     ConfigRoomFormComponent,
+    MyPollsComponent,
+    PollListComponent,
   ],
   imports: [
     CommonModule,

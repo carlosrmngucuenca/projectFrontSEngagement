@@ -10,7 +10,7 @@ import { RoomService } from './room.service';
 const baseUrl = environment.baseUrl;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PollService implements OnInit {
   private pollSubject = new BehaviorSubject<Poll | null>(null);
@@ -18,7 +18,6 @@ export class PollService implements OnInit {
 
   private isPollActivedSubject = new BehaviorSubject<boolean>(false);
   public isPollActived$ = this.isPollActivedSubject.asObservable();
-
 
   constructor(
     private socketService: SocketService,
@@ -39,8 +38,8 @@ export class PollService implements OnInit {
   }
 
   ngOnInit(): void {
-  //set poll saved in local storage
-  //clean local storage
+    //set poll saved in local storage
+    //clean local storage
   }
 
   getPoll$(): Observable<Poll | null> {
@@ -51,14 +50,13 @@ export class PollService implements OnInit {
     return this.isPollActived$;
   }
 
-
   setPollActive$(isPollActive: boolean) {
     this.isPollActivedSubject.next(isPollActive);
     this.isPollActived$ = this.isPollActivedSubject.asObservable();
   }
 
-  getAllPolls() {
-    return this.http.get<Poll>(`${baseUrl}`);
+  getAllPolls(): Observable<Poll[]> {
+    return this.http.get<Poll[]>(`${baseUrl}/polls`);
   }
 
   //save poll with socket
@@ -66,8 +64,8 @@ export class PollService implements OnInit {
     this.socketService.emit('savePollResponses', pollResponse);
   }
 
-  setPollSavedLocalStorage(status:string) {
-    localStorage.setItem('pollSaved',status);
+  setPollSavedLocalStorage(status: string) {
+    localStorage.setItem('pollSaved', status);
   }
   getPollSavedLocalStorage() {
     return localStorage.getItem('pollSaved');
@@ -76,23 +74,24 @@ export class PollService implements OnInit {
     localStorage.removeItem('pollSaved');
   }
 
-  sendPoll() {
+  sendPoll(Poll: string) {
     const roomCode = this.roomService.getRoomCode();
-    const idPoll: string = '6577c3fd7be3e4528aac6277';
+    //const idPoll: string = '6577c3fd7be3e4528aac6277';
+    const idPoll: string = Poll;
     const data = {
       roomCode: roomCode,
-      idPoll: idPoll
-    }
-    this.socketService.emit('sendPoll',data);
+      idPoll: idPoll,
+    };
+    this.socketService.emit('sendPoll', data);
   }
-  closePoll() {
+  closePoll(Poll: string) {
     const roomCode = this.roomService.getRoomCode();
-    const idPoll: string = '6577c3fd7be3e4528aac6277';
+    //const idPoll: string = '6577c3fd7be3e4528aac6277';
+    const idPoll: string = Poll;
     const data = {
       roomCode: roomCode,
-      idPoll: idPoll
-    }
-    this.socketService.emit('closePoll',data);
+      idPoll: idPoll,
+    };
+    this.socketService.emit('closePoll', data);
   }
-
 }
