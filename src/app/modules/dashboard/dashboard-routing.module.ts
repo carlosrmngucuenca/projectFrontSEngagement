@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MyRealtimeComponent } from './pages/my-realtime/my-realtime.component';
+import { MyCommentsComponent } from './pages/my-comments/my-comments.component';
 import { MyConfigroomComponent } from './pages/my-configroom/my-configroom.component';
+import { MyPollsComponent } from './pages/my-polls/my-polls.component';
 
 const routes: Routes = [
   {
@@ -25,12 +26,16 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: 'my-realtime',
-        component: MyRealtimeComponent,
+        path: 'my-comments',
+        component: MyCommentsComponent,
       },
       {
         path: 'my-configroom',
         component: MyConfigroomComponent,
+      },
+      {
+        path: 'my-polls',
+        component: MyPollsComponent,
       },
     ],
   },

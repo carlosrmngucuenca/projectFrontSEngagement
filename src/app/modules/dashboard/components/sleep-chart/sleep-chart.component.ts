@@ -20,7 +20,7 @@ import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 })
 export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
   barChartName: string = 'barChart1';
-  barChartLabelName: string = 'Sleep';
+  barChartLabelName: string = initChartconf.sleepLabelName;
   chartLabel: string = '';
   currentPosition: number = 0;
   checkPosition: number = 0;
@@ -80,7 +80,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   isPositionWithinDataRange(): boolean {
-    return this.currentPosition < this.lineChart.data.datasets[0].data.length;
+    return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
     this.lineChart.data.datasets[0].data[this.currentPosition] = interactions;

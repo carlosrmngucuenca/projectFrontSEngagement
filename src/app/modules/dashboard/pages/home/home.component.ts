@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Activity } from 'src/app/interfaces/activity,interface';
 import { JoinRoom } from 'src/app/interfaces/room.interface';
@@ -18,7 +19,8 @@ export class HomeComponent {
 
   constructor(
     private pollService: PollService,
-    private sideBarService: SidebarService
+    private sideBarService: SidebarService,
+    private router: Router
   ) {
     this.sideBarService.getwidthObservable$().subscribe((data: boolean) => {
       this.sidebarWidth = data;
@@ -26,11 +28,15 @@ export class HomeComponent {
   }
 
   sendPoll() {
-    this.pollService.sendPoll();
+    //this.pollService.sendPoll();
     console.log('send poll');
   }
   closePoll() {
-    this.pollService.closePoll();
+    // this.pollService.closePoll();
     console.log('close poll');
+  }
+
+  navigateToPollPage() {
+    this.router.navigateByUrl('/dashboard/my-polls');
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { AuthGoogleService } from '../../../../services/auth-google.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,11 @@ import { AuthGoogleService } from '../../../../services/auth-google.service';
 export class HeaderComponent {
   sidebarWidth = true; // Initial width
   activeMenu = true;
-  constructor(private sideBarService: SidebarService, private router: Router, private authGoogleService:AuthGoogleService ) {}
+  constructor(
+    private sideBarService: SidebarService,
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
   toggleMenu() {
     this.activeMenu = !this.activeMenu;
     this.sidebarWidth = !this.sidebarWidth;
@@ -32,7 +37,7 @@ export class HeaderComponent {
 
   goComments() {
     this.sideBarService.setSidebarWidth(this.sidebarWidth);
-    this.router.navigateByUrl('/dashboard/my-realtime');
+    this.router.navigateByUrl('/dashboard/my-comments');
   }
 
   logout() {

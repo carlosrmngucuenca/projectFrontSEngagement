@@ -25,5 +25,8 @@ export const initChartconf = {
     { length: 12 },
     (_, index) => (index + 1) * 10
   ),
-  intervalTime: 60000,
+  excelentClassLabelName: 'Excelente Clase',
+  iDonotGetItLabelName: 'No Entiendo',
+  sleepLabelName: 'Tengo Sueño',
+  takeBreakLabelName: 'Tomar un descanso',
 };

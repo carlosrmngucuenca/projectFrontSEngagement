@@ -23,7 +23,7 @@ export class ExcellentClassChartComponent
   implements OnInit, OnDestroy, AfterViewInit
 {
   barChartName: string = 'barChart1';
-  barChartLabelName: string = 'Excellent Class';
+  barChartLabelName: string = initChartconf.excelentClassLabelName;
   chartLabel: string = '';
   currentPosition: number = 0;
   lineChart!: Chart;
@@ -35,7 +35,6 @@ export class ExcellentClassChartComponent
   Interactions: number = 0;
   previousValues: number[] = [];
   private subscription: Subscription = new Subscription();
-  private localStorageKeyPosition = 'IntervalPosition';
 
   /* Begin */
   constructor(private dataRealTimeService: DataRealTimeService) {}

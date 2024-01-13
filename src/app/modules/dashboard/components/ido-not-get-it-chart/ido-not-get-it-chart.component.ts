@@ -22,7 +22,7 @@ export class IDoNotGetItChartComponent
   implements OnInit, OnDestroy, AfterViewInit
 {
   barChartName: string = 'barChart1';
-  barChartLabelName: string = 'I do not get it';
+  barChartLabelName: string = initChartconf.iDonotGetItLabelName;
   chartLabel: string = '';
   currentPosition: number = 0;
   lineChart!: Chart;
@@ -34,7 +34,6 @@ export class IDoNotGetItChartComponent
   Interactions: number = 0;
   previousValues: number[] = [];
   private subscription: Subscription = new Subscription();
-  private localStorageKeyPosition = 'IntervalPosition';
 
   /* Begin*/
   constructor(private dataRealTimeService: DataRealTimeService) {}
@@ -81,7 +80,7 @@ export class IDoNotGetItChartComponent
   }
 
   isPositionWithinDataRange(): boolean {
-    return this.currentPosition < this.lineChart.data.datasets[0].data.length;
+    return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
     this.lineChart.data.datasets[0].data[this.currentPosition] = interactions;

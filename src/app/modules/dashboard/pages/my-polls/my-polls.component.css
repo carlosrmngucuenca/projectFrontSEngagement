@@ -1,0 +1,8 @@
+main {
+  position: relative;
+  left: 85px;
+  display: grid;
+  width: calc(100% - 85px);
+  height: 100vh;
+  transition: var(--tran-05);
+}
