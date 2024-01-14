@@ -19,5 +19,6 @@ export interface RoomExists {
   error?: string;
   roomId:  string;
   userId:  string;
+
 }
 

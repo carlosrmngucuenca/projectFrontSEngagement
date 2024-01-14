@@ -11,7 +11,7 @@ import { SocketService } from './socket.service';
   providedIn: 'root'
 })
 export class RoomService {
-  private apiUrl = environment.baseUrl; // Reemplaza con la URL de tu backend
+  private apiUrl = environment.baseUrl;
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
@@ -63,8 +63,8 @@ export class RoomService {
   }
 
   getRoomCode(): string | undefined {
-    const payload = this.tokenService.decodeToken();
-    const roomCode: string | undefined = payload?.roomCode;
+    let storageKey = 'roomCode';
+    const roomCode = localStorage.getItem(storageKey) || '';
     return roomCode;
   }
   logout() {
@@ -85,7 +85,6 @@ export class RoomService {
       tap((response) => {
         this.setRoomId(response._id);
         this.setRoomCode(response.code);
-        //tambien devolver el token desde el backend
       })
     );
   }
@@ -111,6 +110,7 @@ export class RoomService {
           this.tokenService.saveToken(response.token);
           this.setRoomId(response.roomId);
           this.setUserId(response.userId);
+          this.setRoomCode(roomCode);
         }
       })
     );

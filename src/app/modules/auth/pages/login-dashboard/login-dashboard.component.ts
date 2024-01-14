@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { RoomService } from 'src/app/services/room.service';
 import { environment } from 'src/environments/environment';
 declare var google: any;
@@ -10,7 +11,7 @@ declare var google: any;
   styleUrls: ['./login-dashboard.component.css']
 })
 export class LoginDashboardComponent implements OnInit {
-  constructor(private router: Router, private roomService: RoomService,) { }
+  constructor(private router: Router, private roomService: RoomService,private ngZone: NgZone,private authService: AuthService,) { }
   ngOnInit(): void {
     google.accounts.id.initialize({
       client_id: environment.googleClientId,
@@ -36,8 +37,16 @@ export class LoginDashboardComponent implements OnInit {
       //store in session
       sessionStorage.setItem("loggedInUser", JSON.stringify(payLoad));
       //navigate to home/browse
-      this.router.navigate(['dashboard']);
+
+      this.authService.login('admin').subscribe((res) => {
+        console.log(res);
+
+       //ng zone
+        this.ngZone.run(() => {
+          this.router.navigate(['/dashboard']);
+        });
+      });
+    }
 
     }
-  }
 }
