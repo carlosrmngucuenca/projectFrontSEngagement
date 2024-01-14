@@ -26,9 +26,19 @@ export class LoginDashboardComponent implements OnInit {
     })
   }
 
-  private decodeToken(token: string){
-    return JSON.parse(atob(token.split(".")[1]));
+  private decodeToken(token: string) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(this.decodeBase64(base64));
   }
+
+  private decodeBase64(base64: string) {
+    const decodedString = atob(base64);
+    return decodeURIComponent(Array.prototype.map.call(decodedString, (c) => {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+  }
+
 
   handleLogin(response: any){
     if(response) {
