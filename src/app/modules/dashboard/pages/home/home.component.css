@@ -3,10 +3,10 @@ main {
   left: 80px;
   display: grid;
   width: calc(100% - 80px);
-  height: auto;
+  height: 100vh;
   transition: var(--tran-05);
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
 .main-content.close {

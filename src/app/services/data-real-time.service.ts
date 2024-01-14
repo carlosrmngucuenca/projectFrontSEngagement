@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { SocketService } from './socket.service';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, tap } from 'rxjs';
 import {
   Activity,
   CreateActivityCommentDTO,
@@ -143,8 +143,14 @@ export class DataRealTimeService implements OnInit {
       'roomID getRecoractivitiesActivities',
       this.roomService.getRoomId()
     );
-    return this.http.get<RecordActivity[]>(
-      `${this.apiUrl}/recordActivities/${this.roomService.getRoomId()}/comment`
-    );
+    if (this.roomService.getRoomId()) {
+      return this.http.get<RecordActivity[]>(
+        `${
+          this.apiUrl
+        }/recordActivities/${this.roomService.getRoomId()}/comment`
+      );
+    } else {
+      return of([]);
+    }
   }
 }

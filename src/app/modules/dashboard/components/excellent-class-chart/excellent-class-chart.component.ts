@@ -39,10 +39,10 @@ export class ExcellentClassChartComponent
   private subscription: Subscription = new Subscription();
 
   /* Begin */
-  constructor(private dataRealTimeService: DataRealTimeService) {
+  constructor(private dataRealTimeService: DataRealTimeService) {}
+  ngOnInit() {
     this.loadPreviousValues();
   }
-  ngOnInit() {}
 
   ngAfterViewInit() {
     this.initChart();
@@ -161,10 +161,11 @@ export class ExcellentClassChartComponent
               'Carlos "Historial of "excellent class" activity found.',
               this.interactionsPerInterval
             );
-            if (this.currentPosition == this.previousValues.length) {
+            if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
               console.log('end updates');
             } else {
+              console.log('valor de count', data[0].count);
               this.updateLineChartData(data[0].count);
             }
             this.lineChart.update();

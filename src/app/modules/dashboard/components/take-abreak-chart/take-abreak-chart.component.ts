@@ -158,7 +158,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
               this.interactionsPerInterval
             );
 
-            if (this.currentPosition == this.previousValues.length) {
+            if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
             } else {
               this.updateLineChartData(data[0].count);

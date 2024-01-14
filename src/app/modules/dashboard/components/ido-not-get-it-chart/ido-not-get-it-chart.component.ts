@@ -160,7 +160,7 @@ export class IDoNotGetItChartComponent
               this.interactionsPerInterval
             );
 
-            if (this.currentPosition == this.previousValues.length) {
+            if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
             } else {
               this.updateLineChartData(data[0].count);
