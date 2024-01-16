@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyCommentsComponent } from './pages/my-comments/my-comments.component';
 import { MyConfigroomComponent } from './pages/my-configroom/my-configroom.component';
 import { MyPollsComponent } from './pages/my-polls/my-polls.component';
+import { authDashboardGuard } from 'src/app/guards/auth-dashboard.guard';
 
 const routes: Routes = [
   {
@@ -18,22 +19,27 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
+        canActivate: [authDashboardGuard],
         path: 'home',
         component: HomeComponent,
       },
       {
+        canActivate: [authDashboardGuard],
         path: 'my-dashboard',
         component: DashboardComponent,
       },
       {
+        canActivate: [authDashboardGuard],
         path: 'my-comments',
         component: MyCommentsComponent,
       },
       {
+        canActivate: [authDashboardGuard],
         path: 'my-configroom',
         component: MyConfigroomComponent,
       },
       {
+        canActivate: [authDashboardGuard],
         path: 'my-polls',
         component: MyPollsComponent,
       },

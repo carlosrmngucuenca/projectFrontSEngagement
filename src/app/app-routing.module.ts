@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { redirectGuard } from './guards/redirect.guard';
 import { authGuard } from './guards/auth.guard';
+import { authDashboardGuard } from './guards/auth-dashboard.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +15,6 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    canActivate: [redirectGuard],
     loadChildren: () =>
       import('./modules/auth/auth.module').then((module) => module.AuthModule),
   },
@@ -28,6 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [authDashboardGuard],
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then(
         (module) => module.DashboardModule
