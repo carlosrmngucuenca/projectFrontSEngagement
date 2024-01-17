@@ -9,7 +9,7 @@ import { RoomService } from 'src/app/services/room.service';
   styleUrls: ['./config-room-form.component.css'],
 })
 export class ConfigRoomFormComponent {
-  isRoomCreated: boolean = true;
+  isRoomCreated: boolean = false;
   myFormRoom: FormGroup = this.formBuilder.group({});
   newCode: string = '';
   newRoomId: string = '';
@@ -19,7 +19,7 @@ export class ConfigRoomFormComponent {
   ) {
     this.builForm();
     this.isRoomJoined();
-  } // TODO: inject service
+  }
 
   private builForm() {
     this.myFormRoom = this.formBuilder.group({

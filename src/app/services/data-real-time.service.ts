@@ -8,7 +8,7 @@ import {
   RecordActivity,
 } from '../interfaces/activity,interface';
 import { Emotion } from '../interfaces/emotion.interface';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { RoomService } from './room.service';
 
@@ -152,5 +152,12 @@ export class DataRealTimeService implements OnInit {
     } else {
       return of([]);
     }
+  }
+
+  // get to dashboard-activities/clearIntervals
+  clearIntervals(): Observable<{message:string}> {
+    return this.http.get<any>(
+      `${this.apiUrl}/dashboard-activities/clearIntervals`
+    );
   }
 }

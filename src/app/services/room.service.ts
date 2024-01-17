@@ -116,8 +116,9 @@ export class RoomService {
     );
   }
   isRoomCreated(): boolean {
-    //verify if roomId is in localStorage
-    const roomId = this.getRoomId();
+    // Verify if roomId is in localStorage
+    const roomId = localStorage.getItem('roomId');
+    console.log('isRoomCreated', !!roomId);
     return !!roomId;
   }
 
