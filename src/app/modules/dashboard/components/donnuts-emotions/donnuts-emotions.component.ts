@@ -22,11 +22,11 @@ export class DonnutsEmotionsComponent
 {
   chartType: string = 'doughnut';
   donnutChartLabels: string[] = [
-    'Surprised',
-    'Afraid',
-    'Angry',
-    'Sad',
-    'Happy',
+    'Sorprendido',
+    'Asustado',
+    'Enfadado',
+    'Triste',
+    'Feliz',
   ];
   donnutChartLabelName: string = 'Emotion';
   emotionsDataSubscription: Subscription = new Subscription();

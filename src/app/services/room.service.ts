@@ -8,15 +8,15 @@ import { TokenService } from './token.service';
 import { SocketService } from './socket.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoomService {
   private apiUrl = environment.baseUrl;
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
-    private socketService: SocketService,
-  ) { }
+    private socketService: SocketService
+  ) {}
 
   roomId: string = '';
   userId: string = '';
@@ -31,7 +31,6 @@ export class RoomService {
     this.userId = userId;
     localStorage.setItem(storageKey, userId);
   }
-
 
   joinRoom(roomCode: string, token?: string) {
     if (!token) {
@@ -54,6 +53,7 @@ export class RoomService {
   getRoomId(): string {
     let storageKey = 'roomId';
     const roomId = this.roomId || localStorage.getItem(storageKey);
+    console.log('este es el room ID en room service', roomId);
     return roomId || '';
   }
   getUserId(): string {
@@ -65,6 +65,7 @@ export class RoomService {
   getRoomCode(): string | undefined {
     let storageKey = 'roomCode';
     const roomCode = localStorage.getItem(storageKey) || '';
+    console.log('este es el roomCode en room service', roomCode);
     return roomCode;
   }
   logout() {
@@ -102,18 +103,20 @@ export class RoomService {
 
   checkRoomExists(roomCode: string, rol: string): Observable<RoomExists> {
     const headers = {
-      'rol': rol
+      rol: rol,
     };
-    return this.http.get<RoomExists>(`${this.apiUrl}/room/${roomCode}/exists`, { headers }).pipe(
-      tap((response) => {
-        if (response.ok) {
-          this.tokenService.saveToken(response.token);
-          this.setRoomId(response.roomId);
-          this.setUserId(response.userId);
-          this.setRoomCode(roomCode);
-        }
-      })
-    );
+    return this.http
+      .get<RoomExists>(`${this.apiUrl}/room/${roomCode}/exists`, { headers })
+      .pipe(
+        tap((response) => {
+          if (response.ok) {
+            this.tokenService.saveToken(response.token);
+            this.setRoomId(response.roomId);
+            this.setUserId(response.userId);
+            this.setRoomCode(roomCode);
+          }
+        })
+      );
   }
   isRoomCreated(): boolean {
     //verify if roomId is in localStorage

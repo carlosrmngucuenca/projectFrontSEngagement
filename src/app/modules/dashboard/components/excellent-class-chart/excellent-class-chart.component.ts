@@ -36,6 +36,7 @@ export class ExcellentClassChartComponent
   borderColors = lineChartColors.borderColors;
   Interactions: number = 0;
   previousValues: number[] = [];
+  historial: number[] = [];
   private subscription: Subscription = new Subscription();
 
   /* Begin */
@@ -49,7 +50,7 @@ export class ExcellentClassChartComponent
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        tap((res) => console.log('tap in excellent chart logic', res)),
+        tap((res) => console.log('tap en excellent chart logic', res)),
         filter<DashboardActivity>(
           (activity) => activity.activityType == ACTIVITY.iloveit
         )
@@ -69,7 +70,14 @@ export class ExcellentClassChartComponent
   fetchRealTimeData(activity: DashboardActivity): void {
     this.Interactions = activity.count;
     this.currentPosition = activity.historial.length;
-    this.updateLineChartData(this.Interactions);
+    this.historial = activity.historial;
+
+    if (this.isVectorLengthReached()) {
+      /* End Updates*/
+      console.log('end updates');
+    } else {
+      this.updateLineChartData(this.Interactions);
+    }
   }
 
   updateLineChartData(interactions: number): void {
@@ -81,8 +89,25 @@ export class ExcellentClassChartComponent
     }
   }
 
+  isVectorLengthReached(): boolean {
+    if (this.currentPosition == this.interactionsPerInterval.length) {
+      this.interactionsPerInterval.splice(
+        0,
+        this.historial.length,
+        ...this.historial
+      );
+      this.lineChart.update();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   isPositionWithinDataRange(): boolean {
-    console.log('len dle chart', this.lineChart.data.datasets[0].data.length);
+    console.log(
+      'el tamano del vector de la grafica excellent-class',
+      this.lineChart.data.datasets[0].data.length
+    );
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -158,7 +183,7 @@ export class ExcellentClassChartComponent
               ...this.previousValues
             );
             console.log(
-              'Carlos "Historial of "excellent class" activity found.',
+              'Se ejecuta  "isPositionWithinDataRange"',
               this.interactionsPerInterval
             );
             if (this.currentPosition == this.interactionsPerInterval.length) {

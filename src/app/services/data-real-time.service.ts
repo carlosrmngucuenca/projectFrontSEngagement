@@ -73,8 +73,8 @@ export class DataRealTimeService implements OnInit {
       .pipe(
         tap((value) =>
           console.log(
-            'dashboardActivity real time from DataRealTimeService tap operator',
-            this.roomService.getRoomId()
+            '(tap en data-real-time-service) Escuchando el evento dashboardActivity',
+            value
           )
         )
       )
@@ -87,7 +87,7 @@ export class DataRealTimeService implements OnInit {
       .pipe(
         tap((value) =>
           console.log(
-            'activityCommentRealTime real time from DataRealTimeCommentService tap operator',
+            '(tap en data-real-time-service) Escuchando el evento activityCommentRealTime',
             value
           )
         )
@@ -101,7 +101,7 @@ export class DataRealTimeService implements OnInit {
       .pipe(
         tap((value) =>
           console.log(
-            'dashboardEmotions real time from DataRealTimeService dashboardEmotions',
+            '(tap en data-real-time-service) Escuchando el evento dashboardEmotions',
             value
           )
         )

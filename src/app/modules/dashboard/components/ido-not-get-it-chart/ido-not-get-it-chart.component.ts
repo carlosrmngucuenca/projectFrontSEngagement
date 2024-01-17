@@ -35,6 +35,7 @@ export class IDoNotGetItChartComponent
   borderColors = lineChartColors.borderColors;
   Interactions: number = 0;
   previousValues: number[] = [];
+  historial: number[] = [];
   private subscription: Subscription = new Subscription();
 
   /* Begin*/
@@ -68,13 +69,32 @@ export class IDoNotGetItChartComponent
   fetchRealTimeData(activity: DashboardActivity): void {
     this.Interactions = activity.count;
     this.currentPosition = activity.historial.length;
-    this.updateLineChartData(this.Interactions);
+    this.historial = activity.historial;
+    if (this.isVectorLengthReached()) {
+      /* End Updates*/
+      console.log('end updates');
+    } else {
+      this.updateLineChartData(this.Interactions);
+    }
+  }
+
+  isVectorLengthReached(): boolean {
+    if (this.currentPosition == this.interactionsPerInterval.length) {
+      this.interactionsPerInterval.splice(
+        0,
+        this.historial.length,
+        ...this.historial
+      );
+      this.lineChart.update();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   updateLineChartData(interactions: number): void {
     if (this.isPositionWithinDataRange()) {
       this.updateDataInterval(interactions);
-
       this.lineChart.update();
     } else {
       this.endRealTimeUpdates();
@@ -82,6 +102,10 @@ export class IDoNotGetItChartComponent
   }
 
   isPositionWithinDataRange(): boolean {
+    console.log(
+      'el tamano del vector de la grafica i-do-not-get',
+      this.lineChart.data.datasets[0].data.length
+    );
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -156,7 +180,7 @@ export class IDoNotGetItChartComponent
               ...this.previousValues
             );
             console.log(
-              'Carlos "Historial of "I do not get it" activity found.',
+              'Se ejecuta  "isPositionWithinDataRange"',
               this.interactionsPerInterval
             );
 
