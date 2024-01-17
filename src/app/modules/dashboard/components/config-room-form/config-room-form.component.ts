@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Room } from 'src/app/interfaces/room.interface';
+import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { RoomService } from 'src/app/services/room.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class ConfigRoomFormComponent {
   newRoomId: string = '';
   constructor(
     private formBuilder: FormBuilder,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private dataRealTimeService: DataRealTimeService,
   ) {
     this.builForm();
     this.isRoomJoined();
@@ -57,6 +59,7 @@ export class ConfigRoomFormComponent {
     }
   }
   exitRoom() {
+    this.dataRealTimeService.clearIntervals().subscribe();
     this.isRoomCreated = false;
     this.roomService.leaveRoom(this.newCode);
   }
