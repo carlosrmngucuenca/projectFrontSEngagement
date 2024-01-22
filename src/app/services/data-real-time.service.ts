@@ -8,7 +8,7 @@ import {
   RecordActivity,
 } from '../interfaces/activity,interface';
 import { Emotion } from '../interfaces/emotion.interface';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { RoomService } from './room.service';
 
