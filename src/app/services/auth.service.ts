@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ResponseLoginDashboard } from '../interfaces/models/auth.model';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
