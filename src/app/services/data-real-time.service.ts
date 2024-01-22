@@ -125,17 +125,29 @@ export class DataRealTimeService implements OnInit {
   }
 
   getDashboardActivities(): Observable<DashboardActivity[]> {
-    console.log('roomID getActivities', this.roomService.getRoomId());
-    return this.http.get<DashboardActivity[]>(
-      `${this.apiUrl}/dashboard-activities/${this.roomService.getRoomId()}`
+    console.log(
+      'estoy en getDashboard valor de lenght de room Id',
+      this.roomService.getRoomId().length
     );
+    if (this.roomService.getRoomId().length > 0) {
+      console.log('roomID getActivities', this.roomService.getRoomId());
+      return this.http.get<DashboardActivity[]>(
+        `${this.apiUrl}/dashboard-activities/${this.roomService.getRoomId()}`
+      );
+    } else {
+      return of([]);
+    }
   }
 
   getDashboardEmotions(): Observable<Emotion> {
-    console.log('roomID', this.roomService.getRoomId());
-    return this.http.get<Emotion>(
-      `${this.apiUrl}/dashboard-emotions/${this.roomService.getRoomId()}`
-    );
+    if (this.roomService.getRoomId().length > 0) {
+      console.log('roomID', this.roomService.getRoomId());
+      return this.http.get<Emotion>(
+        `${this.apiUrl}/dashboard-emotions/${this.roomService.getRoomId()}`
+      );
+    } else {
+      return of(this.emotion);
+    }
   }
 
   getCommentsAndDoubts(): Observable<RecordActivity[]> {
@@ -143,7 +155,7 @@ export class DataRealTimeService implements OnInit {
       'roomID getRecoractivitiesActivities',
       this.roomService.getRoomId()
     );
-    if (this.roomService.getRoomId()) {
+    if (this.roomService.getRoomId().length > 0) {
       return this.http.get<RecordActivity[]>(
         `${
           this.apiUrl
@@ -155,7 +167,7 @@ export class DataRealTimeService implements OnInit {
   }
 
   // get to dashboard-activities/clearIntervals
-  clearIntervals(): Observable<{message:string}> {
+  clearIntervals(): Observable<{ message: string }> {
     return this.http.get<any>(
       `${this.apiUrl}/dashboard-activities/clearIntervals`
     );

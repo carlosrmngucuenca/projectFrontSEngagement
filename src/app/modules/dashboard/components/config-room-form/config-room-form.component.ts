@@ -17,7 +17,7 @@ export class ConfigRoomFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private roomService: RoomService,
-    private dataRealTimeService: DataRealTimeService,
+    private dataRealTimeService: DataRealTimeService
   ) {
     this.builForm();
     this.isRoomJoined();
@@ -28,7 +28,6 @@ export class ConfigRoomFormComponent {
       roomName: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
-
 
   get isRoomNameValid() {
     return (
@@ -65,11 +64,10 @@ export class ConfigRoomFormComponent {
   }
 
   isRoomJoined() {
-    if(this.roomService.isRoomCreated()){
+    if (this.roomService.isRoomCreated()) {
       this.isRoomCreated = true;
       this.newCode = this.roomService.getRoomCode() || '';
     }
-    return ;
+    return;
   }
-
 }
