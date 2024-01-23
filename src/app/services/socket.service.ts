@@ -11,10 +11,10 @@ export class SocketService {
   constructor(private socket: Socket) {
     //el constructor se inicializa una sola vez
     this.onSuccess().subscribe((success) => {
-      console.log(success);
+      //console.log(success);
     });
     this.onError().subscribe((error) => {
-      console.error(error);
+      // console.error(error);
     });
   }
 
