@@ -50,7 +50,7 @@ export class ExcellentClassChartComponent
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        tap((res) => console.log('tap en excellent chart logic', res)),
+        //tap((res) => console.log('tap en excellent chart logic', res)),
         filter<DashboardActivity>(
           (activity) => activity.activityType == ACTIVITY.iloveit
         )
@@ -74,7 +74,7 @@ export class ExcellentClassChartComponent
 
     if (this.isVectorLengthReached()) {
       /* End Updates*/
-      console.log('end updates');
+      // console.log('end updates');
     } else {
       this.updateLineChartData(this.Interactions);
     }
@@ -104,10 +104,10 @@ export class ExcellentClassChartComponent
   }
 
   isPositionWithinDataRange(): boolean {
-    console.log(
+    /*console.log(
       'el tamano del vector de la grafica excellent-class',
       this.lineChart.data.datasets[0].data.length
-    );
+    );*/
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -171,32 +171,32 @@ export class ExcellentClassChartComponent
         if (data.length > 0) {
           this.previousValues = data[0].historial;
           this.currentPosition = this.previousValues.length;
-          console.log(
+          /*console.log(
             'Historial of "excellent class" activity:',
             this.previousValues
-          );
-          console.log('currrent position', this.currentPosition);
+          );*/
+          //console.log('currrent position', this.currentPosition);
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
               0,
               this.previousValues.length,
               ...this.previousValues
             );
-            console.log(
-              'Se ejecuta  "isPositionWithinDataRange"',
-              this.interactionsPerInterval
-            );
+            // console.log(
+            //   'Se ejecuta  "isPositionWithinDataRange"',
+            //   this.interactionsPerInterval
+            // );
             if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
-              console.log('end updates');
+              //console.log('end updates');
             } else {
-              console.log('valor de count', data[0].count);
+              // console.log('valor de count', data[0].count);
               this.updateLineChartData(data[0].count);
             }
             this.lineChart.update();
           }
         } else {
-          console.log('No "excellent class" activity found.');
+          //console.log('No "excellent class" activity found.');
         }
       });
   }

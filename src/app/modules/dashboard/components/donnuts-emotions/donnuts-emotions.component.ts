@@ -104,7 +104,7 @@ export class DonnutsEmotionsComponent
 
   updateChart(newData: Emotion) {
     if (!this.emotionsChart) {
-      console.error('Chart element not found or not initialized.');
+      //console.error('Chart element not found or not initialized.');
       return;
     }
     this.emotionsChart.data.datasets[0].data = [
@@ -116,20 +116,20 @@ export class DonnutsEmotionsComponent
     ];
 
     this.emotionsChart.update();
-    console.log('hola estoy actualisando emotion chart', newData);
+    //console.log('hola estoy actualisando emotion chart', newData);
   }
   ngOnDestroy() {
-    console.log('Destroy Emotions chart');
+    //console.log('Destroy Emotions chart');
   }
   loadPreviousValues() {
     this.dataRealTimeService
       .getDashboardEmotions()
-      .pipe(tap((res) => console.log('tap in emotions chart logic get', res)))
+      .pipe(/*tap((res) => console.log('tap in emotions chart logic get', res))*/)
       .subscribe((data: Emotion) => {
         if (data != null) {
           this.updateChart(data);
         } else {
-          console.log('No "emotions" activity found.');
+          //console.log('No "emotions" activity found.');
         }
       });
   }

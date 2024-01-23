@@ -49,7 +49,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        tap((res) => console.log('tap in sleep chart logic', res)),
+        //tap((res) => console.log('tap in sleep chart logic', res)),
         filter<DashboardActivity>(
           (activity) => activity.activityType == ACTIVITY.sleep
         )
@@ -72,7 +72,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
     this.historial = activity.historial;
     if (this.isVectorLengthReached()) {
       /* End Updates*/
-      console.log('end updates');
+      //console.log('end updates');
     } else {
       this.updateLineChartData(this.Interactions);
     }
@@ -102,10 +102,10 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   isPositionWithinDataRange(): boolean {
-    console.log(
-      'el tamano del vector de la grafica sleep-chart',
-      this.lineChart.data.datasets[0].data.length
-    );
+    // console.log(
+    //   'el tamano del vector de la grafica sleep-chart',
+    //   this.lineChart.data.datasets[0].data.length
+    // );
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -168,7 +168,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((data: DashboardActivity[]) => {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
-          console.log('Historial of "sleep" activity:', this.previousValues);
+          //console.log('Historial of "sleep" activity:', this.previousValues);
           this.currentPosition = this.previousValues.length;
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
@@ -176,10 +176,10 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
               this.previousValues.length,
               ...this.previousValues
             );
-            console.log(
-              'Se ejecuta  "isPositionWithinDataRange"',
-              this.interactionsPerInterval
-            );
+            // console.log(
+            //   'Se ejecuta  "isPositionWithinDataRange"',
+            //   this.interactionsPerInterval
+            // );
 
             if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
@@ -189,7 +189,7 @@ export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
             this.lineChart.update();
           }
         } else {
-          console.log('No "sleep" activity found.');
+          //console.log('No "sleep" activity found.');
         }
       });
   }

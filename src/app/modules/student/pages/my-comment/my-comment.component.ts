@@ -26,7 +26,7 @@ export class MyCommentComponent {
     //get text from textarea
     this.text = this.textAreaComment.nativeElement.value.trim();
     if (this.text && this.roomId) {
-      console.log('submit comment', this.text);
+      //console.log('submit comment', this.text);
       this.serviceActivity.saveComment(
         this.roomId,
         this.ACTIVITY.comment,
@@ -36,7 +36,7 @@ export class MyCommentComponent {
       this.router.navigate(['/student/home']);
       //redirect to path /student/home
     } else {
-      console.log('text area is empty or contains only blank spaces');
+      //console.log('text area is empty or contains only blank spaces');
     }
   }
 }

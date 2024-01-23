@@ -6,6 +6,8 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 import { redirectGuard } from './guards/redirect.guard';
 import { authGuard } from './guards/auth.guard';
 import { authDashboardGuard } from './guards/auth-dashboard.guard';
+import { roleGuard } from './guards/role.guard';
+import { dashboardroleGuard } from './guards/dashboardrole.guard';
 
 const routes: Routes = [
   {
@@ -20,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'student',
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleGuard],
     loadChildren: () =>
       import('./modules/student/student.module').then(
         (module) => module.StudentModule
@@ -28,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [authDashboardGuard],
+    canActivate: [authDashboardGuard, dashboardroleGuard],
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then(
         (module) => module.DashboardModule

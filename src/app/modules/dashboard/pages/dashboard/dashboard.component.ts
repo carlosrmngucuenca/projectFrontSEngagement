@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,11 +17,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log('soy ngOnInit Del Dashboard');
+    //console.log('soy ngOnInit Del Dashboard');
   }
 
   ngOnDestroy() {
-    console.log('onDestroy Dashboard');
+    //console.log('onDestroy Dashboard');
   }
 }

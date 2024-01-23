@@ -25,7 +25,7 @@ export class MyDoubtComponent {
     //get text from textarea
     const text = this.textAreaComment.nativeElement.value.trim();
     if (text && this.roomId) {
-      console.log('submit comment', text);
+      //console.log('submit comment', text);
       //redirect to path /student/home
       this.serviceActivity.saveComment(
         this.roomId,
@@ -35,7 +35,7 @@ export class MyDoubtComponent {
       this.sumService.addValuePointsDoubts();
       this.router.navigate(['/student/home']);
     } else {
-      console.log('text area is empty or contains only blank spaces');
+      //console.log('text area is empty or contains only blank spaces');
     }
   }
 }

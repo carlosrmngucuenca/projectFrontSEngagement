@@ -121,7 +121,7 @@ export class ClickCounterService {
   }
 
   getEmotionsClicks(): number {
-    console.log('get emotions clicks', this.emotionsSubject.value);
+    //console.log('get emotions clicks', this.emotionsSubject.value);
     return this.emotionsSubject.value;
   }
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RequestStatus } from 'src/app/interfaces/models/request-status.model';
 import { RoomService } from '../../../../services/room.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'auth-login-form',
@@ -14,11 +15,12 @@ export class LoginFormComponent {
   isRoomInvalid: boolean = false; // Variable para rastrear si la sala no es válida
   miFormulario!: FormGroup;
   status: RequestStatus = 'init';
-  baseUrl = environment.baseUrl;
+  mainUrl = environment.mainUrl;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private roomService: RoomService
+    private roomService: RoomService,
+    private authService: AuthService
   ) {
     this.builForm();
   }
@@ -53,6 +55,7 @@ export class LoginFormComponent {
         .checkRoomExists(userPin, 'user')
         .subscribe((roomExists) => {
           if (roomExists.ok) {
+            this.authService.setAndStoreUserRole('student');
             this.router.navigateByUrl(`/student/my-emotions`);
           } else if (!roomExists.ok) {
             this.isRoomInvalid = true;

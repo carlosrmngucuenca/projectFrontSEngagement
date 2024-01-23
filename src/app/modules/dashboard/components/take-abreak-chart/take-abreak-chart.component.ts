@@ -47,7 +47,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        tap((res) => console.log('tap in takeBreak chart logic', res)),
+        //tap((res) => console.log('tap in takeBreak chart logic', res)),
         filter<DashboardActivity>(
           (activity) => activity.activityType == ACTIVITY.break
         )
@@ -70,7 +70,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
     this.historial = activity.historial;
     if (this.isVectorLengthReached()) {
       /* End Updates*/
-      console.log('end updates');
+      //console.log('end updates');
     } else {
       this.updateLineChartData(this.Interactions);
     }
@@ -100,10 +100,10 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   }
 
   isPositionWithinDataRange(): boolean {
-    console.log(
-      'el tamano del vector de la grafica take-break',
-      this.lineChart.data.datasets[0].data.length
-    );
+    // console.log(
+    //   'el tamano del vector de la grafica take-break',
+    //   this.lineChart.data.datasets[0].data.length
+    // );
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -155,7 +155,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
     this.dataRealTimeService
       .getDashboardActivities()
       .pipe(
-        tap((res) => console.log('tap in takeBreak chart logic get', res)),
+        //tap((res) => console.log('tap in takeBreak chart logic get', res)),
         map<DashboardActivity[], DashboardActivity[]>(
           (activities: DashboardActivity[]) => {
             return activities.filter((activity: DashboardActivity) => {
@@ -168,20 +168,20 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
           this.currentPosition = this.previousValues.length;
-          console.log(
-            'Historial of "takeBreak class" activity:',
-            this.previousValues
-          );
+          // console.log(
+          //   'Historial of "takeBreak class" activity:',
+          //   this.previousValues
+          // );
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
               0,
               this.previousValues.length,
               ...this.previousValues
             );
-            console.log(
-              'Se ejecuta  "isPositionWithinDataRange"',
-              this.interactionsPerInterval
-            );
+            // console.log(
+            //   'Se ejecuta  "isPositionWithinDataRange"',
+            //   this.interactionsPerInterval
+            // );
 
             if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
@@ -191,7 +191,7 @@ export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
             this.lineChart.update();
           }
         } else {
-          console.log('No "takeBreak" activity found.');
+          //console.log('No "takeBreak" activity found.');
         }
       });
   }

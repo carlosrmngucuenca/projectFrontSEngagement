@@ -30,6 +30,6 @@ export class ActivityService {
       text,
       userId: this.roomService.getUserId(),
     });
-    console.log('saveComment');
+    //console.log('saveComment');
   }
 }

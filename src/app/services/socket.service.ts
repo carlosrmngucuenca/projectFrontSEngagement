@@ -20,12 +20,12 @@ export class SocketService {
 
   connect() {
     this.socket.connect();
-    console.log('socket connected');
+    //console.log('socket connected');
   }
 
   disconnect() {
     this.socket.disconnect();
-    console.log('socket disconnected');
+    //console.log('socket disconnected');
   }
 
   getSocket(): Socket {

@@ -47,7 +47,7 @@ export class ConfigRoomFormComponent {
     if (this.myFormRoom.valid) {
       const newRoom = this.myFormRoom.get('roomName')?.value;
       this.roomService.createRoom(newRoom).subscribe((response: Room) => {
-        console.log('Nueva sala creada con exito', response);
+        //console.log('Nueva sala creada con exito', response);
         this.newCode = response.code;
         this.newRoomId = response._id;
       });

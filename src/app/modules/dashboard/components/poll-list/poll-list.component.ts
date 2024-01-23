@@ -37,13 +37,11 @@ export class PollListComponent {
 
   sendPoll() {
     const infoMyPoll = this.myPolls.value;
-    console.log('Mi encuesta', infoMyPoll);
+    //console.log('Mi encuesta', infoMyPoll);
     this.pollID = infoMyPoll.IdControl;
-    console.log('id Mi encuesta', this.pollID);
+    //console.log('id Mi encuesta', this.pollID);
     this.pollService.sendPoll(this.pollID);
-    localStorage.setItem('PollID',this.pollID)
-    console.log('send poll Mi encuesta');
+    localStorage.setItem('PollID', this.pollID);
+    //console.log('send poll Mi encuesta');
   }
-
-  
 }

@@ -70,42 +70,42 @@ export class DataRealTimeService implements OnInit {
   ) {
     this.socketService
       .on<any>('dashboardActivity')
-      .pipe(
-        tap((value) =>
+      .pipe
+      /* tap((value) =>
           console.log(
             '(tap en data-real-time-service) Escuchando el evento dashboardActivity',
             value
           )
-        )
-      )
+        )*/
+      ()
       .subscribe((activity: any) => {
         this.activitySubject.next(activity);
       });
 
     this.socketService
       .on<RecordActivity>('activityCommentRealTime')
-      .pipe(
-        tap((value) =>
+      .pipe
+      /*tap((value) =>
           console.log(
             '(tap en data-real-time-service) Escuchando el evento activityCommentRealTime',
             value
           )
-        )
-      )
+        )*/
+      ()
       .subscribe((activity: RecordActivity) => {
         this.activityCommentSubject.next(activity);
       });
 
     this.socketService
       .on<Emotion>('dashboardEmotions')
-      .pipe(
-        tap((value) =>
+      .pipe
+      /*tap((value) =>
           console.log(
             '(tap en data-real-time-service) Escuchando el evento dashboardEmotions',
             value
           )
-        )
-      )
+        )*/
+      ()
       .subscribe((activity: Emotion) => {
         this.emotionsDataSubject.next(activity);
       });
@@ -125,12 +125,12 @@ export class DataRealTimeService implements OnInit {
   }
 
   getDashboardActivities(): Observable<DashboardActivity[]> {
-    console.log(
-      'estoy en getDashboard valor de lenght de room Id',
-      this.roomService.getRoomId().length
-    );
+    // console.log(
+    //   'estoy en getDashboard valor de lenght de room Id',
+    //   this.roomService.getRoomId().length
+    // );
     if (this.roomService.getRoomId().length > 0) {
-      console.log('roomID getActivities', this.roomService.getRoomId());
+      //console.log('roomID getActivities', this.roomService.getRoomId());
       return this.http.get<DashboardActivity[]>(
         `${this.apiUrl}/dashboard-activities/${this.roomService.getRoomId()}`
       );
@@ -141,7 +141,7 @@ export class DataRealTimeService implements OnInit {
 
   getDashboardEmotions(): Observable<Emotion> {
     if (this.roomService.getRoomId().length > 0) {
-      console.log('roomID', this.roomService.getRoomId());
+      //console.log('roomID', this.roomService.getRoomId());
       return this.http.get<Emotion>(
         `${this.apiUrl}/dashboard-emotions/${this.roomService.getRoomId()}`
       );
@@ -151,10 +151,10 @@ export class DataRealTimeService implements OnInit {
   }
 
   getCommentsAndDoubts(): Observable<RecordActivity[]> {
-    console.log(
-      'roomID getRecoractivitiesActivities',
-      this.roomService.getRoomId()
-    );
+    // console.log(
+    //   'roomID getRecoractivitiesActivities',
+    //   this.roomService.getRoomId()
+    // );
     if (this.roomService.getRoomId().length > 0) {
       return this.http.get<RecordActivity[]>(
         `${

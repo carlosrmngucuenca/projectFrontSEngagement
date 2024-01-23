@@ -25,7 +25,7 @@ export class SumService {
         this.progressService.getProgress$() + this.doNotGetItPercentaje
       );
     } else {
-      console.log('no es posible mas click I DoNotGetIt Button');
+      //console.log('no es posible mas click I DoNotGetIt Button');
     }
   }
 
@@ -36,7 +36,7 @@ export class SumService {
         this.progressService.getProgress$() + this.takeBreakPercentaje
       );
     } else {
-      console.log('no es posible mas click I Take A break Button');
+      //console.log('no es posible mas click I Take A break Button');
     }
   }
 
@@ -47,7 +47,7 @@ export class SumService {
         this.progressService.getProgress$() + this.sleepPercentaje
       );
     } else {
-      console.log('no es posible mas click sleep Button');
+      //console.log('no es posible mas click sleep Button');
     }
   }
 
@@ -58,7 +58,7 @@ export class SumService {
         this.progressService.getProgress$() + this.loveClassPercentaje
       );
     } else {
-      console.log('no es posible mas click love Button');
+      //console.log('no es posible mas click love Button');
     }
   }
 
@@ -69,7 +69,7 @@ export class SumService {
         this.progressService.getProgress$() + this.emotionPercentaje
       );
     } else {
-      console.log('no es posible mas click emotion Button');
+      // console.log('no es posible mas click emotion Button');
     }
   }
 
@@ -80,7 +80,7 @@ export class SumService {
         this.progressService.getProgress$() + this.sendCommentsPercentaje
       );
     } else {
-      console.log('no es posible mas click comment Button');
+      //console.log('no es posible mas click comment Button');
     }
   }
 
@@ -91,7 +91,7 @@ export class SumService {
         this.progressService.getProgress$() + this.doubtPercentaje
       );
     } else {
-      console.log('no es posible mas click doubt Button');
+      //console.log('no es posible mas click doubt Button');
     }
   }
 }

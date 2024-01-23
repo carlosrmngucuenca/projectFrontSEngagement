@@ -53,7 +53,7 @@ export class RoomService {
   getRoomId(): string {
     let storageKey = 'roomId';
     const roomId = this.roomId || localStorage.getItem(storageKey);
-    console.log('este es el room ID en room service', roomId);
+    //console.log('este es el room ID en room service', roomId);
     return roomId || '';
   }
   getUserId(): string {
@@ -65,7 +65,7 @@ export class RoomService {
   getRoomCode(): string | undefined {
     let storageKey = 'roomCode';
     const roomCode = localStorage.getItem(storageKey) || '';
-    console.log('este es el roomCode en room service', roomCode);
+    //console.log('este es el roomCode en room service', roomCode);
     return roomCode;
   }
   logout() {
@@ -121,7 +121,7 @@ export class RoomService {
   isRoomCreated(): boolean {
     // Verify if roomId is in localStorage
     const roomId = localStorage.getItem('roomId');
-    console.log('isRoomCreated', !!roomId);
+    //console.log('isRoomCreated', !!roomId);
     return !!roomId;
   }
 

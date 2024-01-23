@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     private pollService: PollService,
     private sideBarService: SidebarService,
     private router: Router,
-    private roomService: RoomService,
+    private roomService: RoomService
   ) {
     this.sideBarService.getwidthObservable$().subscribe((data: boolean) => {
       this.sidebarWidth = data;
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       this.pollService.closePoll(this.pollID);
     }
 
-    console.log('close poll');
+    // console.log('close poll');
   }
 
   navigateToPollPage() {

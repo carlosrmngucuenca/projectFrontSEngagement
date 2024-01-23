@@ -20,7 +20,7 @@ export class CommentCardComponent implements OnInit {
     this.dataRealTimeService
       .getActivityComment$()
       .pipe(
-        tap((res) => console.log('estoy comment card')),
+        //tap((res) => console.log('estoy comment card')),
         filter((activity: RecordActivity) => activity.activityType == 'comment')
       )
       .subscribe((activity) => {
@@ -32,19 +32,20 @@ export class CommentCardComponent implements OnInit {
   }
 
   fetchRealTimeData(activity: RecordActivity) {
-    console.log('hola soy commn card fetch', activity);
+    //console.log('hola soy commn card fetch', activity);
     this.comments.push(activity);
   }
 
   loadPreviousValues() {
     this.dataRealTimeService
       .getCommentsAndDoubts()
-      .pipe(tap((res) => console.log('tap in comment card comppnent', res)))
+      .pipe(
+        /*tap((res) => console.log('tap in comment card comppnent', res))*/)
       .subscribe((data: RecordActivity[]) => {
         if (data != null) {
           this.loadCcomments(data);
         } else {
-          console.log('No "load previous values" activity found.');
+          //console.log('No "load previous values" activity found.');
         }
       });
   }

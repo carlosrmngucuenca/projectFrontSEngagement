@@ -29,7 +29,7 @@ export class PollService implements OnInit {
       this.isPollActivedSubject.next(true);
     });
     this.socketService.on<string>('closePoll').subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.isPollActivedSubject.next(false);
       this.isPollActived$ = this.isPollActivedSubject.asObservable();
       //clean local storage pollSaved

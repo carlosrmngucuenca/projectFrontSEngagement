@@ -49,7 +49,7 @@ export class IDoNotGetItChartComponent
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        tap((res) => console.log('tap in I do not get it chart logic', res)),
+        //tap((res) => console.log('tap in I do not get it chart logic', res)),
         filter<DashboardActivity>(
           (activity) => activity.activityType == ACTIVITY.iDontGetIt
         )
@@ -72,7 +72,7 @@ export class IDoNotGetItChartComponent
     this.historial = activity.historial;
     if (this.isVectorLengthReached()) {
       /* End Updates*/
-      console.log('end updates');
+      //console.log('end updates');
     } else {
       this.updateLineChartData(this.Interactions);
     }
@@ -102,10 +102,10 @@ export class IDoNotGetItChartComponent
   }
 
   isPositionWithinDataRange(): boolean {
-    console.log(
-      'el tamano del vector de la grafica i-do-not-get',
-      this.lineChart.data.datasets[0].data.length
-    );
+    // console.log(
+    //   'el tamano del vector de la grafica i-do-not-get',
+    //   this.lineChart.data.datasets[0].data.length
+    // );
     return this.currentPosition <= this.lineChart.data.datasets[0].data.length;
   }
   updateDataInterval(interactions: number) {
@@ -169,20 +169,20 @@ export class IDoNotGetItChartComponent
         if (data.length > 0) {
           this.previousValues = data[0].historial;
           this.currentPosition = this.previousValues.length;
-          console.log(
-            'Historial of "I do not get it" activity:',
-            this.previousValues
-          );
+          // console.log(
+          //   'Historial of "I do not get it" activity:',
+          //   this.previousValues
+          // );
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
               0,
               this.previousValues.length,
               ...this.previousValues
             );
-            console.log(
-              'Se ejecuta  "isPositionWithinDataRange"',
-              this.interactionsPerInterval
-            );
+            // console.log(
+            //   'Se ejecuta  "isPositionWithinDataRange"',
+            //   this.interactionsPerInterval
+            // );
 
             if (this.currentPosition == this.interactionsPerInterval.length) {
               /* End Updates*/
@@ -192,7 +192,7 @@ export class IDoNotGetItChartComponent
             this.lineChart.update();
           }
         } else {
-          console.log('No "I do not get it" activity found.');
+          //console.log('No "I do not get it" activity found.');
         }
       });
   }
