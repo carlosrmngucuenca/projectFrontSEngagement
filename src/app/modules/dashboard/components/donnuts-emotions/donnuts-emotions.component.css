@@ -1,6 +1,6 @@
 .donnutChart-container {
   width: 100%;
-  height: auto; /* Adjust height dynamically */
+  height: 100%; /* Adjust height dynamically */
   border-radius: 16px;
   padding: 8px;
 
