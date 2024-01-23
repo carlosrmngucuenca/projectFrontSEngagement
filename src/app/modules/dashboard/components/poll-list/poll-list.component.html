@@ -4,10 +4,6 @@
       <div class="poll-grid">
         <div class="poll" *ngFor="let poll of pollList; index as i">
           <div class="poll__header">
-            <p>
-              Encuesta <span>{{ i + 1 }}</span>
-            </p>
-
             <p>{{ poll.pollTitle }}</p>
           </div>
           <div class="poll__body">
@@ -30,6 +26,9 @@
           </div>
         </div>
       </div>
+      <div *ngIf="pollSent" class="poll-sent-message">
+        Encuesta enviada con éxito.
+      </div>
       <button
         type="submit"
         [disabled]="myPolls.invalid"
@@ -39,5 +38,6 @@
         Enviar encuesta
       </button>
     </div>
+
   </form>
 </main>
