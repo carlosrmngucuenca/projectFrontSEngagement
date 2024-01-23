@@ -9,6 +9,7 @@ import { PollService } from 'src/app/services/poll.service';
   styleUrls: ['./poll-list.component.css'],
 })
 export class PollListComponent {
+  pollSent: boolean = false;
   pollList: Poll[] = [];
   myPolls: FormGroup = this.formBuilder.group({});
   pollControlName = 'IdControl';
@@ -42,6 +43,7 @@ export class PollListComponent {
     //console.log('id Mi encuesta', this.pollID);
     this.pollService.sendPoll(this.pollID);
     localStorage.setItem('PollID', this.pollID);
+    this.pollSent = true;
     //console.log('send poll Mi encuesta');
   }
 }
