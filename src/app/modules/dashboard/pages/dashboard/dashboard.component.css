@@ -4,9 +4,8 @@ main {
   position: relative;
   left: 80px;
   width: calc(100% - 80px);
-  transition: var(--tran-05);
-
   height: 100vh;
+  transition: var(--tran-05);
 }
 
 main p {
@@ -15,8 +14,6 @@ main p {
 
 .main-content.close {
   filter: blur(5px); /* Apply blur effect */
-  /* OR */
-  opacity: 0.7; /* Reduce opacity */
   transition: filter 0.3s ease; /* Add transition for a smooth effect */
 }
 
@@ -29,14 +26,14 @@ main p {
     minmax(min(var(--min-column-size, 100%)), 1fr)
   );
   place-content: center;
-  grid-auto-rows: 20rem;
-
-  /*grid-template-rows: repeat(5, minmax(100px, 350px));*/
-  /*justify-content: center;*/
+  grid-auto-rows: 20rem; /* Adjust as needed */
 }
 
 .dashboard-barChart {
-  padding: 0px 8px 8px 8px;
+  padding: 16px; /* Adjusted padding */
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3); /* Consistent shadow */
+  border-radius: 16px; /* Consistent border-radius */
+  background-color: #fff; /* Chart background */
 }
 
 @media screen and (min-width: 670px) {
@@ -44,6 +41,5 @@ main p {
     position: relative;
     left: 250px;
     width: calc(100% - 250px);
-    transition: var(--tran-05);
   }
 }
