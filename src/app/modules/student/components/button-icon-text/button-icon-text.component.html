@@ -1,4 +1,9 @@
-<button class="button" (mousedown)="toggleHeart()" (mouseup)="toggleHeart()" [style.background-color]="buttonColor" >
+<button
+  class="button"
+  (mousedown)="toggleHeart()"
+  (mouseup)="toggleHeart()"
+  [style.background-color]="buttonColor"
+>
   <ng-container
     *ngIf="
       imageUrl === './../../../../assets/icons/good-class-icon.svg';
@@ -22,6 +27,14 @@
         stroke-linejoin="round"
       />
     </svg>
+  </ng-container>
+  <ng-container *ngIf="imageUrl === './../../../../assets/icons/poll-icon.svg'">
+    <div
+      *ngIf="isEnabledPoll === false"
+      [class.confirmation-message]="!isEnabledPoll"
+    >
+      1
+    </div>
   </ng-container>
   <ng-template #otherOption
     ><img [src]="imageUrl" [alt]="altImg" class="button__icon" #option

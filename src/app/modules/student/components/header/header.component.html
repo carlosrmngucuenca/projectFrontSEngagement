@@ -7,7 +7,7 @@
     routerLink="/student/home"
   />
 
-  <p routerLink="/student/home" class="header__title">{{ name }} </p>
+  <p routerLink="/student/home" class="header__title">{{ name }}</p>
 
   <nav>
     <ul>
@@ -22,6 +22,8 @@
           <li>
             <student-dropdown-options
               (mouseleave)="toggleDropdown()"
+              [isVisible]="showDropdown"
+              [class.isVisible]="showDropdown"
               *ngIf="showDropdown"
               (optionSelected)="redirect($event)"
             ></student-dropdown-options>

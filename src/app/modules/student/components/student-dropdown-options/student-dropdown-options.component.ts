@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'student-dropdown-options',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class StudentDropdownOptionsComponent {
   @Output() optionSelected = new EventEmitter<string>();
+  @Input() isVisible: boolean = true;
 
   selectOption(option: string) {
     this.optionSelected.emit(option);

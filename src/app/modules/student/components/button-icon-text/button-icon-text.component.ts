@@ -12,9 +12,20 @@ export class ButtonIconTextComponent {
   @Input() imageUrl = '';
   @Input() altImg = '';
   @Input() buttonColor: string = '';
+  @Input() isEnabledPoll: boolean = false;
+  infoSent = true;
   isLiked: boolean = false;
   constructor() {}
   toggleHeart() {
     this.isLiked = !this.isLiked;
+  }
+
+  sendInfo() {
+    // Code to send the information
+    // ...
+    // Set the flag to true to show the confirmation message
+    // this.infoSent = true;
+    // Optionally, hide the message after a few seconds
+    //setTimeout(() => (this.infoSent = false), 500); // 3 seconds
   }
 }

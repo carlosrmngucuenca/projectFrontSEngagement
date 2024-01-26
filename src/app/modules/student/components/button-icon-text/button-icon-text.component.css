@@ -1,5 +1,6 @@
 .button {
   display: grid;
+  position: relative;
   grid-template-columns: auto 1fr; /* Dos columnas: una para el icono y otra para el texto */
   align-items: center; /* Alinea el contenido verticalmente en el centro */
 
@@ -17,8 +18,9 @@ button {
   transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-button:active {
-  transform: scale(0.96) translateY(-4px);
+button:active > .button__icon {
+  transform: scale(0.92) translateY(-4px);
+  transition: all 0.1s ease-in-out;
 }
 
 button:hover {
@@ -27,6 +29,7 @@ button:hover {
 
 .button__icon {
   margin-right: 10px;
+
   /* adpatar la imagen aunque sea grande */
 
   /* Puedes ajustar el margen derecho según tus preferencias para la separación entre el icono y el texto */
@@ -44,4 +47,35 @@ button:hover {
 
 .heart-icon.filled {
   fill: white;
+}
+
+.confirmation-message {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: calc(100% - 1.5rem);
+  top: 0rem;
+  padding: 0.5rem;
+  border-radius: 100%;
+  background-color: var(--main-primary-color, #173264);
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+
+  z-index: 10;
+  color: white;
+}
+
+@keyframes bounce {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 0.5rem;
+  }
+  100% {
+    top: 0;
+  }
 }

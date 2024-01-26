@@ -48,6 +48,7 @@
 .disabled-button {
   opacity: 0.6; /* Puedes ajustar este valor para cambiar la opacidad */
   pointer-events: none; /* Opcional: desactiva los eventos del ratón sobre el botón deshabilitado */
+  transition: var(--tran-02);
 }
 .enable-button {
   pointer-events: visible; /* Opcional: desactiva los eventos del ratón sobre el botón deshabilitado */
