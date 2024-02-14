@@ -46,6 +46,10 @@ export class HeaderComponent {
     this.sideBarService.setSidebarWidth(this.sidebarWidth);
     this.router.navigateByUrl('/dashboard/my-configroom');
   }
+  goPoll() {
+    this.sideBarService.setSidebarWidth(this.sidebarWidth);
+    this.router.navigateByUrl('/dashboard/my-survey-results');
+  }
 
   logout() {
     localStorage.clear();

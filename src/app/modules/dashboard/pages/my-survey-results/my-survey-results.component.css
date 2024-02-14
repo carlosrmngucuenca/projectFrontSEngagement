@@ -1,0 +1,23 @@
+main {
+  display: grid;
+  align-items: center;
+  position: relative;
+  left: 80px;
+  width: calc(100% - 80px);
+  height: 100vh;
+  transition: var(--tran-05);
+}
+
+main p {
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--titles-h1);
+  color: var(--info-text, #333);
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}

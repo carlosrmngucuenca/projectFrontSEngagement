@@ -1,0 +1,13 @@
+.barChart-container {
+  width: 100%;
+  height: 100%; /* Adjust height dynamically */
+  border-radius: 16px;
+  padding: 8px;
+}
+
+/* Additional styles for responsiveness and aesthetics */
+@media (max-width: 768px) {
+  .barChart-container {
+    padding: 4px; /* Adjust padding for smaller screens */
+  }
+}

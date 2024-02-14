@@ -15,19 +15,37 @@ export const charDonnutColors = {
   ],
 };
 
+export const lineChartColorsSurvey = {
+  backgroundColors: [
+    'rgba(255, 206, 86, 0.7)', //  yellow
+    'rgba(255, 99, 132, 0.7)', // red
+    'rgba(13, 80, 255, 0.7)', // blue
+    ,
+  ],
+  borderColors: [
+    'rgba(255, 206, 86, 0.7)', //  yellow
+    'rgba(255, 99, 132, 0.7)', // red
+    'rgba(13, 80, 255, 0.7)', // blue
+    ,
+  ],
+};
+
 export const lineChartColors = {
   backgroundColors: [],
   borderColors: 'blue',
 };
 
 export const initChartconf = {
+  numberOfBeansSurvey: 3,
   numberOfBeans: 12,
   barChartXaxisLabels: Array.from(
     { length: 12 },
     (_, index) => (index + 1) * 10
   ),
+  barChartXaxisLabelsSurvey: ['Afectivo', 'Cognitivo', 'Conductual'],
   excelentClassLabelName: 'Excelente Clase',
   iDonotGetItLabelName: 'No Entiendo',
   sleepLabelName: 'Tengo Sueño',
   takeBreakLabelName: 'Tomar un descanso',
+  surveyResultsLabelName: 'Resultados',
 };

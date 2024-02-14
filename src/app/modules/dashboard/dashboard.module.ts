@@ -18,6 +18,8 @@ import { ConfigRoomFormComponent } from './components/config-room-form/config-ro
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyPollsComponent } from './pages/my-polls/my-polls.component';
 import { PollListComponent } from './components/poll-list/poll-list.component';
+import { MySurveyResultsComponent } from './pages/my-survey-results/my-survey-results.component';
+import { SurveyResultsChartComponent } from './components/survey-results-chart/survey-results-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PollListComponent } from './components/poll-list/poll-list.component';
     ConfigRoomFormComponent,
     MyPollsComponent,
     PollListComponent,
+    MySurveyResultsComponent,
+    SurveyResultsChartComponent,
   ],
   imports: [
     CommonModule,
