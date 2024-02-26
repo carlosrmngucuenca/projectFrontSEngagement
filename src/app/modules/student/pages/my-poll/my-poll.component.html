@@ -4,24 +4,32 @@
 ></student-title-page>
 <main class="main">
   <ng-container *ngIf="questionIndex < questions.length">
-    <p class="question__title">{{ currentQuestion.question }}</p>
-    <ng-container *ngIf="currentQuestion.type === 'Likert'">
+    <p class="question__title">{{ currentPollQuestion.question }}</p>
+    <ng-container *ngIf="questionIndex === 0">
       <app-likert-question
-        [question]="currentQuestion"
+        [question]="currentPollQuestion"
         [form]="surveyForm"
       ></app-likert-question>
     </ng-container>
-    <ng-container *ngIf="currentQuestion.type === 'Single Option'">
-      <app-single-option-question
-        [question]="currentQuestion"
+    <ng-container *ngIf="questionIndex === 1">
+      <!-- <app-single-option-question
+        [question]="currentPollQuestion"
         [form]="surveyForm"
-      ></app-single-option-question>
+      ></app-single-option-question> -->
+      <app-likert-question
+        [question]="currentPollQuestion"
+        [form]="surveyForm"
+      ></app-likert-question>
     </ng-container>
-    <ng-container *ngIf="currentQuestion.type === 'Multiple Option'">
-      <app-multiple-option-question
-        [question]="currentQuestion"
+    <ng-container *ngIf="questionIndex === 2">
+      <!-- <app-multiple-option-question
+        [question]="currentPollQuestion"
         [form]="surveyForm"
-      ></app-multiple-option-question>
+      ></app-multiple-option-question> -->
+      <app-likert-question
+        [question]="currentPollQuestion"
+        [form]="surveyForm"
+      ></app-likert-question>
     </ng-container>
   </ng-container>
 </main>

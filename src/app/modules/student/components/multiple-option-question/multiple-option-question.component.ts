@@ -19,6 +19,7 @@ export class MultipleOptionQuestionComponent implements OnInit {
 
   }
   buildForm() {
+    
     this.question.answers.forEach((answer: Answer) => {
       let idAnswerOption = '' + answer.option;
       this.myOptions.addControl(
