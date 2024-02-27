@@ -1,5 +1,6 @@
 
 export interface PollResponse  {
+  roomId: string;
   pollId: number;
   responses: {
     questionId: string;

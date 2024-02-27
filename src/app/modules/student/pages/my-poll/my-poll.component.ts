@@ -11,6 +11,7 @@ import { Question } from 'src/app/interfaces/poll.interface';
 import { PollService } from '../../../../services/poll.service';
 import { Jsonresponse } from 'src/app/interfaces/models/responsejson.model';
 import { PollResponse } from 'src/app/interfaces/models/pollResponse.interface';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
   selector: 'app-my-poll',
@@ -31,6 +32,7 @@ export class MyPollComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private pollService: PollService,
+    private roomService: RoomService,
     private formBuilder: FormBuilder,
   ) // private socketService: SocketService,
   { }
@@ -122,13 +124,13 @@ export class MyPollComponent implements OnInit, OnDestroy {
             option: option
           };
         });
+      const roomId=this.roomService.getRoomId();
       const pollResponse: PollResponse = {
+        roomId:roomId,
         pollId: pollId,
         responses: responses,
       };
       this.pollService.savePollResponses(pollResponse);
-
-
     }
     this.pollService.setPollSavedLocalStorage('true');
   }
