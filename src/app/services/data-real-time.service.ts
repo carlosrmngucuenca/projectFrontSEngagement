@@ -11,6 +11,7 @@ import { Emotion } from '../interfaces/emotion.interface';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { RoomService } from './room.service';
+import { PollEngagementResponse } from '../interfaces/pollResponses.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +51,14 @@ export class DataRealTimeService implements OnInit {
     sad: 0,
     happy: 0,
   };
+
+  private pollResponseEngagement: PollEngagementResponse = {
+    cognitive: 0,
+    emotional: 0,
+    behavioral: 0,
+  };
+  private PollEngagementResponseDataSubject =
+    new BehaviorSubject<PollEngagementResponse>(this.pollResponseEngagement);
   private emotionsDataSubject = new BehaviorSubject<Emotion>(this.emotion);
   private activitySubject = new BehaviorSubject<DashboardActivity>(
     this.Dashboardactivity
@@ -60,6 +69,8 @@ export class DataRealTimeService implements OnInit {
   public activity$ = this.activitySubject.asObservable();
   public activityComment$ = this.activityCommentSubject.asObservable();
   public emotionsData$ = this.emotionsDataSubject.asObservable();
+  public PollEngagementResponseData$ =
+    this.PollEngagementResponseDataSubject.asObservable();
   private apiUrl = environment.baseUrl;
   private storageKey = 'roomId';
   private roomId = '';
@@ -109,6 +120,20 @@ export class DataRealTimeService implements OnInit {
       .subscribe((activity: Emotion) => {
         this.emotionsDataSubject.next(activity);
       });
+
+    this.socketService
+      .on<PollEngagementResponse>('dashboardPollsEngagement')
+      .pipe(
+        tap((value) =>
+          console.log(
+            '(tap en data-real-time-service) Escuchando el evento dashboardPollsEngagement',
+            value
+          )
+        )
+      )
+      .subscribe((activity: PollEngagementResponse) => {
+        this.PollEngagementResponseDataSubject.next(activity);
+      });
   }
 
   ngOnInit() {}
@@ -122,6 +147,10 @@ export class DataRealTimeService implements OnInit {
 
   getEmotionsDataObservable$(): Observable<Emotion> {
     return this.emotionsData$;
+  }
+
+  getPollEngagementResponseObservable$(): Observable<PollEngagementResponse> {
+    return this.PollEngagementResponseData$;
   }
 
   getDashboardActivities(): Observable<DashboardActivity[]> {
@@ -147,6 +176,19 @@ export class DataRealTimeService implements OnInit {
       );
     } else {
       return of(this.emotion);
+    }
+  }
+
+  getDashboardPollEngagementResponse(): Observable<PollEngagementResponse> {
+    if (this.roomService.getRoomId().length > 0) {
+      console.log('Estoy PollresponseEngagement', this.roomService.getRoomId());
+      return this.http.get<PollEngagementResponse>(
+        `${
+          this.apiUrl
+        }/dashboard-poll-responses/${this.roomService.getRoomId()}`
+      );
+    } else {
+      return of(this.pollResponseEngagement);
     }
   }
 

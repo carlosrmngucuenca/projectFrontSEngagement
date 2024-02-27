@@ -42,7 +42,7 @@ export const initChartconf = {
     { length: 12 },
     (_, index) => (index + 1) * 10
   ),
-  barChartXaxisLabelsSurvey: ['Afectivo', 'Cognitivo', 'Conductual'],
+  barChartXaxisLabelsSurvey: ['Cognitivo', 'Afectivo', 'Conductual'],
   excelentClassLabelName: 'Excelente Clase',
   iDonotGetItLabelName: 'No Entiendo',
   sleepLabelName: 'Tengo Sueño',
