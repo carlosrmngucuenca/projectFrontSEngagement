@@ -17,6 +17,7 @@ export class SingleOptionQuestionComponent implements OnInit {
     this.buildForm();
   }
   buildForm() {
+   
     let idQuestion = this.question._id;
 
     this.form.addControl(
