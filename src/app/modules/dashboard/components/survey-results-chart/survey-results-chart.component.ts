@@ -126,7 +126,7 @@ export class SurveyResultsChartComponent implements OnInit, AfterViewInit {
     this.lineChart.data.datasets[0].data = [
       newData.cognitive,
       newData.emotional,
-      newData.cognitive,
+      newData.behavioral,
     ];
 
     this.lineChart.update();
